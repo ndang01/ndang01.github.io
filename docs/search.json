@@ -2,9 +2,9 @@
   {
     "objectID": "posts/example1/index.html",
     "href": "posts/example1/index.html",
-    "title": "Blog 1",
+    "title": "Test Blog",
     "section": "",
-    "text": "import sklearn as sk\nimport numpy as np\nfrom matplotlib import pyplot as plt\nimport pandas as pd\nprint(\"I did it!\")\n\nhello world"
+    "text": "import sklearn as sk\nimport numpy as np\nfrom matplotlib import pyplot as plt\nimport pandas as pd\nprint(\"I did it!\")\n\nI did it!"
   },
   {
     "objectID": "posts/example-blog-post/index.html",
@@ -25,7 +25,7 @@
     "href": "index.html",
     "title": "My Awesome CSCI 0451 Blog",
     "section": "",
-    "text": "An example blog post illustrating the key techniques you’ll need to demonstrate your learning in CSCI 0451.\n\n\n\n\n\n\nJan 10, 2023\n\n\nPhil Chodrow\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\nAn example blog post illustrating the key techniques you’ll need to demonstrate your learning in CSCI 0451.\n\n\n\n\n\n\nJan 10, 2023\n\n\nPhil Chodrow\n\n\n\n\n\n\nNo matching items"
+    "text": "An example blog post to test the set up of software.\n\n\n\n\n\n\nFeb 14, 2023\n\n\nNhi Dang\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\nAn example blog post illustrating the key techniques you’ll need to demonstrate your learning in CSCI 0451.\n\n\n\n\n\n\nJan 10, 2023\n\n\nPhil Chodrow\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "about.html",
