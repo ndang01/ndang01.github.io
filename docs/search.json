@@ -25,7 +25,7 @@
     "href": "index.html",
     "title": "My Awesome CSCI 0451 Blog",
     "section": "",
-    "text": "An example blog post to test the set up of software.\n\n\n\n\n\n\nFeb 24, 2023\n\n\nNhi Dang\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\nAn example blog post illustrating the key techniques you’ll need to demonstrate your learning in CSCI 0451.\n\n\n\n\n\n\nJan 10, 2023\n\n\nPhil Chodrow\n\n\n\n\n\n\nNo matching items"
+    "text": "A blog post on the perceptron algorithm. The algorithm aims to find a rule for separating distinct groups in some data.\n\n\n\n\n\n\nFeb 24, 2023\n\n\nNhi Dang\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\nAn example blog post illustrating the key techniques you’ll need to demonstrate your learning in CSCI 0451.\n\n\n\n\n\n\nJan 10, 2023\n\n\nPhil Chodrow\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "about.html",
@@ -39,7 +39,7 @@
     "href": "posts/blog1/index.html",
     "title": "Perceptron",
     "section": "",
-    "text": "from perceptron import Perceptron\n\np = Perceptron()\np.fit(X, y, max_steps = 1000)\n\nprint(p.w)\n\nprint(p.history[-10:]) #just the last few values\n\n[2.10557404 3.1165449  0.25079936]\n[0.99, 0.99, 0.99, 0.99, 0.99, 0.99, 0.99, 0.99, 0.99, 1.0]\n\n\n\nfig = plt.plot(p.history)\nxlab = plt.xlabel(\"Iteration\")\nylab = plt.ylabel(\"Accuracy\")\n\n\n\n\n\ndef draw_line(w, x_min, x_max):\n  x = np.linspace(x_min, x_max, 101)\n  y = -(w[0]*x + w[2])/w[1]\n  plt.plot(x, y, color = \"black\")\n\nfig = plt.scatter(X[:,0], X[:,1], c = y)\nfig = draw_line(p.w, -2, 2)\n\nxlab = plt.xlabel(\"Feature 1\")\nylab = plt.ylabel(\"Feature 2\")\n\nplt.savefig(\"image.jpg\")\n\n\n\n\n\np.score(X, y)\n\n1.0"
+    "text": "source code: https://github.com/ndang01/ndang01.github.io/blob/main/posts/blog1/perceptron.py"
   },
   {
     "objectID": "posts/class2_22/index.html",
@@ -75,5 +75,40 @@
     "title": "Warmup activities",
     "section": "",
     "text": "# warmup 1: perceptron\n\ndef perceptron_classify(w, b, x):\n    return 1*(x@w - b > 0)\n    #np.dpt (w, x) == w@x\nperceptron_classify([1,2,3], 35, [4,5,6])\n\n0\n\n\n\n# warmup 2: convexity\n\nfrom matplotlib import pyplot as plt \nimport numpy as np\n\n# line 1 points\nx1 = np.linspace(-.5,1.5,100)\ny1 = -np.log(x1)\n# plotting the line 1 points \nplt.plot(x1, y1, label = \"f(z) = -ln(z)\")\n  \n# line 2 points\nx2 = np.linspace(-.5,1.5,100)\ny2 = -np.log(1-x2)\n# plotting the line 2 points\nplt.plot(x2, y2, label = \"g(z) = -ln(1-z)\")\n\n# giving a title to my graph\nplt.title('Practice Plotting')\n  \n# show a legend on the plot\nplt.legend(loc='upper right')\n  \n# function to show the plot\nplt.show()\n\n/var/folders/3v/yg1jpz7n6r9_y3hr4n2mzt_40000gn/T/ipykernel_6057/2136663577.py:8: RuntimeWarning: invalid value encountered in log\n  y1 = -np.log(x1)\n/var/folders/3v/yg1jpz7n6r9_y3hr4n2mzt_40000gn/T/ipykernel_6057/2136663577.py:14: RuntimeWarning: invalid value encountered in log\n  y2 = -np.log(1-x2)"
+  },
+  {
+    "objectID": "posts/blog1/index.html#the-perceptron-algorithm",
+    "href": "posts/blog1/index.html#the-perceptron-algorithm",
+    "title": "Perceptron",
+    "section": "The Perceptron Algorithm",
+    "text": "The Perceptron Algorithm\nThe algorithm updates its guesses (weights) as it runs and also keeps a record of its history of accuracy. It processes one example at a time. For a given example, it makes a prediction and checks to see if this prediction is correct. If the prediction is correct, it does nothing. Otherwise, it changes its parameters do better on this example next time around. The algorithm stops once it reaches a user-specified maximum number of steps or the accuracy is 100%."
+  },
+  {
+    "objectID": "posts/blog1/index.html#source-code",
+    "href": "posts/blog1/index.html#source-code",
+    "title": "Perceptron",
+    "section": "Source Code",
+    "text": "Source Code\nThe algorithm has three main functions: fit(), predict(), and score().\nWe pass into fit() a feature matrix \\(X \\in R^{n \\times p}\\) and a target vector \\(y \\in R^n\\). The function updates the weights and keeps track of the history of its accuracy. Its goal is to find a good \\(\\tilde{w}\\) to separate the data points. Fit() utilizes the following function when updating its guesses:\n\\[\\tilde{w}^{(t+1)} = \\tilde{w}^{(t)} + y_i \\tilde{x}_i\\;\\]\nScore() and predict() compares the target variable \\(y_i\\) to the predicted label \\(\\hat{y}_i^{(t)}\\). If \\(\\hat{y}^{(t)}_i y_i > 0\\), then we do nothing because the point is correctly classified. Otherwise, we perform the update on \\(\\tilde{w}\\).\n\nfrom perceptron import Perceptron\n\np = Perceptron()\np.fit(X, y, max_steps = 1000)\n\np.w \nprint(\"Evolution of the score over the training period:\") \nprint(p.history[-10:]) #just the last few scores\n\nfig = plt.plot(p.history)\nxlab = plt.xlabel(\"Iteration\")\nylab = plt.ylabel(\"Accuracy\")\ntitle = plt.title(\"Accuracy of Perceptron Algorithm\")\n\nEvolution of the score over the training period:\n[0.99, 0.99, 0.99, 0.99, 0.99, 0.99, 0.99, 0.99, 0.99, 1.0]"
+  },
+  {
+    "objectID": "posts/blog1/index.html#convergence-of-the-perceptron-algorithm",
+    "href": "posts/blog1/index.html#convergence-of-the-perceptron-algorithm",
+    "title": "Perceptron",
+    "section": "Convergence of the Perceptron Algorithm",
+    "text": "Convergence of the Perceptron Algorithm\nAfter the perceptron algorithm is run, the weight vector \\(\\tilde{w}\\) generates a hyperplane that perfectly separates data points from both classes on either side of it.\n\ndef draw_line(w, x_min, x_max):\n  x = np.linspace(x_min, x_max, 101)\n  y = -(w[0]*x + w[2])/w[1]\n  plt.plot(x, y, color = \"black\")\n\nfig = plt.scatter(X[:,0], X[:,1], c = y)\nfig = draw_line(p.w, -2, 2)\n\nxlab = plt.xlabel(\"Feature 1\")\nylab = plt.ylabel(\"Feature 2\")\nplt.title(\"Linearly Seperable Data with Perceptron\")\nplt.savefig(\"image.jpg\")\n\n\n\n\nThe score on this data is:\n\np.score(X, y)\n\n1.0"
+  },
+  {
+    "objectID": "posts/blog1/index.html#nonconvergence-of-the-perceptron-algorithm",
+    "href": "posts/blog1/index.html#nonconvergence-of-the-perceptron-algorithm",
+    "title": "Perceptron",
+    "section": "Nonconvergence of the Perceptron Algorithm",
+    "text": "Nonconvergence of the Perceptron Algorithm\nWhen the data is not linearly separable, the perceptron algorithm will not settle on a final value of \\(\\tilde{w}\\) , but will instead run until the maximum number of iterations is reached, without achieving perfect accuracy.\n\nfig = plt.scatter(X_n[:,0], X_n[:,1], c = y_n)\nfig = draw_line(p.w, -2, 2)\n\nxlab = plt.xlabel(\"Feature 1\")\nylab = plt.ylabel(\"Feature 2\")\ntitle = plt.title(\"Nonseperable Data with Perceptron\")\n\n\n\n\nThe score on this data is:\n\np.score(X, y)\n\n1.0"
+  },
+  {
+    "objectID": "posts/blog1/index.html#runtime-complexity-of-perceptron",
+    "href": "posts/blog1/index.html#runtime-complexity-of-perceptron",
+    "title": "Perceptron",
+    "section": "Runtime Complexity of Perceptron",
+    "text": "Runtime Complexity of Perceptron\nThe runtime complexity of a single iteration of the perceptron algorithm update is in constant time. The runtime complexity does not depend on the number of data points, but it does depend on the number of features."
   }
 ]
