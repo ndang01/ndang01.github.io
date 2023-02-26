@@ -1,80 +1,10 @@
 [
   {
-    "objectID": "posts/example1/index.html",
-    "href": "posts/example1/index.html",
-    "title": "Test Blog",
-    "section": "",
-    "text": "def perceptron_classify(w, b, x):\n    return 1*(x@w - b > 0)\n    #np.dpt (w, x) == w@x\nperceptron_classify([1,2,3], 35, [4,5,6])\n\n0"
-  },
-  {
-    "objectID": "posts/example-blog-post/index.html",
-    "href": "posts/example-blog-post/index.html",
-    "title": "Hello Blog",
-    "section": "",
-    "text": "This is an example of the blog posts that you’ll submit as your primary form of learning demonstration in CSCI 0451. I created this post by modifying the file posts/example-blog-post/index.ipynb in VSCode. You can also use JupyterLab for this editing if you prefer. Finally, it is possible to write blog posts without using notebooks by writing .qmd files, as illustrated here."
-  },
-  {
-    "objectID": "posts/example-blog-post/index.html#math",
-    "href": "posts/example-blog-post/index.html#math",
-    "title": "Hello Blog",
-    "section": "Math",
-    "text": "Math\nIn addition to regular text using the Markdown specification, you can also write mathematics, enclosed between dollar signs. The syntax for writing math is very similar to the syntax used in the \\(\\LaTeX\\) markup language. For example, $f(x) \\approx y$ renders to \\(f(x) \\approx y\\). To place complex mathematical expressions on their own lines, use double dollar signs. For example, the expression\n$$\\mathcal{L}(a, b) = \\sum_{i = 1}^n (ax_i + b - y_i)^2$$\nrenders to:\n\\[\\mathcal{L}(a, b) = \\sum_{i = 1}^n (ax_i + b - y_i)^2\\;.\\]\nBehind the scenes, math is powered by the MathJax engine. For more on how to write math, check this handy tutorial and quick reference."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "My Awesome CSCI 0451 Blog",
-    "section": "",
-    "text": "A blog post on the perceptron algorithm. The algorithm aims to find a rule for separating distinct groups in some data.\n\n\n\n\n\n\nFeb 24, 2023\n\n\nNhi Dang\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\nAn example blog post illustrating the key techniques you’ll need to demonstrate your learning in CSCI 0451.\n\n\n\n\n\n\nJan 10, 2023\n\n\nPhil Chodrow\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About CS 451",
-    "section": "",
-    "text": "About this blog"
-  },
-  {
     "objectID": "posts/blog1/index.html",
     "href": "posts/blog1/index.html",
     "title": "Perceptron",
     "section": "",
     "text": "source code: https://github.com/ndang01/ndang01.github.io/blob/main/posts/blog1/perceptron.py"
-  },
-  {
-    "objectID": "posts/class2_22/index.html",
-    "href": "posts/class2_22/index.html",
-    "title": "My Awesome CSCI 0451 Blog",
-    "section": "",
-    "text": "import numpy as np\nimport random \n\nalpha = 0.001;\n\ndef f(x):\n    return np.sin(x[0]*x[1])\n\ndef gradient_descent():\n   w = np.random.rand(2)\n\n   for i in range(1000):\n    w = w - alpha * gradient(w)\n\n    //np.array([   ,  ])"
-  },
-  {
-    "objectID": "posts/class2_20/index.html",
-    "href": "posts/class2_20/index.html",
-    "title": "My Awesome CSCI 0451 Blog",
-    "section": "",
-    "text": "z = np.linspace(0, 5, 101)\nplt.plot(z, -np.log(1/(1 + np.exp(-z)))) \nlabs = plt.gca().set(xlabel = r\"$\\hat{y}$\", ylabel = r\"$-\\log \\sigma(\\hat{y})$\")\n\n\n\n\n\np_features = 3\n\nX, y = make_blobs(n_samples = 100, n_features = p_features - 1, centers = [(-1, -1), (1, 1)])\n\nfig = plt.scatter(X[:,0], X[:,1], c = y)\nxlab = plt.xlabel(\"Feature 1\")\nylab = plt.ylabel(\"Feature 2\")\n\n\n\n\nNote that this data is not linearly separable. The perceptron algorithm wouldn’t even have converged for this data set, but logistic regression will do great.\n\n\n\n\n\n# add a constant feature to the feature matrix\nX_ = np.append(X, np.ones((X.shape[0], 1)), 1)\n\nNow we’ll define some functions to compute the empirical risk:\n\n# implement: (WE ARE CODING TOGETHER HERE!!)\n# - predict\n# - sigmoid\n# - logistic_loss\n# - empirical_risk\n\ndef predict(X,w):\n    return X@w\n\ndef logistic_loss(y_hat,y):\n    return -y * np.loss(sigmoid(y_hat)) - (1 - y) * np.log(1 - sigmoid(y_hat))\n\ndef sigmoid(z):\n    return 1 / (1 + np.exp(-z))\n\ndef empirical_risk(X,y,w,loss):\n    y_hat = predict(X,w)\n    return loss(y_hat, y).mean()\n\nFinally, we can write the function that will solve the empirical risk minimization problem for us. We’re going to use the scipy.optimize.minimize function, which is a built-in function for solving minimization problems. Soon, we’ll study how to solve minimization problems from scratch.\nThe scipy.optimize.minimize function requires us to pass it a single function that accepts a vector of parameters, plus an initial guess for the parameters.\n\ndef find_pars(X, y):\n    \n    p = X.shape[1]\n    w0 = np.random.rand(p) # random initial guess\n    \n    # perform the minimization\n    result = minimize(lambda w: empirical_risk(X, y, w, logistic_loss), \n                      x0 = w0) \n    \n    # return the parameters\n    return result.x\n\nOk, let’s try it and take a look at the parameters we obtained. Because the final column of X_ is the constant column of 1s, the final entry of w is interpretable as the intercept term b.\n\nw = find_pars(X, y)\nw\n\nAttributeError: module 'numpy' has no attribute 'loss'\n\n\nAnd, finally, we can plot the linear classifier that we learned.\n\nfig = plt.scatter(X[:,0], X[:,1], c = y)\nxlab = plt.xlabel(\"Feature 1\")\nylab = plt.ylabel(\"Feature 2\")\n\nf1 = np.linspace(-3, 3, 101)\n\nplt.plot(f1, (w[2] - f1*w[0])/w[1], color = \"black\")\n\nSince the logistic loss is convex, we are guaranteed that this solution is the unique best solution (as measured by the logistic loss). There is no other possible set of parameters that would lead to a better result (again, as measured by the logistic loss)."
-  },
-  {
-    "objectID": "posts/warmup/index.html",
-    "href": "posts/warmup/index.html",
-    "title": "Warmup activities",
-    "section": "",
-    "text": "# warmup 1: perceptron\n\ndef perceptron_classify(w, b, x):\n    return 1*(x@w - b > 0)\n    #np.dpt (w, x) == w@x\nperceptron_classify([1,2,3], 35, [4,5,6])\n\n0\n\n\n\n# warmup 2: convexity\n\nfrom matplotlib import pyplot as plt \nimport numpy as np\n\n# line 1 points\nx1 = np.linspace(-.5,1.5,100)\ny1 = -np.log(x1)\n# plotting the line 1 points \nplt.plot(x1, y1, label = \"f(z) = -ln(z)\")\n  \n# line 2 points\nx2 = np.linspace(-.5,1.5,100)\ny2 = -np.log(1-x2)\n# plotting the line 2 points\nplt.plot(x2, y2, label = \"g(z) = -ln(1-z)\")\n\n# giving a title to my graph\nplt.title('Practice Plotting')\n  \n# show a legend on the plot\nplt.legend(loc='upper right')\n  \n# function to show the plot\nplt.show()\n\n/var/folders/3v/yg1jpz7n6r9_y3hr4n2mzt_40000gn/T/ipykernel_6057/2136663577.py:8: RuntimeWarning: invalid value encountered in log\n  y1 = -np.log(x1)\n/var/folders/3v/yg1jpz7n6r9_y3hr4n2mzt_40000gn/T/ipykernel_6057/2136663577.py:14: RuntimeWarning: invalid value encountered in log\n  y2 = -np.log(1-x2)"
-  },
-  {
-    "objectID": "notebook/class2_22/index.html",
-    "href": "notebook/class2_22/index.html",
-    "title": "My Awesome CSCI 0451 Blog",
-    "section": "",
-    "text": "import numpy as np\nimport random \n\nalpha = 0.001;\n\ndef f(x):\n    return np.sin(x[0]*x[1])\n\ndef gradient_descent():\n   w = np.random.rand(2)\n\n   for i in range(1000):\n    w = w - alpha * gradient(w)\n\n    //np.array([   ,  ])"
-  },
-  {
-    "objectID": "notebook/warmup/index.html",
-    "href": "notebook/warmup/index.html",
-    "title": "Warmup activities",
-    "section": "",
-    "text": "# warmup 1: perceptron\n\ndef perceptron_classify(w, b, x):\n    return 1*(x@w - b > 0)\n    #np.dpt (w, x) == w@x\nperceptron_classify([1,2,3], 35, [4,5,6])\n\n0\n\n\n\n# warmup 2: convexity\n\nfrom matplotlib import pyplot as plt \nimport numpy as np\n\n# line 1 points\nx1 = np.linspace(-.5,1.5,100)\ny1 = -np.log(x1)\n# plotting the line 1 points \nplt.plot(x1, y1, label = \"f(z) = -ln(z)\")\n  \n# line 2 points\nx2 = np.linspace(-.5,1.5,100)\ny2 = -np.log(1-x2)\n# plotting the line 2 points\nplt.plot(x2, y2, label = \"g(z) = -ln(1-z)\")\n\n# giving a title to my graph\nplt.title('Practice Plotting')\n  \n# show a legend on the plot\nplt.legend(loc='upper right')\n  \n# function to show the plot\nplt.show()\n\n/var/folders/3v/yg1jpz7n6r9_y3hr4n2mzt_40000gn/T/ipykernel_6057/2136663577.py:8: RuntimeWarning: invalid value encountered in log\n  y1 = -np.log(x1)\n/var/folders/3v/yg1jpz7n6r9_y3hr4n2mzt_40000gn/T/ipykernel_6057/2136663577.py:14: RuntimeWarning: invalid value encountered in log\n  y2 = -np.log(1-x2)"
   },
   {
     "objectID": "posts/blog1/index.html#the-perceptron-algorithm",
@@ -105,10 +35,45 @@
     "text": "Nonconvergence of the Perceptron Algorithm\nWhen the data is not linearly separable, the perceptron algorithm will not settle on a final value of \\(\\tilde{w}\\) , but will instead run until the maximum number of iterations is reached, without achieving perfect accuracy.\n\nfig = plt.scatter(X_n[:,0], X_n[:,1], c = y_n)\nfig = draw_line(p.w, -2, 2)\n\nxlab = plt.xlabel(\"Feature 1\")\nylab = plt.ylabel(\"Feature 2\")\ntitle = plt.title(\"Nonseperable Data with Perceptron\")\n\n\n\n\nThe score on this data is:\n\np.score(X, y)\n\n1.0"
   },
   {
-    "objectID": "posts/blog1/index.html#runtime-complexity-of-perceptron",
-    "href": "posts/blog1/index.html#runtime-complexity-of-perceptron",
-    "title": "Perceptron",
-    "section": "Runtime Complexity of Perceptron",
-    "text": "Runtime Complexity of Perceptron\nThe runtime complexity of a single iteration of the perceptron algorithm update is in constant time. The runtime complexity does not depend on the number of data points, but it does depend on the number of features."
+    "objectID": "posts/example-blog-post/index.html",
+    "href": "posts/example-blog-post/index.html",
+    "title": "Hello Blog",
+    "section": "",
+    "text": "This is an example of the blog posts that you’ll submit as your primary form of learning demonstration in CSCI 0451. I created this post by modifying the file posts/example-blog-post/index.ipynb in VSCode. You can also use JupyterLab for this editing if you prefer. Finally, it is possible to write blog posts without using notebooks by writing .qmd files, as illustrated here."
+  },
+  {
+    "objectID": "posts/example-blog-post/index.html#math",
+    "href": "posts/example-blog-post/index.html#math",
+    "title": "Hello Blog",
+    "section": "Math",
+    "text": "Math\nIn addition to regular text using the Markdown specification, you can also write mathematics, enclosed between dollar signs. The syntax for writing math is very similar to the syntax used in the \\(\\LaTeX\\) markup language. For example, $f(x) \\approx y$ renders to \\(f(x) \\approx y\\). To place complex mathematical expressions on their own lines, use double dollar signs. For example, the expression\n$$\\mathcal{L}(a, b) = \\sum_{i = 1}^n (ax_i + b - y_i)^2$$\nrenders to:\n\\[\\mathcal{L}(a, b) = \\sum_{i = 1}^n (ax_i + b - y_i)^2\\;.\\]\nBehind the scenes, math is powered by the MathJax engine. For more on how to write math, check this handy tutorial and quick reference."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "My Awesome CSCI 0451 Blog",
+    "section": "",
+    "text": "A blog post on the perceptron algorithm. The algorithm aims to find a rule for separating distinct groups in some data.\n\n\n\n\n\n\nFeb 24, 2023\n\n\nNhi Dang\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\nAn example blog post illustrating the key techniques you’ll need to demonstrate your learning in CSCI 0451.\n\n\n\n\n\n\nJan 10, 2023\n\n\nPhil Chodrow\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About CS 451",
+    "section": "",
+    "text": "About this blog"
+  },
+  {
+    "objectID": "notebook/class2_22/index.html",
+    "href": "notebook/class2_22/index.html",
+    "title": "My Awesome CSCI 0451 Blog",
+    "section": "",
+    "text": "import numpy as np\nimport random \n\nalpha = 0.001;\n\ndef f(x):\n    return np.sin(x[0]*x[1])\n\ndef gradient_descent():\n   w = np.random.rand(2)\n\n   for i in range(1000):\n    w = w - alpha * gradient(w)\n\n    //np.array([   ,  ])"
+  },
+  {
+    "objectID": "notebook/warmup/index.html",
+    "href": "notebook/warmup/index.html",
+    "title": "Warmup activities",
+    "section": "",
+    "text": "# warmup 1: perceptron\n\ndef perceptron_classify(w, b, x):\n    return 1*(x@w - b > 0)\n    #np.dpt (w, x) == w@x\nperceptron_classify([1,2,3], 35, [4,5,6])\n\n0\n\n\n\n# warmup 2: convexity\n\nfrom matplotlib import pyplot as plt \nimport numpy as np\n\n# line 1 points\nx1 = np.linspace(-.5,1.5,100)\ny1 = -np.log(x1)\n# plotting the line 1 points \nplt.plot(x1, y1, label = \"f(z) = -ln(z)\")\n  \n# line 2 points\nx2 = np.linspace(-.5,1.5,100)\ny2 = -np.log(1-x2)\n# plotting the line 2 points\nplt.plot(x2, y2, label = \"g(z) = -ln(1-z)\")\n\n# giving a title to my graph\nplt.title('Practice Plotting')\n  \n# show a legend on the plot\nplt.legend(loc='upper right')\n  \n# function to show the plot\nplt.show()\n\n/var/folders/3v/yg1jpz7n6r9_y3hr4n2mzt_40000gn/T/ipykernel_6057/2136663577.py:8: RuntimeWarning: invalid value encountered in log\n  y1 = -np.log(x1)\n/var/folders/3v/yg1jpz7n6r9_y3hr4n2mzt_40000gn/T/ipykernel_6057/2136663577.py:14: RuntimeWarning: invalid value encountered in log\n  y2 = -np.log(1-x2)"
   }
 ]
