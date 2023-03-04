@@ -46,28 +46,28 @@
     "href": "posts/blog2/index.html#accuracy-of-regular-gradient-descent",
     "title": "Logistic Regression",
     "section": "Accuracy of Regular Gradient Descent",
-    "text": "Accuracy of Regular Gradient Descent\n\n\nCode\nprint(\"Evolution of the score over the training period (last few scores):\") \nprint(LR.score_history[-10:]) #just the last few scores\n\nfig = plt.plot(LR.score_history)\nxlab = plt.xlabel(\"Iteration\")\nylab = plt.ylabel(\"Accuracy\")\ntitle = plt.title(\"Accuracy of Gradient Descent Algorithm\")\n\n\nEvolution of the score over the training period (last few scores):\n[0.905, 0.905, 0.905, 0.905, 0.905, 0.905, 0.905, 0.905, 0.905, 0.905]"
+    "text": "Accuracy of Regular Gradient Descent\n\n\nCode\nprint(\"Evolution of the score over the training period (last few scores):\") \nprint(LR.score_history[-10:]) #just the last few scores\n\nfig = plt.plot(LR.score_history)\nxlab = plt.xlabel(\"Iteration\")\nylab = plt.ylabel(\"Accuracy\")\ntitle = plt.title(\"Accuracy of Gradient Descent Algorithm\")\n\n\nEvolution of the score over the training period (last few scores):\n[0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9]"
   },
   {
     "objectID": "posts/blog2/index.html#empirical-risk-of-regular-gradient-descent",
     "href": "posts/blog2/index.html#empirical-risk-of-regular-gradient-descent",
     "title": "Logistic Regression",
     "section": "Empirical Risk of Regular Gradient Descent",
-    "text": "Empirical Risk of Regular Gradient Descent\n\n\nCode\nprint(\"Evolution of the loss over the training period (last few losses):\") \nprint(LR.loss_history[-10:]) #just the last few losses\n\nfig = plt.plot(LR.loss_history)\nxlab = plt.xlabel(\"Iteration number\")\nylab = plt.ylabel(\"Empirical Risk\")\ntitle = plt.title(\"Evolution of the Loss Function\")\n\n\nEvolution of the loss over the training period (last few losses):\n[0.21435661719329205, 0.21435437290179798, 0.21435214223738122, 0.21434992511071996, 0.21434772143313857, 0.21434553111660243, 0.21434335407371247, 0.2143411902177004, 0.21433903946242322, 0.21433903946242322]"
+    "text": "Empirical Risk of Regular Gradient Descent\n\n\nCode\nprint(\"Evolution of the loss over the training period (last few losses):\") \nprint(LR.loss_history[-10:]) #just the last few losses\n\nfig = plt.plot(LR.loss_history)\nxlab = plt.xlabel(\"Iteration number\")\nylab = plt.ylabel(\"Empirical Risk\")\ntitle = plt.title(\"Evolution of the Loss Function\")\n\n\nEvolution of the loss over the training period (last few losses):\n[0.22309163997414064, 0.22308930185331072, 0.22308697943430167, 0.22308467260371884, 0.22308238124906693, 0.22308010525874244, 0.2230778445220254, 0.22307559892907164, 0.2230733683709053, 0.2230733683709053]"
   },
   {
     "objectID": "posts/blog2/index.html#accuracy-of-stochastic-gradient-descent",
     "href": "posts/blog2/index.html#accuracy-of-stochastic-gradient-descent",
     "title": "Logistic Regression",
     "section": "Accuracy of Stochastic Gradient Descent",
-    "text": "Accuracy of Stochastic Gradient Descent\n\n\nCode\nprint(\"Evolution of the score over the training period:\") \nprint(LR.score_history[-10:]) #just the last few scores\n\nfig = plt.plot(LR.score_history)\nxlab = plt.xlabel(\"Iteration\")\nylab = plt.ylabel(\"Accuracy\")\ntitle = plt.title(\"Accuracy of Gradient Descent Algorithm\")\n\n\nEvolution of the score over the training period:\n[0.905, 0.905, 0.905, 0.905, 0.905, 0.905, 0.905, 0.905, 0.905, 0.905]"
+    "text": "Accuracy of Stochastic Gradient Descent\n\n\nCode\nprint(\"Evolution of the score over the training period:\") \nprint(LR.score_history[-10:]) #just the last few scores\n\nfig = plt.plot(LR.score_history)\nxlab = plt.xlabel(\"Iteration\")\nylab = plt.ylabel(\"Accuracy\")\ntitle = plt.title(\"Accuracy of Gradient Descent Algorithm\")\n\n\nEvolution of the score over the training period:\n[0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9]"
   },
   {
     "objectID": "posts/blog2/index.html#empirical-risk-of-stochastic-gradient-descent",
     "href": "posts/blog2/index.html#empirical-risk-of-stochastic-gradient-descent",
     "title": "Logistic Regression",
     "section": "Empirical Risk of Stochastic Gradient Descent",
-    "text": "Empirical Risk of Stochastic Gradient Descent\n\n\nCode\nprint(\"Evolution of the loss over the training period:\") \nprint(LR.loss_history[-10:]) #just the last few scores\n\nfig = plt.plot(LR.loss_history)\nxlab = plt.xlabel(\"Iteration number\")\nylab = plt.ylabel(\"Empirical Risk\")\ntitle = plt.title(\"Loss Function for Stochastic Gradient\")\n\n\nEvolution of the loss over the training period:\n[0.21403943517519097, 0.2140335952527328, 0.21402473735950522, 0.21401898947249834, 0.21401196898497912, 0.2140063406393516, 0.21400308061695605, 0.2139993067707164, 0.21400099266021147, 0.21400099266021147]"
+    "text": "Empirical Risk of Stochastic Gradient Descent\n\n\nCode\nprint(\"Evolution of the loss over the training period:\") \nprint(LR.loss_history[-10:]) #just the last few scores\n\nfig = plt.plot(LR.loss_history)\nxlab = plt.xlabel(\"Iteration number\")\nylab = plt.ylabel(\"Empirical Risk\")\ntitle = plt.title(\"Loss Function for Stochastic Gradient\")\n\n\nEvolution of the loss over the training period:\n[0.22281113006494935, 0.22280324193729562, 0.2227990947802934, 0.2227960721276962, 0.2227850775559536, 0.22277813020236972, 0.22277005040238598, 0.22276540103857204, 0.22276490768489887, 0.22276490768489887]"
   },
   {
     "objectID": "posts/blog2/index.html#choice-of-batch-size-in-stochastic-gradient-descent",
