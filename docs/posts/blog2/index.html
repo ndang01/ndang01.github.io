@@ -215,7 +215,7 @@ background-size: cover;
 
 
 
-<p>Source code:</p>
+<p>Source code: https://github.com/ndang01/ndang01.github.io/blob/main/posts/blog2/LogisticRegression.py</p>
 <section id="the-data" class="level1">
 <h1>The Data</h1>
 <p>Below is a nonseparable data in which we will apply the gradient descent and stochastic gradient descent methods on.</p>
@@ -242,7 +242,7 @@ background-size: cover;
 </section>
 <section id="regular-gradient-descent" class="level1">
 <h1>Regular Gradient Descent</h1>
-<p>We will use gradient descent to compute a value of the parameter vector <span class="math inline">\(\tilde{w}\)</span>. Here, convergence for gradient descent is declared when <span class="math inline">\(\nabla f\mathbf({z}^{(t)})\)</span> is close to 0. Fit() utilizes the following function to obtain the gradient of the empirical risk for logistic regression:</p>
+<p>We will use gradient descent to compute a value of the parameter vector <span class="math inline">\(\tilde{w}\)</span>. Here, convergence for gradient descent is declared when the improvement in the function is small enough in magnitude. Fit() utilizes the following function to obtain the gradient of the empirical risk for logistic regression:</p>
 <p><span class="math display">\[\nabla L(w) = \frac{1}{n}\sum_{i = 1}^n \nabla \ell(f_{w}(x_i), y_i)\;\]</span></p>
 <p>Then, we can do logistic regression by choosing a learning rate and iterating the update <span class="math inline">\(\mathbf{w}^{(t+1)} \gets \mathbf{w}^{(t)} - \alpha \nabla L(\mathbf{w}^{(t)})\)</span> until convergence.</p>
 <div class="cell" data-execution_count="2">
@@ -287,7 +287,7 @@ background-size: cover;
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Evolution of the score over the training period (last few scores):
-[0.955, 0.955, 0.955, 0.955, 0.955, 0.955, 0.955, 0.955, 0.955, 0.955]</code></pre>
+[0.905, 0.905, 0.905, 0.905, 0.905, 0.905, 0.905, 0.905, 0.905, 0.905]</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <p><img src="index_files/figure-html/cell-4-output-2.png" class="img-fluid"></p>
@@ -309,7 +309,7 @@ background-size: cover;
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Evolution of the loss over the training period (last few losses):
-[0.12706048790751118, 0.12705697777765942, 0.12705347737423786, 0.12704998666464135, 0.1270465056163979, 0.12704303419716895, 0.12703957237474778, 0.1270361201170595, 0.12703267739216018, 0.12703267739216018]</code></pre>
+[0.21435661719329205, 0.21435437290179798, 0.21435214223738122, 0.21434992511071996, 0.21434772143313857, 0.21434553111660243, 0.21434335407371247, 0.2143411902177004, 0.21433903946242322, 0.21433903946242322]</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <p><img src="index_files/figure-html/cell-5-output-2.png" class="img-fluid"></p>
@@ -321,7 +321,7 @@ background-size: cover;
 <h1>Stochastic Gradient Descent</h1>
 <p>In stochastic gradient descent, we pick a random subset <span class="math inline">\(S \subseteq [n] = \{1, \ldots, n\}\)</span> and compute:</p>
 <p><span class="math display">\[\nabla_S L(w) = \frac{1}{{|S|}}\sum_{i \in S} \nabla \ell(f_{w}(x_i), y_i)\;\]</span></p>
-<p>Again, convergence is declared when <span class="math inline">\(\nabla f\mathbf({z}^{(t)})\)</span> is close to 0.</p>
+<p>Again, convergence is declared when the improvement in the function is small enough in magnitude.</p>
 <div class="cell" data-execution_count="5">
 <details open="">
 <summary>Code</summary>
@@ -357,7 +357,7 @@ background-size: cover;
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Evolution of the score over the training period:
-[0.95, 0.95, 0.95, 0.95, 0.95, 0.95, 0.95, 0.95, 0.95, 0.95]</code></pre>
+[0.905, 0.905, 0.905, 0.905, 0.905, 0.905, 0.905, 0.905, 0.905, 0.905]</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <p><img src="index_files/figure-html/cell-7-output-2.png" class="img-fluid"></p>
@@ -379,7 +379,7 @@ background-size: cover;
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Evolution of the loss over the training period:
-[0.12578080459476626, 0.12577242999403068, 0.12576396545905136, 0.12575698611451894, 0.12574990651340898, 0.1257465902937433, 0.125738076528501, 0.1257353116368159, 0.1257301003301634, 0.1257301003301634]</code></pre>
+[0.21403943517519097, 0.2140335952527328, 0.21402473735950522, 0.21401898947249834, 0.21401196898497912, 0.2140063406393516, 0.21400308061695605, 0.2139993067707164, 0.21400099266021147, 0.21400099266021147]</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <p><img src="index_files/figure-html/cell-8-output-2.png" class="img-fluid"></p>
@@ -418,18 +418,22 @@ background-size: cover;
 <div class="cell" data-execution_count="9">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>LR <span class="op">=</span> LogisticRegression()</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>LR.fit_stochastic(X, y, <span class="fl">0.1</span>, <span class="dv">100</span>, <span class="dv">50</span>)</span>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>p_features <span class="op">=</span> <span class="dv">11</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>X, y <span class="op">=</span> make_blobs(n_samples <span class="op">=</span> <span class="dv">500</span>, n_features <span class="op">=</span> p_features <span class="op">-</span> <span class="dv">1</span>, centers <span class="op">=</span> [(<span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>), (<span class="dv">1</span>, <span class="dv">1</span>)])</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>fig, axarr <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>)</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> axarr[<span class="dv">0</span>].plot(LR.loss_history)</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>axarr[<span class="dv">0</span>].<span class="bu">set</span>(xlabel <span class="op">=</span> <span class="st">"Iteration number"</span>, ylabel <span class="op">=</span> <span class="st">"Empirical Risk"</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>LR <span class="op">=</span> LogisticRegression()</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>LR.fit_stochastic(X, y, <span class="fl">0.1</span>, <span class="dv">100</span>, <span class="dv">50</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>fig, axarr <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>)</span>
 <span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> axarr[<span class="dv">1</span>].plot(LR.score_history)</span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>axarr[<span class="dv">1</span>].<span class="bu">set</span>(xlabel <span class="op">=</span> <span class="st">"Iteration"</span>, ylabel <span class="op">=</span> <span class="st">"Accuracy"</span>)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> axarr[<span class="dv">0</span>].plot(LR.loss_history)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>axarr[<span class="dv">0</span>].<span class="bu">set</span>(xlabel <span class="op">=</span> <span class="st">"Iteration number"</span>, ylabel <span class="op">=</span> <span class="st">"Empirical Risk"</span>)</span>
 <span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> axarr[<span class="dv">1</span>].plot(LR.score_history)</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>axarr[<span class="dv">1</span>].<span class="bu">set</span>(xlabel <span class="op">=</span> <span class="st">"Iteration"</span>, ylabel <span class="op">=</span> <span class="st">"Accuracy"</span>)</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">"image.jpg"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <p><img src="index_files/figure-html/cell-10-output-1.png" class="img-fluid"></p>
