@@ -53,7 +53,7 @@
     "href": "index.html",
     "title": "My Awesome CSCI 0451 Blog",
     "section": "",
-    "text": "A blog post on the perceptron algorithm. The algorithm aims to find a rule for separating distinct groups in some data.\n\n\n\n\n\n\nFeb 24, 2023\n\n\nNhi Dang\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\nAn example blog post illustrating the key techniques you’ll need to demonstrate your learning in CSCI 0451.\n\n\n\n\n\n\nJan 10, 2023\n\n\nPhil Chodrow\n\n\n\n\n\n\nNo matching items"
+    "text": "A blog post on optimization algorithms that are based on the gradients of functions.\n\n\n\n\n\n\nMar 2, 2023\n\n\nNhi Dang\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\nA blog post on the perceptron algorithm. The algorithm aims to find a rule for separating distinct groups in some data.\n\n\n\n\n\n\nFeb 24, 2023\n\n\nNhi Dang\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\nAn example blog post illustrating the key techniques you’ll need to demonstrate your learning in CSCI 0451.\n\n\n\n\n\n\nJan 10, 2023\n\n\nPhil Chodrow\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "about.html",
@@ -110,5 +110,47 @@
     "title": "My Awesome CSCI 0451 Blog",
     "section": "",
     "text": "import sklearn as sk\nimport numpy as np\nfrom matplotlib import pyplot as plt\nimport pandas as pd\nprint(\"I did it!\")\n\nI did it!\n\n\n\n# warmup 1: perceptron\n\ndef perceptron_classify(w, b, x):\n    return 1*(x@w - b > 0)\n    #np.dpt (w, x) == w@x\nperceptron_classify([1,2,3], 35, [4,5,6])\n\n0\n\n\n\n# warmup 2: convexity\n\nfrom matplotlib import pyplot as plt \nimport numpy as np\n\n# line 1 points\nx1 = np.linspace(-.5,1.5,100)\ny1 = -np.log(x1)\n# plotting the line 1 points \nplt.plot(x1, y1, label = \"f(z) = -ln(z)\")\n  \n# line 2 points\nx2 = np.linspace(-.5,1.5,100)\ny2 = -np.log(1-x2)\n# plotting the line 2 points\nplt.plot(x2, y2, label = \"g(z) = -ln(1-z)\")\n\n# giving a title to my graph\nplt.title('Practice Plotting')\n  \n# show a legend on the plot\nplt.legend(loc='upper right')\n  \n# function to show the plot\nplt.show()\n\n/var/folders/3v/yg1jpz7n6r9_y3hr4n2mzt_40000gn/T/ipykernel_6057/2136663577.py:8: RuntimeWarning: invalid value encountered in log\n  y1 = -np.log(x1)\n/var/folders/3v/yg1jpz7n6r9_y3hr4n2mzt_40000gn/T/ipykernel_6057/2136663577.py:14: RuntimeWarning: invalid value encountered in log\n  y2 = -np.log(1-x2)\n\n\n\n\n\n\n# warm up 3: gradient descent\n\nimport numpy as np\nimport random \n\ndef f(x):\n    return np.sin(x[0]*x[1])\n\ndef gradient_descent():\n   w = np.random.rand(2)\n   grad = np.empty(2)\n   alpha = 0.001 #learning rate\n   done = False \n   \n   while not done: \n    grad[0] = w[1] * np.cos(w[0] * w[1])\n    grad[1] = w[0] * np.cos(w[0] * w[1])\n    w = w - alpha * grad\n   \n    if np.allclose(grad, np.zeros(len(grad))):\n       done = True\n\n    return w\n   \ngradient_descent()\n\n0.1339688362183561\n\n\narray([0.24412093, 0.55043558])"
+  },
+  {
+    "objectID": "posts/blog2/index.html",
+    "href": "posts/blog2/index.html",
+    "title": "Logistic Regression",
+    "section": "",
+    "text": "Source code:"
+  },
+  {
+    "objectID": "posts/blog2/index.html#accuracy-of-regular-gradient-descent",
+    "href": "posts/blog2/index.html#accuracy-of-regular-gradient-descent",
+    "title": "Logistic Regression",
+    "section": "Accuracy of Regular Gradient Descent",
+    "text": "Accuracy of Regular Gradient Descent\n\n\nCode\nprint(\"Evolution of the score over the training period (last few scores):\") \nprint(LR.score_history[-10:]) #just the last few scores\n\nfig = plt.plot(LR.score_history)\nxlab = plt.xlabel(\"Iteration\")\nylab = plt.ylabel(\"Accuracy\")\ntitle = plt.title(\"Accuracy of Gradient Descent Algorithm\")\n\n\nEvolution of the score over the training period (last few scores):\n[0.955, 0.955, 0.955, 0.955, 0.955, 0.955, 0.955, 0.955, 0.955, 0.955]"
+  },
+  {
+    "objectID": "posts/blog2/index.html#empirical-risk-of-regular-gradient-descent",
+    "href": "posts/blog2/index.html#empirical-risk-of-regular-gradient-descent",
+    "title": "Logistic Regression",
+    "section": "Empirical Risk of Regular Gradient Descent",
+    "text": "Empirical Risk of Regular Gradient Descent\n\n\nCode\nprint(\"Evolution of the loss over the training period (last few losses):\") \nprint(LR.loss_history[-10:]) #just the last few losses\n\nfig = plt.plot(LR.loss_history)\nxlab = plt.xlabel(\"Iteration number\")\nylab = plt.ylabel(\"Empirical Risk\")\ntitle = plt.title(\"Evolution of the Loss Function\")\n\n\nEvolution of the loss over the training period (last few losses):\n[0.12706048790751118, 0.12705697777765942, 0.12705347737423786, 0.12704998666464135, 0.1270465056163979, 0.12704303419716895, 0.12703957237474778, 0.1270361201170595, 0.12703267739216018, 0.12703267739216018]"
+  },
+  {
+    "objectID": "posts/blog2/index.html#accuracy-of-stochastic-gradient-descent",
+    "href": "posts/blog2/index.html#accuracy-of-stochastic-gradient-descent",
+    "title": "Logistic Regression",
+    "section": "Accuracy of Stochastic Gradient Descent",
+    "text": "Accuracy of Stochastic Gradient Descent\n\n\nCode\nprint(\"Evolution of the score over the training period:\") \nprint(LR.score_history[-10:]) #just the last few scores\n\nfig = plt.plot(LR.score_history)\nxlab = plt.xlabel(\"Iteration\")\nylab = plt.ylabel(\"Accuracy\")\ntitle = plt.title(\"Accuracy of Gradient Descent Algorithm\")\n\n\nEvolution of the score over the training period:\n[0.95, 0.95, 0.95, 0.95, 0.95, 0.95, 0.95, 0.95, 0.95, 0.95]"
+  },
+  {
+    "objectID": "posts/blog2/index.html#empirical-risk-of-stochastic-gradient-descent",
+    "href": "posts/blog2/index.html#empirical-risk-of-stochastic-gradient-descent",
+    "title": "Logistic Regression",
+    "section": "Empirical Risk of Stochastic Gradient Descent",
+    "text": "Empirical Risk of Stochastic Gradient Descent\n\n\nCode\nprint(\"Evolution of the loss over the training period:\") \nprint(LR.loss_history[-10:]) #just the last few scores\n\nfig = plt.plot(LR.loss_history)\nxlab = plt.xlabel(\"Iteration number\")\nylab = plt.ylabel(\"Empirical Risk\")\ntitle = plt.title(\"Loss Function for Stochastic Gradient\")\n\n\nEvolution of the loss over the training period:\n[0.12578080459476626, 0.12577242999403068, 0.12576396545905136, 0.12575698611451894, 0.12574990651340898, 0.1257465902937433, 0.125738076528501, 0.1257353116368159, 0.1257301003301634, 0.1257301003301634]"
+  },
+  {
+    "objectID": "posts/blog2/index.html#choice-of-batch-size-in-stochastic-gradient-descent",
+    "href": "posts/blog2/index.html#choice-of-batch-size-in-stochastic-gradient-descent",
+    "title": "Logistic Regression",
+    "section": "Choice of Batch Size in Stochastic Gradient Descent",
+    "text": "Choice of Batch Size in Stochastic Gradient Descent\nBelow is an illustration in which the choice of batch size influences how quickly the algorithm converges.\n\n\nCode\nLR = LogisticRegression()\nLR.fit_stochastic(X, y, 0.1, 100, 50)\n\nfig, axarr = plt.subplots(1, 2)\n\nfig = axarr[0].plot(LR.loss_history)\naxarr[0].set(xlabel = \"Iteration number\", ylabel = \"Empirical Risk\")\n\nfig = axarr[1].plot(LR.score_history)\naxarr[1].set(xlabel = \"Iteration\", ylabel = \"Accuracy\")\n\nplt.tight_layout()"
   }
 ]
