@@ -4,10 +4,10 @@ import numpy as np
 class LogisticRegression:
 
     ##initializes logistic regression class and its instance variables
-    def __init__(self, loss_history = None, score_history = None, w = None):
+    def __init__(self, loss_history = None, score_history = None):
         self.score_history = []    #list of the evolution of the score
         self.loss_history = []     #list of the evolution of the loss
-        self.w = np.zeros(3)       #weight vector
+        
         
     
     #finds a hyperplane that approximately divides the data into its two classes via gradient descent
@@ -15,7 +15,8 @@ class LogisticRegression:
     #max_epochs = max number of iterations
     def fit(self, X, y, alpha, max_epochs):
         x_tilde = np.append(X, np.ones((X.shape[0], 1)), 1)       
-        prev_loss = np.inf      #start off the loss
+        prev_loss = np.inf                        #start off the loss
+        self.w = np.zeros(len(X.shape) + 1)       #weight vector
 
         # main loop
         for _ in range(max_epochs):
@@ -40,8 +41,9 @@ class LogisticRegression:
     #max_epochs = max number of iterations
     #batch_size = how the data will be split by
     def fit_stochastic(self, X, y, alpha, max_epochs, batch_size):
+        self.w = np.zeros(len(X.shape) + 1)                #weight vector
         x_tilde = np.append(X, np.ones((X.shape[0], 1)), 1)    
-        prev_loss = np.inf    #start off the loss
+        prev_loss = np.inf                                 #start off the loss
         n = X.shape[0]
 
         #some of code is taken from class notes

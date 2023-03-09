@@ -8,15 +8,14 @@ class Perceptron:
     #initializes perceptron class and its instance variables - history and weight
     #history is a list of the evolution of the score over the training period
     #weight is the vector w_tilde = (w,-b)
-    def __init__(self, history = None, w = None):
+    def __init__(self, history = None):
         self.history = []
-        self.w = np.zeros(3)
 
 
     #finds a hyperplane that approximately divides the data into its two classes
     def fit(self, X, y, max_steps):
         #starts with random weight vector
-        self.w = np.random.rand(3)
+        self.w = np.random.rand(len(X.shape) + 1)
 
         #performs update until maximum number of steps is reached
         for _ in range(max_steps):
