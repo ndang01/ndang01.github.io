@@ -282,9 +282,9 @@ background-size: cover;
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"The estimated weight vector is </span><span class="sc">{</span>LR<span class="sc">.</span>w<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>Training score = 0.1804
-Validation score = 0.0683
-The estimated weight vector is [0.33415811 0.59413717]</code></pre>
+<pre><code>Training score = 0.1794
+Validation score = 0.2142
+The estimated weight vector is [0.40551937 0.79095312]</code></pre>
 </div>
 </div>
 </section>
@@ -301,7 +301,7 @@ The estimated weight vector is [0.33415811 0.59413717]</code></pre>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"The estimated weight vector using gradient descent is </span><span class="sc">{</span>LR2<span class="sc">.</span>w<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>The estimated weight vector using gradient descent is [0.33419235 0.59411669]</code></pre>
+<pre><code>The estimated weight vector using gradient descent is [0.4055465  0.79093819]</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="5">
@@ -350,21 +350,25 @@ The estimated weight vector is [0.33415811 0.59413717]</code></pre>
 <p><img src="index_files/figure-html/cell-7-output-1.png" class="img-fluid"></p>
 </div>
 </div>
+<p>As we can see, the training score achieves a high accuracy very quickly as we increases the number of features. However, our validation score fails to achieve a high accuracy score as we increase the number of features. This happened because our model runs into the issue of overfitting. Our model was not able to generalize well, and performed poorly when encountering new data. The model focused too closely on the noise in the training data to the extend that it negatively impacts the performance of the validation data.</p>
 </section>
 <section id="lasso-regularization" class="level1">
 <h1>LASSO Regularization</h1>
-<div class="cell" data-execution_count="7">
+<p>Below, we replicate the same experiment as the one above by increasing the number of features, but using LASSO instead of linear regression.</p>
+<p>The LASSO algorithm uses a modified loss function with a regularization term:</p>
+<p><span class="math display">\[L(\mathbf{w}) = \lVert \mathbf{X}\mathbf{w}- \mathbf{y} \rVert_2^2 + \alpha \lVert \mathbf{w}' \rVert_1\;\]</span></p>
+<div class="cell" data-execution_count="11">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> Lasso</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>p_features <span class="op">=</span> n_train <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>p_features <span class="op">=</span> n_train <span class="op">+</span> <span class="dv">10</span></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> p <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, p_features):</span>
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">#generate data</span></span>
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    X_train, y_train, X_val, y_val <span class="op">=</span> LR_data(n_train, n_val, p, noise)</span>
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">#fit data to LASSO</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    L <span class="op">=</span> Lasso(alpha <span class="op">=</span> <span class="fl">0.001</span>)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    L <span class="op">=</span> Lasso(alpha <span class="op">=</span> <span class="fl">0.01</span>)</span>
 <span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    L.fit(X_train, y_train)  </span>
 <span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">#score the model </span></span>
 <span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    score_train <span class="op">=</span> L.score(X_train, y_train)</span>
@@ -384,6 +388,7 @@ The estimated weight vector is [0.33415811 0.59413717]</code></pre>
 <p><img src="index_files/figure-html/cell-8-output-1.png" class="img-fluid"></p>
 </div>
 </div>
+<p>The LASSO algorithm performs much more poorly compared to linear regression, especially as you increase the value of the regularization strength (alpha). As we can expect, our model performs very well on the training data as the number of features used increases, but not on the validation data. The validation data experiences overfitting, just like our linear regression model, except the LASSO algorithm performs much worse on the validation data.</p>
 
 
 </section>
