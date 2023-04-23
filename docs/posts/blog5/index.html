@@ -220,7 +220,7 @@ background-size: cover;
 <section id="pums-data-for-the-state-of-alabama" class="level1">
 <h1>PUMS data for the state of Alabama</h1>
 <p>There are approximately 48,000 rows of PUMS data in this data frame. Each one corresponds to an individual citizen of the state of Alabama who filled out the 2018 edition of the PUMS survey. We will filter through this dataset to predict employment status on the basis of demographics excluding race, and audit for racial bias. We will fit the training data on the Decision Tree Classifier model from scikit-learn and perform cross-validation to select the best max depth to achieve the highest accuracy.</p>
-<div class="cell" data-execution_count="1">
+<div class="cell" data-execution_count="62">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> folktables <span class="im">import</span> ACSDataSource, ACSEmployment, BasicProblem, adult_filter</span>
@@ -236,7 +236,7 @@ background-size: cover;
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>acs_data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="1">
+<div class="cell-output cell-output-display" data-execution_count="62">
 
 <div>
 
@@ -397,13 +397,13 @@ background-size: cover;
 <section id="narrowing-the-features" class="level2">
 <h2 class="anchored" data-anchor-id="narrowing-the-features">Narrowing the features</h2>
 <p>We’ll focus on a relatively small number of features in the modeling tasks of this blog post. Here are all the possible features:</p>
-<div class="cell" data-execution_count="2">
+<div class="cell" data-execution_count="63">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>possible_features<span class="op">=</span>[<span class="st">'AGEP'</span>, <span class="st">'SCHL'</span>, <span class="st">'MAR'</span>, <span class="st">'RELP'</span>, <span class="st">'DIS'</span>, <span class="st">'ESP'</span>, <span class="st">'CIT'</span>, <span class="st">'MIG'</span>, <span class="st">'MIL'</span>, <span class="st">'ANC'</span>, <span class="st">'NATIVITY'</span>, <span class="st">'DEAR'</span>, <span class="st">'DEYE'</span>, <span class="st">'DREM'</span>, <span class="st">'SEX'</span>, <span class="st">'RAC1P'</span>, <span class="st">'ESR'</span>]</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>acs_data[possible_features].head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="2">
+<div class="cell-output cell-output-display" data-execution_count="63">
 
 <div>
 
@@ -536,13 +536,13 @@ background-size: cover;
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="3">
+<div class="cell" data-execution_count="64">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>features_to_use <span class="op">=</span> [f <span class="cf">for</span> f <span class="kw">in</span> possible_features <span class="cf">if</span> f <span class="kw">not</span> <span class="kw">in</span> [<span class="st">"ESR"</span>, <span class="st">"RAC1P"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div class="cell" data-execution_count="4">
+<div class="cell" data-execution_count="65">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>EmploymentProblem <span class="op">=</span> BasicProblem(</span>
@@ -557,7 +557,7 @@ background-size: cover;
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>features, label, group <span class="op">=</span> EmploymentProblem.df_to_numpy(acs_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div class="cell" data-execution_count="5">
+<div class="cell" data-execution_count="66">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># split training and testing data</span></span>
@@ -571,37 +571,46 @@ background-size: cover;
 </section>
 <section id="data-inspection" class="level1">
 <h1>Data Inspection</h1>
-<div class="cell" data-execution_count="26">
+<div class="cell" data-execution_count="67">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(X_train, columns <span class="op">=</span> features_to_use)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"group"</span>] <span class="op">=</span> group_train</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"label"</span>] <span class="op">=</span> y_train</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Number of individuals: </span><span class="sc">{</span>group_train<span class="sc">.</span>size<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Percent of employed individuals: </span><span class="sc">{</span>y_train<span class="sc">.</span>mean()<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(X_train, columns <span class="op">=</span> features_to_use)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"group"</span>] <span class="op">=</span> group_train</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"label"</span>] <span class="op">=</span> y_train</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Number of individuals: </span><span class="sc">{</span>group_train<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Percent of employed individuals: </span><span class="sc">{</span>y_train<span class="sc">.</span>mean()<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>Number of individuals: 38221
+<pre><code>Number of individuals: 57138
 Percent of employed individuals: 0.4091468041129222</code></pre>
 </div>
 </div>
-<p>Of the 38,221 people in our training data, 40.95% have their target label equals to 1 - corresponding to those that are employed.</p>
-<div class="cell" data-execution_count="27">
+<p>Of the 57,138 people in our training data, 40.95% have their target label equals to 1 - corresponding to those that are employed.</p>
+<div class="cell" data-execution_count="68">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>group_train.groupby([<span class="st">'RAC1P'</span>])[[<span class="st">'ESR'</span>]].aggregate([np.mean,<span class="bu">len</span> ]).<span class="bu">round</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> (df[<span class="st">'group'</span>] <span class="op">==</span> <span class="st">'0'</span>) <span class="op">&amp;</span> (df[<span class="st">'label'</span>] <span class="op">==</span> <span class="st">'1'</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> (df[<span class="st">'group'</span>] <span class="op">==</span> <span class="dv">0</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(p.<span class="bu">sum</span>())</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(n.size)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(y_train.<span class="bu">sum</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-error">
-<pre><code>AttributeError: 'numpy.ndarray' object has no attribute 'groupby'</code></pre>
+<div class="cell-output cell-output-stdout">
+<pre><code>0
+38221
+15638</code></pre>
 </div>
 </div>
 </section>
 <section id="training-our-data-on-decision-tree-classifier" class="level1">
 <h1>Training our data on Decision Tree Classifier</h1>
 <p>We will train our model on the training data with the Decision Tree Classifier from scikit-learn. Additionally, we will perform cross validation to tune the max depth of the algorithm.</p>
-<div class="cell" data-execution_count="7">
+<div class="cell" data-execution_count="69">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.tree <span class="im">import</span> DecisionTreeClassifier</span>
@@ -637,7 +646,7 @@ Max depth = 2, score = 0.767
 Max depth = 1, score = 0.636</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="8">
+<div class="cell" data-execution_count="70">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Best max depth: </span><span class="sc">{</span>best_max_depth<span class="sc">}</span><span class="ss">"</span>)</span>
@@ -654,7 +663,7 @@ Best score: 0.8143429004997252</code></pre>
 <p>We will go ahead and audit for racial bias.</p>
 <section id="overall-measures" class="level2">
 <h2 class="anchored" data-anchor-id="overall-measures">Overall Measures</h2>
-<div class="cell" data-execution_count="9">
+<div class="cell" data-execution_count="71">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>y_hat <span class="op">=</span> best_DT.predict(X_test)</span>
@@ -667,7 +676,7 @@ Best score: 0.8143429004997252</code></pre>
 0.8115320217664295</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="10">
+<div class="cell" data-execution_count="72">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>matrix <span class="op">=</span> confusion_matrix(y_test, y_hat)</span>
@@ -680,24 +689,24 @@ Best score: 0.8143429004997252</code></pre>
 <span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>ppv <span class="op">=</span> tp <span class="op">/</span> (tp <span class="op">+</span> fp)</span>
 <span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">PPV: </span><span class="sc">{</span>ppv<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">False negative: </span><span class="sc">{</span>fn<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">False positive: </span><span class="sc">{</span>fp<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">False negative rate: </span><span class="sc">{</span>fn<span class="op">/</span>(fn<span class="op">+</span>tn)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">False positive rate: </span><span class="sc">{</span>fp<span class="op">/</span>(fp<span class="op">+</span>tn)<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 PPV: 0.7652757078986587
 
-False negative: 856
+False negative rate: 0.15479204339963834
 
-False positive: 945</code></pre>
+False positive rate: 0.16817939135077417</code></pre>
 </div>
 </div>
-<p>The overall accuracy of our model is 81%, with a positive predictive value of 0.77.</p>
-<p>The overall accuracy of our</p>
+<p>We used the confusion matrix function from sklearn to understand the kind of mistakes that the model most frequently makes. The overall accuracy of our model is 81%, with a positive predictive value of 0.77. Additionally, the overall false negative is 15.48% and overall false positive is 16.82%. It’s clear that our model makes mistakes. Beyond that, it seems as though the model makes different kinds of error in its prediction for different groups.</p>
 </section>
 <section id="by-group-measures" class="level2">
 <h2 class="anchored" data-anchor-id="by-group-measures">By-Group Measures</h2>
-<div class="cell" data-execution_count="11">
+<p>We/re going to compare the model’s confusion matrices on the test data for white and black individuals to see if there exists bias in the model’s performance.</p>
+<div class="cell" data-execution_count="73">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The accuracy for white individuals is: "</span>)</span>
@@ -714,7 +723,8 @@ The accuracy for black individuals is:
 0.8151589242053789</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="12">
+<p>It seems like the model attains similar accuracy score when predicting white and black individuals. It achieves 81.0% accuracy when predicting employment for white individuals and 81.5% for black individuals.</p>
+<div class="cell" data-execution_count="74">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># white sub group</span></span>
@@ -728,19 +738,19 @@ The accuracy for black individuals is:
 <span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>ppv <span class="op">=</span> tp <span class="op">/</span> (tp <span class="op">+</span> fp)</span>
 <span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">PPV: </span><span class="sc">{</span>ppv<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">False negative for white individuals: </span><span class="sc">{</span>fn<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">False positive for white individuals: </span><span class="sc">{</span>fp<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">False negative for white individuals: </span><span class="sc">{</span>fn<span class="op">/</span>(fn<span class="op">+</span>tn)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">False positive for white individuals: </span><span class="sc">{</span>fp<span class="op">/</span>(fp<span class="op">+</span>tn)<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 PPV: 0.7782139352306182
 
-False negative for white individuals: 672
+False negative for white individuals: 0.16580310880829016
 
-False positive for white individuals: 678</code></pre>
+False positive for white individuals: 0.1670362158167036</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="13">
+<div class="cell" data-execution_count="75">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># black sub group</span></span>
@@ -754,21 +764,29 @@ False positive for white individuals: 678</code></pre>
 <span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>ppv <span class="op">=</span> tp <span class="op">/</span> (tp <span class="op">+</span> fp)</span>
 <span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">PPV: </span><span class="sc">{</span>ppv<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">False negative for black individuals: </span><span class="sc">{</span>fn<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">False positive for black individuals: </span><span class="sc">{</span>fp<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">False negative for black individuals: </span><span class="sc">{</span>fn<span class="op">/</span>(fn<span class="op">+</span>tn)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">False positive for black individuals: </span><span class="sc">{</span>fp<span class="op">/</span>(fp<span class="op">+</span>tn)<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 PPV: 0.7238805970149254
 
-False negative for black individuals: 156
+False negative for black individuals: 0.12570507655116842
 
-False positive for black individuals: 222</code></pre>
+False positive for black individuals: 0.16985462892119357</code></pre>
 </div>
 </div>
-
-
+<p>When breaking down the matrices, the predictive value is a bit higher for the white individuals, with a difference of 5%. The model has similar false positive predictions for both black and white individuals. The false negative predictions are also comparable, except with a small difference of 4%. The model tends to predict unemployment for white individuals even when they are employed more than it does for the black individuals.</p>
 </section>
+<section id="bias-measures" class="level2">
+<h2 class="anchored" data-anchor-id="bias-measures">Bias Measures</h2>
+<p>I conclude that the model is well calibrated because it reflects the same likelihood of recidivism irrespective of the individuals’ group membership. In other words, it is free from predictive bias with respect to race. Additionally, since the false positive and false negative rates are similar across both group, the model satisfies approximate error rate balance. Lastly, our model achieves statistical parity because the proportion of individuals classified for employment is the same for each group.</p>
+</section>
+</section>
+<section id="concluding-discussions" class="level1">
+<h1>Concluding Discussions</h1>
+
+
 </section>
 
 </main> <!-- /main -->
