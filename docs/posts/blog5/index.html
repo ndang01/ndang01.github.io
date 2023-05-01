@@ -220,7 +220,7 @@ background-size: cover;
 <section id="pums-data-for-the-state-of-alabama" class="level1">
 <h1>PUMS data for the state of Alabama</h1>
 <p>There are approximately 48,000 rows of PUMS data in this data frame. Each one corresponds to an individual citizen of the state of Alabama who filled out the 2018 edition of the PUMS survey. We will filter through this dataset to predict employment status on the basis of demographics excluding race, and audit for racial bias. We will fit the training data on the Decision Tree Classifier model from scikit-learn and perform cross-validation to select the best max depth to achieve the highest accuracy.</p>
-<div class="cell" data-execution_count="37">
+<div class="cell" data-execution_count="9">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> folktables <span class="im">import</span> ACSDataSource, ACSEmployment, BasicProblem, adult_filter</span>
@@ -236,7 +236,7 @@ background-size: cover;
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>acs_data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="37">
+<div class="cell-output cell-output-display" data-execution_count="9">
 
 <div>
 
@@ -397,13 +397,13 @@ background-size: cover;
 <section id="narrowing-the-features" class="level2">
 <h2 class="anchored" data-anchor-id="narrowing-the-features">Narrowing the features</h2>
 <p>We’ll focus on a relatively small number of features in the modeling tasks of this blog post. Here are all the possible features:</p>
-<div class="cell" data-execution_count="38">
+<div class="cell" data-execution_count="10">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>possible_features<span class="op">=</span>[<span class="st">'AGEP'</span>, <span class="st">'SCHL'</span>, <span class="st">'MAR'</span>, <span class="st">'RELP'</span>, <span class="st">'DIS'</span>, <span class="st">'ESP'</span>, <span class="st">'CIT'</span>, <span class="st">'MIG'</span>, <span class="st">'MIL'</span>, <span class="st">'ANC'</span>, <span class="st">'NATIVITY'</span>, <span class="st">'DEAR'</span>, <span class="st">'DEYE'</span>, <span class="st">'DREM'</span>, <span class="st">'SEX'</span>, <span class="st">'RAC1P'</span>, <span class="st">'ESR'</span>]</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>acs_data[possible_features].head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="38">
+<div class="cell-output cell-output-display" data-execution_count="10">
 
 <div>
 
@@ -536,13 +536,13 @@ background-size: cover;
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="39">
+<div class="cell" data-execution_count="11">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>features_to_use <span class="op">=</span> [f <span class="cf">for</span> f <span class="kw">in</span> possible_features <span class="cf">if</span> f <span class="kw">not</span> <span class="kw">in</span> [<span class="st">"ESR"</span>, <span class="st">"RAC1P"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div class="cell" data-execution_count="40">
+<div class="cell" data-execution_count="12">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>EmploymentProblem <span class="op">=</span> BasicProblem(</span>
@@ -557,7 +557,7 @@ background-size: cover;
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>features, label, group <span class="op">=</span> EmploymentProblem.df_to_numpy(acs_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div class="cell" data-execution_count="41">
+<div class="cell" data-execution_count="13">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># split training and testing data</span></span>
@@ -571,7 +571,7 @@ background-size: cover;
 </section>
 <section id="data-inspection" class="level1">
 <h1>Data Inspection</h1>
-<div class="cell" data-execution_count="42">
+<div class="cell" data-execution_count="14">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -594,7 +594,7 @@ Percent of employed individuals: 0.4091468041129222</code></pre>
 </div>
 </div>
 <p>Of the 38,221 people in our training data, 40.95% have their target label equals to 1 - corresponding to those that are employed.</p>
-<div class="cell" data-execution_count="68">
+<div class="cell" data-execution_count="15">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># running split and train again, now without filtering out RAC1P</span></span>
@@ -622,7 +622,7 @@ Percent of employed individuals: 0.4091468041129222</code></pre>
 <span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a><span class="co">#df_new.head()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="68">
+<div class="cell-output cell-output-display" data-execution_count="15">
 
 <div>
 
@@ -654,7 +654,7 @@ Percent of employed individuals: 0.4091468041129222</code></pre>
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="57">
+<div class="cell" data-execution_count="16">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
@@ -667,7 +667,8 @@ Percent of employed individuals: 0.4091468041129222</code></pre>
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>g.despine(left<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>g.set_axis_labels(<span class="st">"Race"</span>, <span class="st">"Employment"</span>)</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>g.legend.set_title(<span class="st">""</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>g.legend.set_title(<span class="st">""</span>)</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>g.savefig(<span class="st">"image.jpg"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <p><img src="index_files/figure-html/cell-9-output-1.png" class="img-fluid"></p>
@@ -677,7 +678,7 @@ Percent of employed individuals: 0.4091468041129222</code></pre>
 <section id="training-our-data-on-decision-tree-classifier" class="level1">
 <h1>Training our data on Decision Tree Classifier</h1>
 <p>We will train our model on the training data with the Decision Tree Classifier from scikit-learn. Additionally, we will perform cross validation to tune the max depth of the algorithm.</p>
-<div class="cell">
+<div class="cell" data-execution_count="17">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.tree <span class="im">import</span> DecisionTreeClassifier</span>
@@ -713,7 +714,7 @@ Max depth = 2, score = 0.767
 Max depth = 1, score = 0.636</code></pre>
 </div>
 </div>
-<div class="cell">
+<div class="cell" data-execution_count="18">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Best max depth: </span><span class="sc">{</span>best_max_depth<span class="sc">}</span><span class="ss">"</span>)</span>
@@ -730,7 +731,7 @@ Best score: 0.8143429004997252</code></pre>
 <p>We will go ahead and audit for racial bias.</p>
 <section id="overall-measures" class="level2">
 <h2 class="anchored" data-anchor-id="overall-measures">Overall Measures</h2>
-<div class="cell">
+<div class="cell" data-execution_count="19">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>y_hat <span class="op">=</span> best_DT.predict(X_test)</span>
@@ -743,7 +744,7 @@ Best score: 0.8143429004997252</code></pre>
 0.8115320217664295</code></pre>
 </div>
 </div>
-<div class="cell">
+<div class="cell" data-execution_count="20">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>matrix <span class="op">=</span> confusion_matrix(y_test, y_hat)</span>
@@ -773,7 +774,7 @@ False positive rate: 0.16817939135077417</code></pre>
 <section id="by-group-measures" class="level2">
 <h2 class="anchored" data-anchor-id="by-group-measures">By-Group Measures</h2>
 <p>We’re going to compare the model’s confusion matrices on the test data for white and black individuals to see if there exists bias in the model’s performance.</p>
-<div class="cell">
+<div class="cell" data-execution_count="21">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The accuracy for white individuals is: "</span>)</span>
@@ -791,7 +792,7 @@ The accuracy for black individuals is:
 </div>
 </div>
 <p>It seems like the model attains similar accuracy score when predicting white and black individuals. It achieves 81.0% accuracy when predicting employment for white individuals and 81.5% for black individuals.</p>
-<div class="cell">
+<div class="cell" data-execution_count="22">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># white sub group</span></span>
@@ -817,7 +818,7 @@ False negative for white individuals: 0.16580310880829016
 False positive for white individuals: 0.1670362158167036</code></pre>
 </div>
 </div>
-<div class="cell">
+<div class="cell" data-execution_count="23">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># black sub group</span></span>
