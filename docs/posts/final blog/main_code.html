@@ -1,0 +1,2518 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.189">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>My Awesome CSCI 0451 Blog – main_code</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<style>
+    .quarto-title-block .quarto-title-banner {
+      color: white;
+background-image: url(../../img/landscape.png);
+background-size: cover;
+    }
+    </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">My Awesome CSCI 0451 Blog</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">About CS 451</a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/"><i class="bi bi-github" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com"><i class="bi bi-twitter" role="img">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+<p><a href="https://colab.research.google.com/github/ndang01/ndang01.github.io/blob/main/wildfire_risk_tool.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"></a></p>
+<section id="overview" class="level1">
+<h1>Overview</h1>
+<p>Climate change has increased the likelihood of a variety of extreme weather events, including wildfires. These wildfires pose risks to both human and ecological communities. Thus, our project will ultilize different machine learning models to better understand forest fires in two different areas: Algeria and Portugal.</p>
+<p>First, we want to predict the area of different forest fires occurring in Portugal by selecting a machine learning model and applying it to a dataset taken from University of California Irvine. Second, we will train on a different dataset detailing fires in Algeria to predict the likelihood of fires occurring. Then, we hope to use the models trained on these datasets to create a map of areas at-risk of forest fires in the United States.</p>
+</section>
+<section id="the-datasets" class="level1">
+<h1>The Datasets</h1>
+<p>Below are the datasets that will be used in this project. These were taken from the Univeristy of California Irvine Machine Learning Repository. Our first dataset, the Algerian Forest Fires Dataset, contains fire and non-fire events with 11 attributes that describe weather characteristics at the time of that event. Our second dataset, the Forest Fires Dataset, contains data from Montesinho National Park, Portugal. This dataset contains many of the same weather characteristics as the Algerian dataset, but has only fire events. Rather than using this dataset to predict whether a fire occurred in a given area, it can be used to predict the size of a fire.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> RidgeCV</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.feature_selection <span class="im">import</span> SelectFromModel</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>algeria_url <span class="op">=</span> <span class="st">'https://raw.githubusercontent.com/ebwieman/wildfire-risk-tool/main/Algerian_forest_fires_dataset.csv'</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>portugal_url <span class="op">=</span> <span class="st">'https://raw.githubusercontent.com/ebwieman/wildfire-risk-tool/main/forestfires.csv'</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>algeria_df <span class="op">=</span> pd.read_csv(algeria_url)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>portugal_df <span class="op">=</span> pd.read_csv(portugal_url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="data-preparation" class="level1">
+<h1>Data Preparation</h1>
+<section id="the-algeria-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="the-algeria-dataset">The Algeria Dataset:</h2>
+<p>This dataset includes 244 instances that regrouped data from two regions of Algeria, namely the Bejaia region located in the northeast of Algeria and the Sidi Bel-abbes region located in the northwest of Algeria. There are 122 instances for each region. This data was collected from June 2012 to September 2012. The dataset contains fire and non-fire events with 13 attributes that describe weather characteristics at the time of that event.</p>
+<p>Before training the dataset on our machine learning models, we will clean up some of the data. To do this, we’ll convert the target label “Fire” into binary numbers. We use “one-hot encoding” to achieve this, in which each category is represented by a binary column, with a 1 indicating that the a forest fire occured given the conditions. In addition, we will remove any rows with missing data.</p>
+<div class="cell" data-outputid="9dcda704-a4b3-4174-f22e-3b416965a971">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>algeria_df[<span class="st">'Classes'</span>] <span class="op">=</span> algeria_df[<span class="st">'Classes'</span>].<span class="bu">str</span>.strip()</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>algeria_df.drop(algeria_df[(algeria_df[<span class="st">'Classes'</span>] <span class="op">!=</span> <span class="st">'fire'</span>) <span class="op">&amp;</span> (algeria_df[<span class="st">'Classes'</span>] <span class="op">!=</span> <span class="st">'not fire'</span>)].index, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>algeria_df[<span class="st">'Classes'</span>].unique()</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>algeria_df[<span class="st">'Classes'</span>].replace((<span class="st">'not fire'</span>, <span class="st">'fire'</span>),(<span class="dv">0</span>,<span class="dv">1</span>),inplace <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>algeria_df.rename(columns <span class="op">=</span> {<span class="st">'Classes'</span>: <span class="st">'Fire'</span>},inplace <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>algeria_df[<span class="st">'Fire'</span>].unique()</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>algeria_df <span class="op">=</span> algeria_df.astype(<span class="bu">float</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>algeria_df <span class="op">=</span> pd.get_dummies(algeria_df)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>algeria_df.dropna(axis <span class="op">=</span> <span class="dv">0</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>algeria_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+
+
+  <div id="df-5ed33369-7346-4599-95e5-46cb192ea1e7">
+    <div class="colab-df-container">
+      <div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>day</th>
+      <th>month</th>
+      <th>year</th>
+      <th>Temperature</th>
+      <th>RH</th>
+      <th>Ws</th>
+      <th>Rain</th>
+      <th>FFMC</th>
+      <th>DMC</th>
+      <th>DC</th>
+      <th>ISI</th>
+      <th>BUI</th>
+      <th>FWI</th>
+      <th>Fire</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1.0</td>
+      <td>6.0</td>
+      <td>2012.0</td>
+      <td>29.0</td>
+      <td>57.0</td>
+      <td>18.0</td>
+      <td>0.0</td>
+      <td>65.7</td>
+      <td>3.4</td>
+      <td>7.6</td>
+      <td>1.3</td>
+      <td>3.4</td>
+      <td>0.5</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2.0</td>
+      <td>6.0</td>
+      <td>2012.0</td>
+      <td>29.0</td>
+      <td>61.0</td>
+      <td>13.0</td>
+      <td>1.3</td>
+      <td>64.4</td>
+      <td>4.1</td>
+      <td>7.6</td>
+      <td>1.0</td>
+      <td>3.9</td>
+      <td>0.4</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3.0</td>
+      <td>6.0</td>
+      <td>2012.0</td>
+      <td>26.0</td>
+      <td>82.0</td>
+      <td>22.0</td>
+      <td>13.1</td>
+      <td>47.1</td>
+      <td>2.5</td>
+      <td>7.1</td>
+      <td>0.3</td>
+      <td>2.7</td>
+      <td>0.1</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4.0</td>
+      <td>6.0</td>
+      <td>2012.0</td>
+      <td>25.0</td>
+      <td>89.0</td>
+      <td>13.0</td>
+      <td>2.5</td>
+      <td>28.6</td>
+      <td>1.3</td>
+      <td>6.9</td>
+      <td>0.0</td>
+      <td>1.7</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5.0</td>
+      <td>6.0</td>
+      <td>2012.0</td>
+      <td>27.0</td>
+      <td>77.0</td>
+      <td>16.0</td>
+      <td>0.0</td>
+      <td>64.8</td>
+      <td>3.0</td>
+      <td>14.2</td>
+      <td>1.2</td>
+      <td>3.9</td>
+      <td>0.5</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>242</th>
+      <td>26.0</td>
+      <td>9.0</td>
+      <td>2012.0</td>
+      <td>30.0</td>
+      <td>65.0</td>
+      <td>14.0</td>
+      <td>0.0</td>
+      <td>85.4</td>
+      <td>16.0</td>
+      <td>44.5</td>
+      <td>4.5</td>
+      <td>16.9</td>
+      <td>6.5</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>243</th>
+      <td>27.0</td>
+      <td>9.0</td>
+      <td>2012.0</td>
+      <td>28.0</td>
+      <td>87.0</td>
+      <td>15.0</td>
+      <td>4.4</td>
+      <td>41.1</td>
+      <td>6.5</td>
+      <td>8.0</td>
+      <td>0.1</td>
+      <td>6.2</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>244</th>
+      <td>28.0</td>
+      <td>9.0</td>
+      <td>2012.0</td>
+      <td>27.0</td>
+      <td>87.0</td>
+      <td>29.0</td>
+      <td>0.5</td>
+      <td>45.9</td>
+      <td>3.5</td>
+      <td>7.9</td>
+      <td>0.4</td>
+      <td>3.4</td>
+      <td>0.2</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>245</th>
+      <td>29.0</td>
+      <td>9.0</td>
+      <td>2012.0</td>
+      <td>24.0</td>
+      <td>54.0</td>
+      <td>18.0</td>
+      <td>0.1</td>
+      <td>79.7</td>
+      <td>4.3</td>
+      <td>15.2</td>
+      <td>1.7</td>
+      <td>5.1</td>
+      <td>0.7</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>246</th>
+      <td>30.0</td>
+      <td>9.0</td>
+      <td>2012.0</td>
+      <td>24.0</td>
+      <td>64.0</td>
+      <td>15.0</td>
+      <td>0.2</td>
+      <td>67.3</td>
+      <td>3.8</td>
+      <td>16.5</td>
+      <td>1.2</td>
+      <td>4.8</td>
+      <td>0.5</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>243 rows × 14 columns</p>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-5ed33369-7346-4599-95e5-46cb192ea1e7')" title="Convert this dataframe to an interactive table." style="display:none;">
+        
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewbox="0 0 24 24" width="24px">
+    <path d="M0 0h24v24H0V0z" fill="none"></path>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"></path><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"></path>
+  </svg>
+      </button>
+      
+  <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-5ed33369-7346-4599-95e5-46cb192ea1e7 button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-5ed33369-7346-4599-95e5-46cb192ea1e7');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div>
+  
+</div>
+</div>
+<p>There are a total of 13 features: day, month, year, temperature in Celsius, relative humidity, wind speed, rain, fine fuel moisture code, duff moisture code, drought code, initial speed index, build up index, and fire weather index. Our target label is “fire”, classifying wether or not a forest fire occured given the conditions.</p>
+</section>
+<section id="the-portugal-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="the-portugal-dataset">The Portugal Dataset:</h2>
+<p>The data collected in this dataset was taken from Montesino park in the northeast region of Portugal. This dataset contains many of the same weather characteristics as the Algerian dataset, but contains only fire events. Rather than using this dataset to predict whether a fire occurred in a given area, it can be used to predict the size of a fire. We will perform the same cleanup for the Portugal dataset using the Pandas function get_dummies().</p>
+<div class="cell" data-outputid="5df841a0-a5f2-4e1d-d400-2ffa1d01d1b8">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>portugal_df <span class="op">=</span> pd.get_dummies(portugal_df)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>portugal_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+
+
+  <div id="df-57725fa5-a270-4a17-b35a-50c2b2ab5287">
+    <div class="colab-df-container">
+      <div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>X</th>
+      <th>Y</th>
+      <th>FFMC</th>
+      <th>DMC</th>
+      <th>DC</th>
+      <th>ISI</th>
+      <th>temp</th>
+      <th>RH</th>
+      <th>wind</th>
+      <th>rain</th>
+      <th>...</th>
+      <th>month_nov</th>
+      <th>month_oct</th>
+      <th>month_sep</th>
+      <th>day_fri</th>
+      <th>day_mon</th>
+      <th>day_sat</th>
+      <th>day_sun</th>
+      <th>day_thu</th>
+      <th>day_tue</th>
+      <th>day_wed</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>7</td>
+      <td>5</td>
+      <td>86.2</td>
+      <td>26.2</td>
+      <td>94.3</td>
+      <td>5.1</td>
+      <td>8.2</td>
+      <td>51</td>
+      <td>6.7</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>7</td>
+      <td>4</td>
+      <td>90.6</td>
+      <td>35.4</td>
+      <td>669.1</td>
+      <td>6.7</td>
+      <td>18.0</td>
+      <td>33</td>
+      <td>0.9</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>7</td>
+      <td>4</td>
+      <td>90.6</td>
+      <td>43.7</td>
+      <td>686.9</td>
+      <td>6.7</td>
+      <td>14.6</td>
+      <td>33</td>
+      <td>1.3</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>8</td>
+      <td>6</td>
+      <td>91.7</td>
+      <td>33.3</td>
+      <td>77.5</td>
+      <td>9.0</td>
+      <td>8.3</td>
+      <td>97</td>
+      <td>4.0</td>
+      <td>0.2</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>8</td>
+      <td>6</td>
+      <td>89.3</td>
+      <td>51.3</td>
+      <td>102.2</td>
+      <td>9.6</td>
+      <td>11.4</td>
+      <td>99</td>
+      <td>1.8</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>512</th>
+      <td>4</td>
+      <td>3</td>
+      <td>81.6</td>
+      <td>56.7</td>
+      <td>665.6</td>
+      <td>1.9</td>
+      <td>27.8</td>
+      <td>32</td>
+      <td>2.7</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>513</th>
+      <td>2</td>
+      <td>4</td>
+      <td>81.6</td>
+      <td>56.7</td>
+      <td>665.6</td>
+      <td>1.9</td>
+      <td>21.9</td>
+      <td>71</td>
+      <td>5.8</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>514</th>
+      <td>7</td>
+      <td>4</td>
+      <td>81.6</td>
+      <td>56.7</td>
+      <td>665.6</td>
+      <td>1.9</td>
+      <td>21.2</td>
+      <td>70</td>
+      <td>6.7</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>515</th>
+      <td>1</td>
+      <td>4</td>
+      <td>94.4</td>
+      <td>146.0</td>
+      <td>614.7</td>
+      <td>11.3</td>
+      <td>25.6</td>
+      <td>42</td>
+      <td>4.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>516</th>
+      <td>6</td>
+      <td>3</td>
+      <td>79.5</td>
+      <td>3.0</td>
+      <td>106.7</td>
+      <td>1.1</td>
+      <td>11.8</td>
+      <td>31</td>
+      <td>4.5</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>517 rows × 30 columns</p>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-57725fa5-a270-4a17-b35a-50c2b2ab5287')" title="Convert this dataframe to an interactive table." style="display:none;">
+        
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewbox="0 0 24 24" width="24px">
+    <path d="M0 0h24v24H0V0z" fill="none"></path>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"></path><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"></path>
+  </svg>
+      </button>
+      
+  <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-57725fa5-a270-4a17-b35a-50c2b2ab5287 button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-57725fa5-a270-4a17-b35a-50c2b2ab5287');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div>
+  
+</div>
+</div>
+<p>There are 12 features: x-axis spatial coordinate, y-axis spatial coordinate, month, day, fine fuel moisture code, duff moisture code, drought code, initial speed index, temperature in Celsius, relative humidity, wind, and rain. Our target label is “fire area”, which determines the total burned area of the fire given the conditions.</p>
+</section>
+</section>
+<section id="split-data-into-test-and-training-data" class="level1">
+<h1>Split data into test and training data</h1>
+<p>Sometimes, the accuracy score on the training data is not always a reliable guide to evaluate the ability of the model to make predictions on unseen data. For this reason, we are going to hold back a testing data set until we’re ready to evaluate our model. We will split both our Algeria and Portugal datasets into training and testing data. Both datasets will be split by 80-20, with 20% making up the testing data.</p>
+<section id="training-data-for-algeria" class="level2">
+<h2 class="anchored" data-anchor-id="training-data-for-algeria">Training data for Algeria:</h2>
+<div class="cell" data-outputid="7487dca2-803e-4128-ea42-3551bf940e8e">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>alg_train, alg_test <span class="op">=</span> train_test_split(algeria_df, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">25</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>alg_train</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+
+
+  <div id="df-3d13caa7-a957-4245-a149-0f7df89d73de">
+    <div class="colab-df-container">
+      <div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>day</th>
+      <th>month</th>
+      <th>year</th>
+      <th>Temperature</th>
+      <th>RH</th>
+      <th>Ws</th>
+      <th>Rain</th>
+      <th>FFMC</th>
+      <th>DMC</th>
+      <th>DC</th>
+      <th>ISI</th>
+      <th>BUI</th>
+      <th>FWI</th>
+      <th>Fire</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>105</th>
+      <td>14.0</td>
+      <td>9.0</td>
+      <td>2012.0</td>
+      <td>22.0</td>
+      <td>76.0</td>
+      <td>26.0</td>
+      <td>8.3</td>
+      <td>47.4</td>
+      <td>1.1</td>
+      <td>7.0</td>
+      <td>0.4</td>
+      <td>1.6</td>
+      <td>0.1</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>5.0</td>
+      <td>9.0</td>
+      <td>2012.0</td>
+      <td>29.0</td>
+      <td>75.0</td>
+      <td>16.0</td>
+      <td>0.0</td>
+      <td>80.8</td>
+      <td>3.4</td>
+      <td>24.0</td>
+      <td>2.8</td>
+      <td>5.1</td>
+      <td>1.7</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>91</th>
+      <td>31.0</td>
+      <td>8.0</td>
+      <td>2012.0</td>
+      <td>28.0</td>
+      <td>80.0</td>
+      <td>21.0</td>
+      <td>16.8</td>
+      <td>52.5</td>
+      <td>8.7</td>
+      <td>8.7</td>
+      <td>0.6</td>
+      <td>8.3</td>
+      <td>0.3</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>78</th>
+      <td>18.0</td>
+      <td>8.0</td>
+      <td>2012.0</td>
+      <td>36.0</td>
+      <td>54.0</td>
+      <td>18.0</td>
+      <td>0.0</td>
+      <td>89.4</td>
+      <td>20.0</td>
+      <td>110.9</td>
+      <td>9.7</td>
+      <td>27.5</td>
+      <td>16.1</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>3.0</td>
+      <td>7.0</td>
+      <td>2012.0</td>
+      <td>32.0</td>
+      <td>76.0</td>
+      <td>20.0</td>
+      <td>0.7</td>
+      <td>63.1</td>
+      <td>2.6</td>
+      <td>9.2</td>
+      <td>1.3</td>
+      <td>3.0</td>
+      <td>0.5</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>61</th>
+      <td>1.0</td>
+      <td>8.0</td>
+      <td>2012.0</td>
+      <td>36.0</td>
+      <td>45.0</td>
+      <td>14.0</td>
+      <td>0.0</td>
+      <td>78.8</td>
+      <td>4.8</td>
+      <td>10.2</td>
+      <td>2.0</td>
+      <td>4.7</td>
+      <td>0.9</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>146</th>
+      <td>22.0</td>
+      <td>6.0</td>
+      <td>2012.0</td>
+      <td>33.0</td>
+      <td>46.0</td>
+      <td>14.0</td>
+      <td>1.1</td>
+      <td>78.3</td>
+      <td>8.1</td>
+      <td>8.3</td>
+      <td>1.9</td>
+      <td>7.7</td>
+      <td>1.2</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>222</th>
+      <td>6.0</td>
+      <td>9.0</td>
+      <td>2012.0</td>
+      <td>34.0</td>
+      <td>71.0</td>
+      <td>14.0</td>
+      <td>6.5</td>
+      <td>64.5</td>
+      <td>3.3</td>
+      <td>9.1</td>
+      <td>1.0</td>
+      <td>3.5</td>
+      <td>0.4</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>62</th>
+      <td>2.0</td>
+      <td>8.0</td>
+      <td>2012.0</td>
+      <td>35.0</td>
+      <td>55.0</td>
+      <td>12.0</td>
+      <td>0.4</td>
+      <td>78.0</td>
+      <td>5.8</td>
+      <td>10.0</td>
+      <td>1.7</td>
+      <td>5.5</td>
+      <td>0.8</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>135</th>
+      <td>11.0</td>
+      <td>6.0</td>
+      <td>2012.0</td>
+      <td>31.0</td>
+      <td>42.0</td>
+      <td>21.0</td>
+      <td>0.0</td>
+      <td>90.6</td>
+      <td>18.2</td>
+      <td>30.5</td>
+      <td>13.4</td>
+      <td>18.0</td>
+      <td>16.7</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>194 rows × 14 columns</p>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-3d13caa7-a957-4245-a149-0f7df89d73de')" title="Convert this dataframe to an interactive table." style="display:none;">
+        
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewbox="0 0 24 24" width="24px">
+    <path d="M0 0h24v24H0V0z" fill="none"></path>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"></path><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"></path>
+  </svg>
+      </button>
+      
+  <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-3d13caa7-a957-4245-a149-0f7df89d73de button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-3d13caa7-a957-4245-a149-0f7df89d73de');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div>
+  
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>y_train_algeria <span class="op">=</span> alg_train[<span class="st">"Fire"</span>]</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>y_test_algeria <span class="op">=</span> alg_test[<span class="st">"Fire"</span>]</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>X_train_algeria <span class="op">=</span> alg_train.drop([<span class="st">"Fire"</span>], axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>X_test_algeria <span class="op">=</span> alg_test.drop([<span class="st">"Fire"</span>], axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="training-data-for-portugal" class="level2">
+<h2 class="anchored" data-anchor-id="training-data-for-portugal">Training data for Portugal:</h2>
+<div class="cell" data-outputid="5b096175-1df9-4a82-b084-092844ab8423">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>portugal_train, portugal_test <span class="op">=</span> train_test_split(portugal_df, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">25</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>portugal_df[portugal_df[<span class="st">"area"</span>]<span class="op">==</span><span class="fl">0.00</span>]</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>portugal_train</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+
+
+  <div id="df-b24aed18-ba3a-46c2-9ddd-9c42a1c92aca">
+    <div class="colab-df-container">
+      <div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>X</th>
+      <th>Y</th>
+      <th>FFMC</th>
+      <th>DMC</th>
+      <th>DC</th>
+      <th>ISI</th>
+      <th>temp</th>
+      <th>RH</th>
+      <th>wind</th>
+      <th>rain</th>
+      <th>...</th>
+      <th>month_nov</th>
+      <th>month_oct</th>
+      <th>month_sep</th>
+      <th>day_fri</th>
+      <th>day_mon</th>
+      <th>day_sat</th>
+      <th>day_sun</th>
+      <th>day_thu</th>
+      <th>day_tue</th>
+      <th>day_wed</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>250</th>
+      <td>8</td>
+      <td>5</td>
+      <td>93.1</td>
+      <td>157.3</td>
+      <td>666.7</td>
+      <td>13.5</td>
+      <td>26.8</td>
+      <td>25</td>
+      <td>3.1</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>48</th>
+      <td>4</td>
+      <td>4</td>
+      <td>87.2</td>
+      <td>23.9</td>
+      <td>64.7</td>
+      <td>4.1</td>
+      <td>11.8</td>
+      <td>35</td>
+      <td>1.8</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>417</th>
+      <td>6</td>
+      <td>5</td>
+      <td>93.4</td>
+      <td>17.3</td>
+      <td>28.3</td>
+      <td>9.9</td>
+      <td>13.8</td>
+      <td>24</td>
+      <td>5.8</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>140</th>
+      <td>2</td>
+      <td>5</td>
+      <td>90.9</td>
+      <td>126.5</td>
+      <td>686.5</td>
+      <td>7.0</td>
+      <td>21.9</td>
+      <td>39</td>
+      <td>1.8</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>3</td>
+      <td>4</td>
+      <td>83.9</td>
+      <td>8.0</td>
+      <td>30.2</td>
+      <td>2.6</td>
+      <td>12.7</td>
+      <td>48</td>
+      <td>1.8</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>317</th>
+      <td>4</td>
+      <td>4</td>
+      <td>92.4</td>
+      <td>96.2</td>
+      <td>739.4</td>
+      <td>8.6</td>
+      <td>19.2</td>
+      <td>24</td>
+      <td>4.9</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>143</th>
+      <td>1</td>
+      <td>2</td>
+      <td>90.0</td>
+      <td>51.3</td>
+      <td>296.3</td>
+      <td>8.7</td>
+      <td>16.6</td>
+      <td>53</td>
+      <td>5.4</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>474</th>
+      <td>4</td>
+      <td>3</td>
+      <td>93.0</td>
+      <td>103.8</td>
+      <td>316.7</td>
+      <td>10.8</td>
+      <td>26.4</td>
+      <td>35</td>
+      <td>2.7</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>318</th>
+      <td>6</td>
+      <td>5</td>
+      <td>92.8</td>
+      <td>119.0</td>
+      <td>783.5</td>
+      <td>7.5</td>
+      <td>21.6</td>
+      <td>27</td>
+      <td>2.2</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>132</th>
+      <td>4</td>
+      <td>6</td>
+      <td>89.3</td>
+      <td>51.3</td>
+      <td>102.2</td>
+      <td>9.6</td>
+      <td>10.6</td>
+      <td>46</td>
+      <td>4.9</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>413 rows × 30 columns</p>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-b24aed18-ba3a-46c2-9ddd-9c42a1c92aca')" title="Convert this dataframe to an interactive table." style="display:none;">
+        
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewbox="0 0 24 24" width="24px">
+    <path d="M0 0h24v24H0V0z" fill="none"></path>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"></path><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"></path>
+  </svg>
+      </button>
+      
+  <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-b24aed18-ba3a-46c2-9ddd-9c42a1c92aca button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-b24aed18-ba3a-46c2-9ddd-9c42a1c92aca');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div>
+  
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>y_train_portugal <span class="op">=</span> portugal_train[<span class="st">"area"</span>]</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>y_test_portugal <span class="op">=</span> portugal_test[<span class="st">"area"</span>]</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>X_train_portugal <span class="op">=</span> portugal_train.drop([<span class="st">"area"</span>], axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>X_test_portugal <span class="op">=</span> portugal_test.drop([<span class="st">"area"</span>], axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="choosing-important-features" class="level1">
+<h1>Choosing important features</h1>
+<p>We will use RidgeCV from scikit learn to pull out some important features in each dataset that we can later use to train on. RidgeCV is a cross validation method in ridge regression. The features with the highest absolute coefficient are conisdered the most important features.</p>
+<section id="portugals-important-features" class="level2">
+<h2 class="anchored" data-anchor-id="portugals-important-features">Portugal’s important features:</h2>
+<p>After applying RidgeCV to the Portugal dataset, we yield the 5 most important features: X, Y, ISI, temp, and wind. We will then plot these features against the target label, “Fire Area”, to see their relationship to one another. In each scatterplot, the x-axis represents the important feature and the y-axis shows the amount of burned area given that feature.</p>
+<div class="cell" data-outputid="5f907afd-0cef-433f-f748-441afa68f8da">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ridge <span class="op">=</span> RidgeCV(alphas<span class="op">=</span>np.logspace(<span class="op">-</span><span class="dv">6</span>, <span class="dv">6</span>, num<span class="op">=</span><span class="dv">5</span>)).fit(X_train_portugal, y_train_portugal) </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#assign importance to each feature through a specific attribute</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>importance <span class="op">=</span> np.<span class="bu">abs</span>(ridge.coef_)           </span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">#create a plot to visualize the importance of the features</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>feature_names <span class="op">=</span> np.array(X_train_portugal.columns)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>plt.barh(feature_names, importance)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Feature importances via coefficients Portugal"</span>)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co">#select a certain number of features</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>threshold <span class="op">=</span> np.sort(importance)[<span class="op">-</span><span class="dv">10</span>]</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>sfm <span class="op">=</span> SelectFromModel(ridge, threshold<span class="op">=</span>threshold).fit(X_train_portugal, y_train_portugal)</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="co">#only select the first five features from the list</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>selected_features_portugal <span class="op">=</span> feature_names[sfm.get_support()][<span class="dv">0</span>:<span class="dv">5</span>]</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Features selected: </span><span class="sc">{</span>selected_features_portugal<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="main_code_files/figure-html/cell-10-output-1.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Features selected: ['X' 'Y' 'ISI' 'temp' 'wind']</code></pre>
+</div>
+</div>
+<div class="cell" data-outputid="53cdd3f9-e3dd-474d-bc7e-8cc6fba4ddcb">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>fig, axarr <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">3</span>, figsize <span class="op">=</span> (<span class="dv">10</span>, <span class="dv">5</span>))</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>fig.subplots_adjust(wspace <span class="op">=</span> <span class="fl">0.5</span>, hspace <span class="op">=</span> <span class="fl">0.4</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>fig.delaxes(ax <span class="op">=</span> axarr[<span class="dv">1</span>,<span class="dv">2</span>])</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>):</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  ax <span class="op">=</span> axarr.flatten()</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  ax[i].scatter(X_train_portugal[selected_features_portugal[i]], y_train_portugal)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  ax[i].<span class="bu">set</span>(ylabel <span class="op">=</span> <span class="st">"Fire Area"</span>, xlabel <span class="op">=</span> selected_features_portugal[i], title <span class="op">=</span> (<span class="ss">f"Fire area in Portugal in relation to </span><span class="sc">{</span>selected_features_portugal[i]<span class="sc">}</span><span class="ss">"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="main_code_files/figure-html/cell-11-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="algerias-important-features" class="level2">
+<h2 class="anchored" data-anchor-id="algerias-important-features">Algeria’s important features:</h2>
+<p>We apply the same technique to the Algeria dataset, and the 5 most important features are: RH, Rain, FFMC, ISI, and FWI. We will also plot these features against the target label, “Fire”, to see their relationship to one another. Since this target label is binary, “no fire” or “fire, we opted for box plots to have better visualization.</p>
+<div class="cell" data-outputid="ae7ab9fa-2dea-468e-c418-9b84d1bd597c">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>ridge <span class="op">=</span> RidgeCV(alphas<span class="op">=</span>np.logspace(<span class="op">-</span><span class="dv">6</span>, <span class="dv">6</span>, num<span class="op">=</span><span class="dv">5</span>)).fit(X_train_algeria, y_train_algeria) </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co">#assign importance to each feature through a specific attribute</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>importance <span class="op">=</span> np.<span class="bu">abs</span>(ridge.coef_)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co">#create a plot to visualize the importance of the features</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>feature_names <span class="op">=</span> np.array(X_train_algeria.columns)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>plt.barh(feature_names, importance)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Feature importances via coefficients in Algeria"</span>)</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co">#select a certain number of features</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>threshold <span class="op">=</span> np.sort(importance)[<span class="op">-</span><span class="dv">5</span>]</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>sfm <span class="op">=</span> SelectFromModel(ridge, threshold<span class="op">=</span>threshold).fit(X_train_algeria, y_train_algeria)</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="co">#only select the first three features from the list</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>selected_features_algeria <span class="op">=</span> feature_names[sfm.get_support()][<span class="dv">0</span>:<span class="dv">5</span>]</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Features selected by SelectFromModel: </span><span class="sc">{</span>selected_features_algeria<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="main_code_files/figure-html/cell-12-output-1.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Features selected by SelectFromModel: [' RH' 'Rain ' 'FFMC' 'ISI' 'FWI']</code></pre>
+</div>
+</div>
+<div class="cell" data-outputid="ffb6bef6-98c0-4d66-f487-c8861206ff6c">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>,<span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">18</span>, <span class="dv">10</span>))</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>fig.subplots_adjust(wspace <span class="op">=</span> <span class="fl">0.5</span>, hspace <span class="op">=</span> <span class="fl">0.3</span>)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>sns.boxplot(ax<span class="op">=</span>axes[<span class="dv">0</span>,<span class="dv">0</span>], x <span class="op">=</span> y_train_algeria <span class="op">==</span> <span class="dv">1</span>,y<span class="op">=</span>X_train_algeria[selected_features_algeria[<span class="dv">0</span>]])</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>sns.boxplot(ax<span class="op">=</span>axes[<span class="dv">0</span>,<span class="dv">1</span>], x <span class="op">=</span> y_train_algeria <span class="op">==</span> <span class="dv">1</span>,y<span class="op">=</span>X_train_algeria[selected_features_algeria[<span class="dv">1</span>]])</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>sns.boxplot(ax<span class="op">=</span>axes[<span class="dv">1</span>,<span class="dv">0</span>], x <span class="op">=</span> y_train_algeria <span class="op">==</span> <span class="dv">1</span>,y<span class="op">=</span>X_train_algeria[selected_features_algeria[<span class="dv">2</span>]])</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>sns.boxplot(ax<span class="op">=</span>axes[<span class="dv">1</span>,<span class="dv">1</span>], x <span class="op">=</span> y_train_algeria <span class="op">==</span> <span class="dv">1</span>,y<span class="op">=</span>X_train_algeria[selected_features_algeria[<span class="dv">3</span>]])</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>sns.boxplot(ax<span class="op">=</span>axes[<span class="dv">1</span>,<span class="dv">2</span>], x <span class="op">=</span> y_train_algeria <span class="op">==</span> <span class="dv">1</span>,y<span class="op">=</span>X_train_algeria[selected_features_algeria[<span class="dv">4</span>]])</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>fig.delaxes(ax<span class="op">=</span>axes[<span class="dv">0</span>,<span class="dv">2</span>])</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>,<span class="dv">0</span>].<span class="bu">set</span>(title <span class="op">=</span> selected_features_algeria[<span class="dv">0</span>])</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>,<span class="dv">1</span>].<span class="bu">set</span>(title <span class="op">=</span> selected_features_algeria[<span class="dv">1</span>])</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>,<span class="dv">0</span>].<span class="bu">set</span>(title <span class="op">=</span> selected_features_algeria[<span class="dv">2</span>])</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>,<span class="dv">1</span>].<span class="bu">set</span>(title <span class="op">=</span> selected_features_algeria[<span class="dv">3</span>])</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>,<span class="dv">2</span>].<span class="bu">set</span>(title <span class="op">=</span> selected_features_algeria[<span class="dv">4</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<pre><code>[Text(0.5, 1.0, 'FWI')]</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="main_code_files/figure-html/cell-13-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="modeling" class="level1">
+<h1>Modeling</h1>
+<p>We are now ready to model on the Algeria and Portugal training data. For each training dataset, we will train on the completed set of features and the 5 selected features we have gotten from RidgeCV. Rather than developing our own algorithms, we are planning on using existing models such as Random Forest and Logistic Regression and spending our time focusing on model and feature selection. We will choose the model and set of features that yield the highest acurracy score. All of the machine learning algorithms that we will use are imported from scikit learn.</p>
+<section id="training-on-algeria-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="training-on-algeria-dataset">Training on Algeria dataset:</h2>
+<p>We will train the algeria data on 4 different classifiers: 1. Decision Tree 2. Logistic Regression 3. Random Forest 4. Stochastic Gradient Descent</p>
+<p>Again, we will train the Algeria with its completed set of features and with its 5 slected features. The 5 selected features are: RH, Rain, FFMC, ISI, and FWI. In addition, we will use cross validation to evaluate each model’s performance at different settings and avoid overfitting.</p>
+<section id="decision-tree-classifier-on-algeria-data" class="level3">
+<h3 class="anchored" data-anchor-id="decision-tree-classifier-on-algeria-data">Decision tree classifier on Algeria data</h3>
+<div class="cell" data-outputid="c7d797c8-bc83-4bd8-f42e-2b210e4c43f3">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.tree <span class="im">import</span> DecisionTreeClassifier</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.pipeline <span class="im">import</span> make_pipeline</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> cross_val_score</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>max_depth <span class="op">=</span> <span class="dv">5</span>           <span class="co">#iterator for selected features</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>max_depthC <span class="op">=</span> <span class="dv">5</span>          <span class="co">#iterator for complete features</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>best_score_DT <span class="op">=</span> <span class="dv">0</span>       <span class="co">#keeping track of highest accuracy for selected features</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>best_score_DTC <span class="op">=</span> <span class="dv">0</span>      <span class="co">#keeping track of highest accuracy for complete features</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Training on selected features."</span>)</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="co">#train on decision tree classifier using selected features</span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> max_depth <span class="op">!=</span> <span class="dv">0</span>:</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>    DT_algeria <span class="op">=</span> make_pipeline(StandardScaler(), DecisionTreeClassifier(max_depth<span class="op">=</span>max_depth))</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>    DT_algeria.fit(X_train_algeria[selected_features_algeria], y_train_algeria)</span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>    cv_scores <span class="op">=</span> cross_val_score(DT_algeria, X_train_algeria[selected_features_algeria], y_train_algeria, cv<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>    mean_score <span class="op">=</span> cv_scores.mean()</span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Max depth = </span><span class="sc">{</span>max_depth<span class="sc">}</span><span class="ss">, score = </span><span class="sc">{</span>mean_score<span class="sc">.</span><span class="bu">round</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>    <span class="co">#keeping the list of columns for the max_depth with the best score </span></span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (DT_algeria.score(X_train_algeria[selected_features_algeria], y_train_algeria) <span class="op">&gt;</span> best_score_DT):</span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>        best_score_DT <span class="op">=</span> DT_algeria.score(X_train_algeria[selected_features_algeria], y_train_algeria)</span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>        best_DT <span class="op">=</span> DT_algeria</span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>        best_max_depth <span class="op">=</span> max_depth</span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a>    max_depth <span class="op">+=</span> <span class="op">-</span><span class="dv">1</span></span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n\n</span><span class="st">"</span>)</span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Training on all features."</span>)</span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a><span class="co">#train on decision tree classifier using all features</span></span>
+<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> max_depthC <span class="op">!=</span> <span class="dv">0</span>:</span>
+<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a>    DT_algeria_complete <span class="op">=</span> make_pipeline(StandardScaler(), DecisionTreeClassifier(max_depth<span class="op">=</span>max_depthC))</span>
+<span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a>    DT_algeria_complete.fit(X_train_algeria, y_train_algeria)</span>
+<span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a>    cv_scores <span class="op">=</span> cross_val_score(DT_algeria_complete, X_train_algeria, y_train_algeria, cv<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb16-41"><a href="#cb16-41" aria-hidden="true" tabindex="-1"></a>    mean_score <span class="op">=</span> cv_scores.mean()</span>
+<span id="cb16-42"><a href="#cb16-42" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Max depth = </span><span class="sc">{</span>max_depthC<span class="sc">}</span><span class="ss">, score = </span><span class="sc">{</span>mean_score<span class="sc">.</span><span class="bu">round</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb16-43"><a href="#cb16-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-44"><a href="#cb16-44" aria-hidden="true" tabindex="-1"></a>    <span class="co">#keeping the list of columns for the max_depth with the best score </span></span>
+<span id="cb16-45"><a href="#cb16-45" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (DT_algeria_complete.score(X_train_algeria, y_train_algeria) <span class="op">&gt;</span> best_score_DTC):</span>
+<span id="cb16-46"><a href="#cb16-46" aria-hidden="true" tabindex="-1"></a>        best_score_DTC <span class="op">=</span> DT_algeria_complete.score(X_train_algeria, y_train_algeria)</span>
+<span id="cb16-47"><a href="#cb16-47" aria-hidden="true" tabindex="-1"></a>        best_DTC <span class="op">=</span> DT_algeria_complete</span>
+<span id="cb16-48"><a href="#cb16-48" aria-hidden="true" tabindex="-1"></a>        best_max_depth <span class="op">=</span> max_depthC</span>
+<span id="cb16-49"><a href="#cb16-49" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb16-50"><a href="#cb16-50" aria-hidden="true" tabindex="-1"></a>    max_depthC <span class="op">+=</span> <span class="op">-</span><span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Training on selected features.
+Max depth = 5, score = 0.974
+Max depth = 4, score = 0.974
+Max depth = 3, score = 0.979
+Max depth = 2, score = 0.979
+Max depth = 1, score = 0.974
+
+
+
+Training on all features.
+Max depth = 5, score = 0.974
+Max depth = 4, score = 0.969
+Max depth = 3, score = 0.979
+Max depth = 2, score = 0.979
+Max depth = 1, score = 0.969</code></pre>
+</div>
+</div>
+</section>
+<section id="logistic-regression-classifier-on-algeria" class="level3">
+<h3 class="anchored" data-anchor-id="logistic-regression-classifier-on-algeria">Logistic regression classifier on Algeria</h3>
+<div class="cell" data-outputid="b7050f16-a004-410c-bef8-888b3313d9e6">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co">#train on selected features via logistic regression</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>LR_algeria <span class="op">=</span> LogisticRegression()</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>LR_algeria.fit(X_train_algeria[selected_features_algeria], y_train_algeria)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Training Accuracy for LR using selected features: </span><span class="sc">{</span>LR_algeria<span class="sc">.</span>score(X_train_algeria[selected_features_algeria], y_train_algeria)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="co">#train on complete dataset</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>LR_algeria_complete <span class="op">=</span> LogisticRegression()</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>LR_algeria_complete.fit(X_train_algeria, y_train_algeria)</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Training Accuracy for LR using all features: </span><span class="sc">{</span>LR_algeria_complete<span class="sc">.</span>score(X_train_algeria, y_train_algeria)<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Training Accuracy for LR using selected features: 0.9742268041237113
+
+Training Accuracy for LR using all features: 0.9896907216494846
+</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/usr/local/lib/python3.10/dist-packages/sklearn/linear_model/_logistic.py:458: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(</code></pre>
+</div>
+</div>
+</section>
+<section id="random-forest-classifier-on-algeria" class="level3">
+<h3 class="anchored" data-anchor-id="random-forest-classifier-on-algeria">Random forest classifier on Algeria</h3>
+<div class="cell" data-outputid="15136e8d-ae07-4d2c-89d3-caf326a465a1">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> RandomForestClassifier</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>max_depth <span class="op">=</span> <span class="dv">5</span>           <span class="co">#iterator for selected features</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>max_depthC <span class="op">=</span> <span class="dv">5</span>          <span class="co">#iterator for complete features</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>best_score_RF <span class="op">=</span> <span class="dv">0</span>       <span class="co">#keeping track of highest accuracy for selected features</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>best_score_RFC <span class="op">=</span> <span class="dv">0</span>      <span class="co">#keeping track of highest accuracy for complete features</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Training on selected features."</span>)</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="co">#train on random forest classifier using selected features</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> max_depth <span class="op">!=</span> <span class="dv">0</span>:</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>    RF_algeria <span class="op">=</span> make_pipeline(StandardScaler(), RandomForestClassifier(max_depth<span class="op">=</span>max_depth, random_state<span class="op">=</span><span class="dv">0</span>))</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>    RF_algeria.fit(X_train_algeria[selected_features_algeria], y_train_algeria)</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>    cv_scores_RF_algeria <span class="op">=</span> cross_val_score(RF_algeria, X_train_algeria[selected_features_algeria], y_train_algeria, cv<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>    mean_score <span class="op">=</span> cv_scores_RF_algeria.mean()</span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Max depth = </span><span class="sc">{</span>max_depth<span class="sc">}</span><span class="ss">, score = </span><span class="sc">{</span>mean_score<span class="sc">.</span><span class="bu">round</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>    <span class="co">#keeping the list of columns for the max_depth with the best score </span></span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (RF_algeria.score(X_train_algeria[selected_features_algeria], y_train_algeria) <span class="op">&gt;</span> best_score_RF):</span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>        best_score_RF <span class="op">=</span> RF_algeria.score(X_train_algeria[selected_features_algeria], y_train_algeria)</span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>        best_RF <span class="op">=</span> RF_algeria</span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>        best_max_depth <span class="op">=</span> max_depth</span>
+<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a>    max_depth <span class="op">+=</span> <span class="op">-</span><span class="dv">1</span></span>
+<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n\n</span><span class="st">"</span>)</span>
+<span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Training on all features."</span>)</span>
+<span id="cb21-30"><a href="#cb21-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-31"><a href="#cb21-31" aria-hidden="true" tabindex="-1"></a><span class="co">#train on random forest classifier using all features</span></span>
+<span id="cb21-32"><a href="#cb21-32" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> max_depthC <span class="op">!=</span> <span class="dv">0</span>:</span>
+<span id="cb21-33"><a href="#cb21-33" aria-hidden="true" tabindex="-1"></a>    RF_algeria_complete <span class="op">=</span> make_pipeline(StandardScaler(), RandomForestClassifier(max_depth<span class="op">=</span>max_depthC, random_state<span class="op">=</span><span class="dv">0</span>))</span>
+<span id="cb21-34"><a href="#cb21-34" aria-hidden="true" tabindex="-1"></a>    RF_algeria_complete.fit(X_train_algeria, y_train_algeria)</span>
+<span id="cb21-35"><a href="#cb21-35" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb21-36"><a href="#cb21-36" aria-hidden="true" tabindex="-1"></a>    cv_scores_RF_algeria_complete <span class="op">=</span> cross_val_score(RF_algeria_complete, X_train_algeria, y_train_algeria, cv<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb21-37"><a href="#cb21-37" aria-hidden="true" tabindex="-1"></a>    mean_score <span class="op">=</span> cv_scores_RF_algeria_complete.mean()</span>
+<span id="cb21-38"><a href="#cb21-38" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Max depth = </span><span class="sc">{</span>max_depthC<span class="sc">}</span><span class="ss">, score = </span><span class="sc">{</span>mean_score<span class="sc">.</span><span class="bu">round</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb21-39"><a href="#cb21-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-40"><a href="#cb21-40" aria-hidden="true" tabindex="-1"></a>    <span class="co"># keeping the list of columns for the max_depth with the best score </span></span>
+<span id="cb21-41"><a href="#cb21-41" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (RF_algeria_complete.score(X_train_algeria, y_train_algeria) <span class="op">&gt;</span> best_score_RFC):</span>
+<span id="cb21-42"><a href="#cb21-42" aria-hidden="true" tabindex="-1"></a>        best_score_RFC <span class="op">=</span> RF_algeria_complete.score(X_train_algeria, y_train_algeria)</span>
+<span id="cb21-43"><a href="#cb21-43" aria-hidden="true" tabindex="-1"></a>        best_RFC <span class="op">=</span> RF_algeria_complete</span>
+<span id="cb21-44"><a href="#cb21-44" aria-hidden="true" tabindex="-1"></a>        best_max_depth <span class="op">=</span> max_depthC</span>
+<span id="cb21-45"><a href="#cb21-45" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb21-46"><a href="#cb21-46" aria-hidden="true" tabindex="-1"></a>    max_depthC <span class="op">+=</span> <span class="op">-</span><span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Training on selected features.
+Max depth = 5, score = 0.974
+Max depth = 4, score = 0.974
+Max depth = 3, score = 0.974
+Max depth = 2, score = 0.974
+Max depth = 1, score = 0.974
+
+
+
+Training on all features.
+Max depth = 5, score = 0.974
+Max depth = 4, score = 0.974
+Max depth = 3, score = 0.974
+Max depth = 2, score = 0.974
+Max depth = 1, score = 0.943</code></pre>
+</div>
+</div>
+</section>
+<section id="stochastic-gradient-descent-on-algeria" class="level3">
+<h3 class="anchored" data-anchor-id="stochastic-gradient-descent-on-algeria">Stochastic gradient descent on Algeria</h3>
+<div class="cell" data-outputid="ec69ff26-ce1b-4fde-d5eb-e16368def62f">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> SGDClassifier</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>SGD_algeria <span class="op">=</span> SGDClassifier(loss<span class="op">=</span><span class="st">"hinge"</span>, penalty<span class="op">=</span><span class="st">"l2"</span>, max_iter<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>SGD_algeria.fit(X_train_algeria[selected_features_algeria], y_train_algeria)</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Training Accuracy for SGD using selected features: </span><span class="sc">{</span>SGD_algeria<span class="sc">.</span>score(X_train_algeria[selected_features_algeria], y_train_algeria)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>SGD_algeria_complete <span class="op">=</span> SGDClassifier(loss<span class="op">=</span><span class="st">"hinge"</span>, penalty<span class="op">=</span><span class="st">"l2"</span>, max_iter<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>SGD_algeria_complete.fit(X_train_algeria, y_train_algeria)</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Training Accuracy for SGD using all features: </span><span class="sc">{</span>SGD_algeria_complete<span class="sc">.</span>score(X_train_algeria, y_train_algeria)<span class="sc">}</span><span class="ss"> </span><span class="ch">\n</span><span class="ss">"</span>)</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Training Accuracy for SGD using selected features: 0.8556701030927835
+
+Training Accuracy for SGD using all features: 0.5567010309278351 
+</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/usr/local/lib/python3.10/dist-packages/sklearn/linear_model/_stochastic_gradient.py:702: ConvergenceWarning: Maximum number of iteration reached before convergence. Consider increasing max_iter to improve the fit.
+  warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/linear_model/_stochastic_gradient.py:702: ConvergenceWarning: Maximum number of iteration reached before convergence. Consider increasing max_iter to improve the fit.
+  warnings.warn(</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="training-on-portugal-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="training-on-portugal-dataset">Training on Portugal dataset:</h2>
+<p>We will train the algeria data on 4 different classifiers: 1. Linear Regression 2. Logistic Regression 3. Support Vector Classification 4. Epsilon-Support Vector Regression</p>
+<p>Here, we will train the models on Portugal’s 5 slected features from RidgeCV, features highlighted by the paper, and it’s complete set of features. The 5 selected features from RidgeCV are: X, Y, ISI, temp, and wind. The features highlighted by the paper are: temp, RH, rain, and wind.</p>
+<p>We will also perform transformations on our target label to improve the models’ accuracy. We transformed our target labels to log, binary, range, and categorical values.</p>
+<p>In addition, we will use cross validation to evaluate each model’s performance at different settings and avoid overfitting.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn <span class="im">import</span> preprocessing</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn <span class="im">import</span> utils</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="co">#fetures highlighted by paper</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>papers_features <span class="op">=</span> [<span class="st">"temp"</span>, <span class="st">"RH"</span>, <span class="st">"rain"</span>, <span class="st">"wind"</span>]</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="co">#convert labels to categorical values</span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>lab <span class="op">=</span> preprocessing.LabelEncoder()</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>y_train_transformed <span class="op">=</span> lab.fit_transform(y_train_portugal)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># make a copy of df and change labels to 0 and non 0s (binary)</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>portugal_df_copy <span class="op">=</span> portugal_df.copy()</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>portugal_df_copy.loc[portugal_df_copy[<span class="st">"area"</span>] <span class="op">&gt;</span> <span class="fl">0.0</span>] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>portugal_df_copy.loc[portugal_df_copy[<span class="st">"area"</span>] <span class="op">&lt;=</span> <span class="fl">0.0</span>] <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>portugal_train_binary, portugal_test_binary <span class="op">=</span> train_test_split(portugal_df_copy, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">25</span>)</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>y_train_portugal_binary <span class="op">=</span> portugal_train_binary[<span class="st">"area"</span>]</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>y_test_portugal_binary <span class="op">=</span> portugal_test_binary[<span class="st">"area"</span>]</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>X_train_portugal_binary <span class="op">=</span> portugal_train_binary.drop([<span class="st">"area"</span>], axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>X_test_portugal_binary <span class="op">=</span> portugal_test_binary.drop([<span class="st">"area"</span>], axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-outputid="0d3c5135-1541-4362-b8c9-45fdf2183e88">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># make a copy of df and change labels to a range</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>portugal_df_copy2 <span class="op">=</span> portugal_df.copy()</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(portugal_df_copy2[<span class="st">"area"</span>].<span class="bu">max</span>())</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>ranges <span class="op">=</span> portugal_df_copy2[<span class="st">"area"</span>].<span class="bu">max</span>()  <span class="op">/</span> <span class="dv">50</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>portugal_df_copy2.loc[portugal_df_copy2[<span class="st">"area"</span>] <span class="op">&lt;=</span> <span class="fl">0.0</span>] <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">50</span>):</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>  portugal_df_copy2.loc[(portugal_df_copy2[<span class="st">"area"</span>] <span class="op">&gt;</span> (ranges <span class="op">*</span> i)) <span class="op">&amp;</span> (portugal_df_copy2[<span class="st">"area"</span>] <span class="op">&lt;=</span> ranges <span class="op">*</span> (i<span class="op">+</span><span class="dv">1</span>))] <span class="op">=</span> ranges <span class="op">*</span> (i<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>portugal_train_range, portugal_test_range <span class="op">=</span> train_test_split(portugal_df_copy2, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">25</span>)</span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>y_train_portugal_range <span class="op">=</span> portugal_train_range[<span class="st">"area"</span>]</span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>y_test_portugal_range <span class="op">=</span> portugal_test_range[<span class="st">"area"</span>]</span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a>X_train_portugal_range <span class="op">=</span> portugal_train_range.drop([<span class="st">"area"</span>], axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a>X_test_portugal_range <span class="op">=</span> portugal_test_range.drop([<span class="st">"area"</span>], axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>1090.84</code></pre>
+</div>
+</div>
+<section id="linear-regression-classifier-on-portugal" class="level3">
+<h3 class="anchored" data-anchor-id="linear-regression-classifier-on-portugal">Linear regression classifier on Portugal</h3>
+<div class="cell" data-outputid="70ec6658-0bd5-4b70-8aca-db682112e6f7">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="co">#train on non-transformed y</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>LinR_portugal <span class="op">=</span> LinearRegression()</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>LinR_portugal.fit(X_train_portugal, y_train_portugal)</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Training Accuracy for linear regression: "</span> <span class="op">+</span> <span class="bu">str</span>(LinR_portugal.score(X_train_portugal, y_train_portugal)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Training Accuracy for linear regression: 0.04793115962477279</code></pre>
+</div>
+</div>
+<div class="cell" data-outputid="c7b31d1a-53f7-403b-c5a7-cd94b8ac5dde">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co">#train on y-train that was split into 50 ranges</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>LinR_portugal <span class="op">=</span> LinearRegression()</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>LinR_portugal.fit(X_train_portugal_range, y_train_portugal_range)</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Training Accuracy for linear regression: "</span> <span class="op">+</span> <span class="bu">str</span>(LinR_portugal.score(X_train_portugal_range, y_train_portugal_range)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Training Accuracy for linear regression: 1.0</code></pre>
+</div>
+</div>
+<div class="cell" data-outputid="0495799e-b869-4a0d-8a92-9978937f7fc8">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co">#train on y transformed into binary labels</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>LinR_portugal_complete_binary <span class="op">=</span> LinearRegression()</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>LinR_portugal_complete_binary.fit(X_train_portugal_binary, y_train_portugal_binary)</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Training Accuracy for linear regression: "</span> <span class="op">+</span> <span class="bu">str</span>(LinR_portugal_complete_binary.score(X_train_portugal_binary, y_train_portugal_binary)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Training Accuracy for linear regression: 1.0</code></pre>
+</div>
+</div>
+<div class="cell" data-outputid="a3090b2e-0c61-4d37-c2dc-b6b4aee325dc">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co">#train on y transformed into categorical values</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="co">#train on paper's features</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>LinR_portugal_paper <span class="op">=</span> LinearRegression()</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>LinR_portugal_paper.fit(X_train_portugal[papers_features], y_train_transformed)</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>cv_scores_portugal <span class="op">=</span> cross_val_score(LinR_portugal_paper, X_train_portugal[papers_features], y_train_transformed, cv<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Cross val scores for features highlited by paper: </span><span class="sc">{</span>cv_scores_portugal<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Training Accuracy for linear regression: "</span> <span class="op">+</span> <span class="bu">str</span>(LinR_portugal_paper.score(X_train_portugal[papers_features], y_train_transformed)))</span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a><span class="co">#train on all features</span></span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a>LinR_portugal_complete <span class="op">=</span> LinearRegression()</span>
+<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a>LinR_portugal_complete.fit(X_train_portugal, y_train_transformed)</span>
+<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-17"><a href="#cb36-17" aria-hidden="true" tabindex="-1"></a>cv_scores_portugal <span class="op">=</span> cross_val_score(LinR_portugal_complete, X_train_portugal, y_train_transformed, cv<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb36-18"><a href="#cb36-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-19"><a href="#cb36-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Cross val scores for all features: </span><span class="sc">{</span>cv_scores_portugal<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb36-20"><a href="#cb36-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Training Accuracy for linear regression: "</span> <span class="op">+</span> <span class="bu">str</span>(LinR_portugal_complete.score(X_train_portugal, y_train_transformed)))</span>
+<span id="cb36-21"><a href="#cb36-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-22"><a href="#cb36-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-23"><a href="#cb36-23" aria-hidden="true" tabindex="-1"></a><span class="co">#train on featured selected by RidgeCV</span></span>
+<span id="cb36-24"><a href="#cb36-24" aria-hidden="true" tabindex="-1"></a>LinR_portugal_selected <span class="op">=</span> LinearRegression()</span>
+<span id="cb36-25"><a href="#cb36-25" aria-hidden="true" tabindex="-1"></a>LinR_portugal_selected.fit(X_train_portugal[selected_features_portugal], y_train_transformed)</span>
+<span id="cb36-26"><a href="#cb36-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-27"><a href="#cb36-27" aria-hidden="true" tabindex="-1"></a>cv_scores_portugal <span class="op">=</span> cross_val_score(LinR_portugal_selected, X_train_portugal[selected_features_portugal], y_train_transformed, cv<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb36-28"><a href="#cb36-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-29"><a href="#cb36-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Cross val scores for features selected by RidgeCV: </span><span class="sc">{</span>cv_scores_portugal<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb36-30"><a href="#cb36-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Training Accuracy for linear regression: "</span> <span class="op">+</span> <span class="bu">str</span>(LinR_portugal_selected.score(X_train_portugal[selected_features_portugal], y_train_transformed)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Cross val scores for features highlited by paper: [ 0.01875518 -0.03799198 -0.01599223 -0.97997841 -0.01931605]
+Training Accuracy for linear regression: 0.014415847547068927
+
+Cross val scores for all features: [ 0.02493997 -0.06590393 -0.06223167 -1.37012855 -0.21533972]
+Training Accuracy for linear regression: 0.07364043558950595
+
+Cross val scores for features selected by RidgeCV: [ 0.01855795 -0.05131269 -0.02041167  0.00572244 -0.11218235]
+Training Accuracy for linear regression: 0.021379727090125145</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="logistic-regression-on-portugal" class="level2">
+<h2 class="anchored" data-anchor-id="logistic-regression-on-portugal">Logistic Regression on Portugal</h2>
+<div class="cell" data-outputid="cedff556-bfb5-4c94-c8c6-88b2eb0f2e2d">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co">#train on paper's features and using binary labels </span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>LogR_portugal_binary <span class="op">=</span> LogisticRegression()</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>LogR_portugal_binary.fit(X_train_portugal_binary, y_train_portugal_binary)</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Training Accuracy for logistic regression: </span><span class="sc">{</span>LogR_portugal_binary<span class="sc">.</span>score(X_train_portugal_binary, y_train_portugal_binary)<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Training Accuracy for logistic regression: 1.0</code></pre>
+</div>
+</div>
+<div class="cell" data-outputid="9d493843-bdc9-4a35-ce63-eb410b4d763f">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="co">#train on y transformed into categorical values</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="co">#train on paper's features</span></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>LogR_portugal_paper <span class="op">=</span> LogisticRegression()</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>LogR_portugal_paper.fit(X_train_portugal[papers_features], y_train_transformed)</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Training Accuracy for logistic regression using features highlighted by the paper: </span><span class="sc">{</span>LogR_portugal_paper<span class="sc">.</span>score(X_train_portugal[papers_features], y_train_transformed)<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span>)</span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a><span class="co">#train on complete dataset</span></span>
+<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a>LogR_portugal_complete <span class="op">=</span> LogisticRegression()</span>
+<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a>LogR_portugal_complete.fit(X_train_portugal, y_train_transformed)</span>
+<span id="cb40-13"><a href="#cb40-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-14"><a href="#cb40-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Training Accuracy for logistic regression using all features: </span><span class="sc">{</span>LogR_portugal_complete<span class="sc">.</span>score(X_train_portugal, y_train_transformed)<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span>)</span>
+<span id="cb40-15"><a href="#cb40-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-16"><a href="#cb40-16" aria-hidden="true" tabindex="-1"></a><span class="co">#train on features selected by RidgeCV</span></span>
+<span id="cb40-17"><a href="#cb40-17" aria-hidden="true" tabindex="-1"></a>LogR_portugal_selected <span class="op">=</span> LogisticRegression()</span>
+<span id="cb40-18"><a href="#cb40-18" aria-hidden="true" tabindex="-1"></a>LogR_portugal_selected.fit(X_train_portugal[selected_features_portugal], y_train_transformed)</span>
+<span id="cb40-19"><a href="#cb40-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-20"><a href="#cb40-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Training Accuracy for logistic regression using features selected by RidgeCV: </span><span class="sc">{</span>LogR_portugal_selected<span class="sc">.</span>score(X_train_portugal[selected_features_portugal], y_train_transformed)<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/usr/local/lib/python3.10/dist-packages/sklearn/linear_model/_logistic.py:458: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Training Accuracy for logistic regression using features highlighted by the paper: 0.48184019370460046
+</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/usr/local/lib/python3.10/dist-packages/sklearn/linear_model/_logistic.py:458: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Training Accuracy for logistic regression using all features: 0.46246973365617433
+
+
+Training Accuracy for logistic regression using features selected by RidgeCV: 0.513317191283293
+</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/usr/local/lib/python3.10/dist-packages/sklearn/linear_model/_logistic.py:458: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(</code></pre>
+</div>
+</div>
+</section>
+<section id="support-vector-classifcation-on-portugal" class="level2">
+<h2 class="anchored" data-anchor-id="support-vector-classifcation-on-portugal">Support Vector Classifcation on Portugal</h2>
+<div class="cell" data-outputid="5effc21e-ca4b-48aa-f2dd-355ae65ce69a">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn <span class="im">import</span> svm</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="co">#train on y transformed into categorical values</span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="co">#train on paper's features</span></span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>SVC_portugal_paper <span class="op">=</span> svm.SVC(kernel<span class="op">=</span><span class="st">'poly'</span>, degree<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>SVC_portugal_paper.fit(X_train_portugal[papers_features], y_train_transformed)</span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Training Accuracy for SVC using features highlighted from the paper: </span><span class="sc">{</span>SVC_portugal_paper<span class="sc">.</span>score(X_train_portugal[papers_features], y_train_transformed)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a><span class="co">#train on all features</span></span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a>SVC_portugal_complete <span class="op">=</span> svm.SVC(kernel<span class="op">=</span><span class="st">'poly'</span>, degree<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a>SVC_portugal_complete.fit(X_train_portugal, y_train_transformed)</span>
+<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Training Accuracy for SVC using all features: </span><span class="sc">{</span>SVC_portugal_complete<span class="sc">.</span>score(X_train_portugal, y_train_transformed)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-14"><a href="#cb46-14" aria-hidden="true" tabindex="-1"></a><span class="co">#train on features selected by RidgeCV</span></span>
+<span id="cb46-15"><a href="#cb46-15" aria-hidden="true" tabindex="-1"></a>SVC_portugal_selected <span class="op">=</span> svm.SVC(kernel<span class="op">=</span><span class="st">'poly'</span>, degree<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb46-16"><a href="#cb46-16" aria-hidden="true" tabindex="-1"></a>SVC_portugal_selected.fit(X_train_portugal[selected_features_portugal], y_train_transformed)</span>
+<span id="cb46-17"><a href="#cb46-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Training Accuracy for SVC using features selected by RidgeCV: </span><span class="sc">{</span>SVC_portugal_selected<span class="sc">.</span>score(X_train_portugal[selected_features_portugal], y_train_transformed)<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Training Accuracy for SVC using features highlighted from the paper: 0.48184019370460046
+
+Training Accuracy for SVC using all features: 0.4794188861985472
+
+Training Accuracy for SVC using features selected by RidgeCV: 0.49878934624697335</code></pre>
+</div>
+</div>
+<section id="svr-on-portugal" class="level3">
+<h3 class="anchored" data-anchor-id="svr-on-portugal">SVR on Portugal</h3>
+<div class="cell" data-outputid="c07d6d6c-cb18-42f6-d692-0fd87eb6e5a6">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.pipeline <span class="im">import</span> make_pipeline</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.svm <span class="im">import</span> SVR</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a><span class="co">#training on y transformed gave worst accuracy, so we went ahead and trained on the original y labels</span></span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a><span class="co">#train on paper's features</span></span>
+<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a>SVR_portugal_paper <span class="op">=</span> make_pipeline(StandardScaler(), SVR(gamma<span class="op">=</span><span class="st">'auto'</span>))</span>
+<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a>SVR_portugal_paper.fit(X_train_portugal[papers_features], y_train_portugal)</span>
+<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-11"><a href="#cb48-11" aria-hidden="true" tabindex="-1"></a>cv_scores_SVR <span class="op">=</span> cross_val_score(SVR_portugal_paper, X_train_portugal[papers_features], y_train_portugal, cv<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb48-12"><a href="#cb48-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-13"><a href="#cb48-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Cross val scores for selected features: </span><span class="sc">{</span>cv_scores_SVR<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb48-14"><a href="#cb48-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Training Accuracy for SVC: "</span> <span class="op">+</span> <span class="bu">str</span>(SVR_portugal_paper.score(X_train_portugal[papers_features], y_train_portugal)))</span>
+<span id="cb48-15"><a href="#cb48-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-16"><a href="#cb48-16" aria-hidden="true" tabindex="-1"></a><span class="co">#train on all features</span></span>
+<span id="cb48-17"><a href="#cb48-17" aria-hidden="true" tabindex="-1"></a>SVR_portugal_complete <span class="op">=</span> make_pipeline(StandardScaler(), SVR(gamma<span class="op">=</span><span class="st">'auto'</span>))</span>
+<span id="cb48-18"><a href="#cb48-18" aria-hidden="true" tabindex="-1"></a>SVR_portugal_complete.fit(X_train_portugal, y_train_portugal)</span>
+<span id="cb48-19"><a href="#cb48-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-20"><a href="#cb48-20" aria-hidden="true" tabindex="-1"></a>cv_scores_SVR <span class="op">=</span> cross_val_score(SVR_portugal_complete, X_train_portugal, y_train_portugal, cv<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb48-21"><a href="#cb48-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-22"><a href="#cb48-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Cross val scores for all features: </span><span class="sc">{</span>cv_scores_SVR<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb48-23"><a href="#cb48-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Training Accuracy for SVC: "</span> <span class="op">+</span> <span class="bu">str</span>(SVR_portugal_complete.score(X_train_portugal, y_train_portugal)))</span>
+<span id="cb48-24"><a href="#cb48-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-25"><a href="#cb48-25" aria-hidden="true" tabindex="-1"></a><span class="co">#train on features selected by RidgeCV</span></span>
+<span id="cb48-26"><a href="#cb48-26" aria-hidden="true" tabindex="-1"></a>SVR_portugal_selected <span class="op">=</span> make_pipeline(StandardScaler(), SVR(gamma<span class="op">=</span><span class="st">'auto'</span>))</span>
+<span id="cb48-27"><a href="#cb48-27" aria-hidden="true" tabindex="-1"></a>SVR_portugal_selected.fit(X_train_portugal[selected_features_portugal], y_train_portugal)</span>
+<span id="cb48-28"><a href="#cb48-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-29"><a href="#cb48-29" aria-hidden="true" tabindex="-1"></a>cv_scores_SVR <span class="op">=</span> cross_val_score(SVR_portugal_selected, X_train_portugal[selected_features_portugal], y_train_portugal, cv<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb48-30"><a href="#cb48-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-31"><a href="#cb48-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Cross val scores for features selected by RidgeCV: </span><span class="sc">{</span>cv_scores_SVR<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb48-32"><a href="#cb48-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Training Accuracy for SVC: "</span> <span class="op">+</span> <span class="bu">str</span>(SVR_portugal_selected.score(X_train_portugal[selected_features_portugal], y_train_portugal)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Cross val scores for selected features: [-0.02603315 -0.16955323 -0.20086096 -0.17891782 -0.03004511]
+Training Accuracy for SVC: -0.026964073944544698
+
+Cross val scores for all features: [-0.02601154 -0.16531766 -0.20141533 -0.16730645 -0.03065345]
+Training Accuracy for SVC: -0.0259967252082014
+
+Cross val scores for features selected by RidgeCV: [-0.02547019 -0.14594411 -0.18518067 -0.14792468 -0.03294225]
+Training Accuracy for SVC: -0.02569288926430735</code></pre>
+</div>
+</div>
+</section>
+<section id="log-transform-then-fit-again" class="level3">
+<h3 class="anchored" data-anchor-id="log-transform-then-fit-again">Log-transform then fit again</h3>
+<p>We’ll log-transform the values and then train the models on them again to see if this yields better accuracy.</p>
+<div class="cell" data-outputid="b9e15190-789a-4a25-8d75-b50a618589d1">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co">#log-transform target labels</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>y_train_log_transformed <span class="op">=</span> np.log(y_train_portugal<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a><span class="co">#using linear regression to train on log-transformed y</span></span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a><span class="co">#paper's features</span></span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>LinR_portugal_paper_log <span class="op">=</span> LinearRegression()</span>
+<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a>LinR_portugal_paper_log.fit(X_train_portugal[papers_features], y_train_log_transformed)</span>
+<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a>predictions <span class="op">=</span> LinR_portugal_paper_log.predict(X_train_portugal[papers_features])</span>
+<span id="cb50-11"><a href="#cb50-11" aria-hidden="true" tabindex="-1"></a>predictions_transformed <span class="op">=</span> np.exp(predictions) <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb50-12"><a href="#cb50-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-13"><a href="#cb50-13" aria-hidden="true" tabindex="-1"></a>u <span class="op">=</span> ((y_train_portugal <span class="op">-</span> predictions_transformed)<span class="op">**</span> <span class="dv">2</span>).<span class="bu">sum</span>()</span>
+<span id="cb50-14"><a href="#cb50-14" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> ((y_train_portugal <span class="op">-</span> y_train_portugal.mean()) <span class="op">**</span> <span class="dv">2</span>).<span class="bu">sum</span>()</span>
+<span id="cb50-15"><a href="#cb50-15" aria-hidden="true" tabindex="-1"></a>score <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> u<span class="op">/</span>v</span>
+<span id="cb50-16"><a href="#cb50-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Training Accuracy for linear regression after log-transform with paper's features: </span><span class="sc">{</span>score<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb50-17"><a href="#cb50-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-18"><a href="#cb50-18" aria-hidden="true" tabindex="-1"></a><span class="co">#all features</span></span>
+<span id="cb50-19"><a href="#cb50-19" aria-hidden="true" tabindex="-1"></a>LinR_portugal_complete_log <span class="op">=</span> LinearRegression()</span>
+<span id="cb50-20"><a href="#cb50-20" aria-hidden="true" tabindex="-1"></a>LinR_portugal_complete_log.fit(X_train_portugal, y_train_log_transformed)</span>
+<span id="cb50-21"><a href="#cb50-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-22"><a href="#cb50-22" aria-hidden="true" tabindex="-1"></a>predictions <span class="op">=</span> LinR_portugal_complete_log.predict(X_train_portugal)</span>
+<span id="cb50-23"><a href="#cb50-23" aria-hidden="true" tabindex="-1"></a>predictions_transformed <span class="op">=</span> np.exp(predictions) <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb50-24"><a href="#cb50-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-25"><a href="#cb50-25" aria-hidden="true" tabindex="-1"></a>u <span class="op">=</span> ((y_train_portugal <span class="op">-</span> predictions_transformed)<span class="op">**</span> <span class="dv">2</span>).<span class="bu">sum</span>()</span>
+<span id="cb50-26"><a href="#cb50-26" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> ((y_train_portugal <span class="op">-</span> y_train_portugal.mean()) <span class="op">**</span> <span class="dv">2</span>).<span class="bu">sum</span>()</span>
+<span id="cb50-27"><a href="#cb50-27" aria-hidden="true" tabindex="-1"></a>score <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> u<span class="op">/</span>v</span>
+<span id="cb50-28"><a href="#cb50-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Training Accuracy for linear regression after log-transform with all features: </span><span class="sc">{</span>score<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb50-29"><a href="#cb50-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-30"><a href="#cb50-30" aria-hidden="true" tabindex="-1"></a><span class="co">#RidgeCV features</span></span>
+<span id="cb50-31"><a href="#cb50-31" aria-hidden="true" tabindex="-1"></a>LinR_portugal_selected_log <span class="op">=</span> LinearRegression()</span>
+<span id="cb50-32"><a href="#cb50-32" aria-hidden="true" tabindex="-1"></a>LinR_portugal_selected_log.fit(X_train_portugal[selected_features_portugal], y_train_log_transformed)</span>
+<span id="cb50-33"><a href="#cb50-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-34"><a href="#cb50-34" aria-hidden="true" tabindex="-1"></a>predictions <span class="op">=</span> LinR_portugal_selected_log.predict(X_train_portugal[selected_features_portugal])</span>
+<span id="cb50-35"><a href="#cb50-35" aria-hidden="true" tabindex="-1"></a>predictions_transformed <span class="op">=</span> np.exp(predictions) <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb50-36"><a href="#cb50-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-37"><a href="#cb50-37" aria-hidden="true" tabindex="-1"></a>u <span class="op">=</span> ((y_train_portugal <span class="op">-</span> predictions_transformed)<span class="op">**</span> <span class="dv">2</span>).<span class="bu">sum</span>()</span>
+<span id="cb50-38"><a href="#cb50-38" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> ((y_train_portugal <span class="op">-</span> y_train_portugal.mean()) <span class="op">**</span> <span class="dv">2</span>).<span class="bu">sum</span>()</span>
+<span id="cb50-39"><a href="#cb50-39" aria-hidden="true" tabindex="-1"></a>score <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> u<span class="op">/</span>v</span>
+<span id="cb50-40"><a href="#cb50-40" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Training Accuracy for linear regression after log-transform with ridgeCV features: </span><span class="sc">{</span>score<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Training Accuracy for linear regression after log-transform with paper's features: -0.02135912961710429
+
+Training Accuracy for linear regression after log-transform with all features: -0.01670568262633898
+
+Training Accuracy for linear regression after log-transform with ridgeCV features: -0.01953918401847443</code></pre>
+</div>
+</div>
+<div class="cell" data-outputid="aa513cc7-752e-481b-a93a-16b0301f5b71">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co">#using SVR to train on log-transformed y</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="co">#paper's features</span></span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>SVR_portugal_paper_log <span class="op">=</span> make_pipeline(StandardScaler(), SVR(gamma<span class="op">=</span><span class="st">'auto'</span>))</span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>SVR_portugal_paper_log.fit(X_train_portugal[papers_features], y_train_log_transformed)</span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>predictions <span class="op">=</span> SVR_portugal_paper_log.predict(X_train_portugal[papers_features])</span>
+<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a>predictions_transformed <span class="op">=</span> np.exp(predictions) <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a>u <span class="op">=</span> ((y_train_portugal <span class="op">-</span> predictions_transformed)<span class="op">**</span> <span class="dv">2</span>).<span class="bu">sum</span>()</span>
+<span id="cb52-11"><a href="#cb52-11" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> ((y_train_portugal <span class="op">-</span> y_train_portugal.mean()) <span class="op">**</span> <span class="dv">2</span>).<span class="bu">sum</span>()</span>
+<span id="cb52-12"><a href="#cb52-12" aria-hidden="true" tabindex="-1"></a>score <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> u<span class="op">/</span>v</span>
+<span id="cb52-13"><a href="#cb52-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Training Accuracy for SVR after log-transform: </span><span class="sc">{</span>score<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb52-14"><a href="#cb52-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-15"><a href="#cb52-15" aria-hidden="true" tabindex="-1"></a><span class="co">#all features</span></span>
+<span id="cb52-16"><a href="#cb52-16" aria-hidden="true" tabindex="-1"></a>SVR_portugal_complete_log <span class="op">=</span> make_pipeline(StandardScaler(), SVR(gamma<span class="op">=</span><span class="st">'auto'</span>))</span>
+<span id="cb52-17"><a href="#cb52-17" aria-hidden="true" tabindex="-1"></a>SVR_portugal_complete_log.fit(X_train_portugal, y_train_log_transformed)</span>
+<span id="cb52-18"><a href="#cb52-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-19"><a href="#cb52-19" aria-hidden="true" tabindex="-1"></a>predictions <span class="op">=</span> SVR_portugal_complete_log.predict(X_train_portugal)</span>
+<span id="cb52-20"><a href="#cb52-20" aria-hidden="true" tabindex="-1"></a>predictions_transformed <span class="op">=</span> np.exp(predictions) <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb52-21"><a href="#cb52-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-22"><a href="#cb52-22" aria-hidden="true" tabindex="-1"></a>u <span class="op">=</span> ((y_train_portugal <span class="op">-</span> predictions_transformed)<span class="op">**</span> <span class="dv">2</span>).<span class="bu">sum</span>()</span>
+<span id="cb52-23"><a href="#cb52-23" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> ((y_train_portugal <span class="op">-</span> y_train_portugal.mean()) <span class="op">**</span> <span class="dv">2</span>).<span class="bu">sum</span>()</span>
+<span id="cb52-24"><a href="#cb52-24" aria-hidden="true" tabindex="-1"></a>score <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> u<span class="op">/</span>v</span>
+<span id="cb52-25"><a href="#cb52-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Training Accuracy for SVR after log-transform: </span><span class="sc">{</span>score<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb52-26"><a href="#cb52-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-27"><a href="#cb52-27" aria-hidden="true" tabindex="-1"></a><span class="co">#ridgeCV features</span></span>
+<span id="cb52-28"><a href="#cb52-28" aria-hidden="true" tabindex="-1"></a>SVR_portugal_selected_log <span class="op">=</span> make_pipeline(StandardScaler(), SVR(gamma<span class="op">=</span><span class="st">'auto'</span>))</span>
+<span id="cb52-29"><a href="#cb52-29" aria-hidden="true" tabindex="-1"></a>SVR_portugal_selected_log.fit(X_train_portugal[selected_features_portugal], y_train_log_transformed)</span>
+<span id="cb52-30"><a href="#cb52-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-31"><a href="#cb52-31" aria-hidden="true" tabindex="-1"></a>predictions <span class="op">=</span> SVR_portugal_selected_log.predict(X_train_portugal[selected_features_portugal])</span>
+<span id="cb52-32"><a href="#cb52-32" aria-hidden="true" tabindex="-1"></a>predictions_transformed <span class="op">=</span> np.exp(predictions) <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb52-33"><a href="#cb52-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-34"><a href="#cb52-34" aria-hidden="true" tabindex="-1"></a>u <span class="op">=</span> ((y_train_portugal <span class="op">-</span> predictions_transformed)<span class="op">**</span> <span class="dv">2</span>).<span class="bu">sum</span>()</span>
+<span id="cb52-35"><a href="#cb52-35" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> ((y_train_portugal <span class="op">-</span> y_train_portugal.mean()) <span class="op">**</span> <span class="dv">2</span>).<span class="bu">sum</span>()</span>
+<span id="cb52-36"><a href="#cb52-36" aria-hidden="true" tabindex="-1"></a>score <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> u<span class="op">/</span>v</span>
+<span id="cb52-37"><a href="#cb52-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Training Accuracy for SVR after log-transform: </span><span class="sc">{</span>score<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Training Accuracy for SVR after log-transform: -0.025953112452074434
+
+Training Accuracy for SVR after log-transform: -0.02414013462072151
+
+Training Accuracy for SVR after log-transform: -0.0248659859046918</code></pre>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="testing-our-model-for-algeria-dataset" class="level1">
+<h1>Testing our model for algeria dataset</h1>
+<p>It looks like our logistic regression model performed the best on the Algeria training data given a full set of features. The model achieves about 98.97% accuracy on the training data, which is much better than the 50% we could have achieved by random guessing.</p>
+<p>Applying this machine learning model on our testing data, we achieve 100% accuracy rate.</p>
+<div class="cell" data-outputid="e999f2bf-92f0-4b62-c3b6-3ef895d7b45c">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Testing Accuracy for LR using all features: </span><span class="sc">{</span>LR_algeria_complete<span class="sc">.</span>score(X_test_algeria, y_test_algeria)<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Testing Accuracy for LR using all features: 1.0
+</code></pre>
+</div>
+</div>
+<p>Since our model achieved 100% accuracy on the Algeria testing data, we wanted to see where the model had made errors in the training data. Thus, we applied a confusion matrix to our logistic regression model on the training data to analyze where the model made errors, and the kind of errors it was making. Our model performed a bit better at predicting true positive for forest fire given the features. However, it also made more false positive errors, meaning it predicted that a fire occurred when there was no fire. Still, the model performed fairly well on both predictions.</p>
+<div class="cell" data-outputid="245af4b1-a69f-4c73-ca5f-c780ba428a19">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>y_pred_algeria <span class="op">=</span> LR_algeria_complete.predict(X_train_algeria)</span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>confusion_matrix(y_train_algeria, y_pred_algeria)</span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>confusion_matrix(y_train_algeria, y_pred_algeria, normalize <span class="op">=</span> <span class="st">"true"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="31">
+<pre><code>array([[0.98863636, 0.01136364],
+       [0.00943396, 0.99056604]])</code></pre>
+</div>
+</div>
+</section>
+<section id="testing-our-model-for-portugal-dataset" class="level1">
+<h1>Testing our model for portugal dataset</h1>
+<p>We will go ahead and test on our logistic regression and selected ridgeCV features model since it gave the highest training accuracy.</p>
+<div class="cell" data-outputid="7a513ad0-aa95-40f5-b1f8-e3d3cfb14a21">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a><span class="co">#convert y values to categorical values</span></span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>lab <span class="op">=</span> preprocessing.LabelEncoder()</span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>y_test_transformed <span class="op">=</span> lab.fit_transform(y_test_portugal)</span>
+<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a><span class="co">#test on selected features via logistic regression</span></span>
+<span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Testing accuracy for logistic regression using features selected with ridge regression: </span><span class="sc">{</span>LogR_portugal_selected<span class="sc">.</span>score(X_test_portugal[selected_features_portugal], y_test_transformed)<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span>)</span>
+<span id="cb58-9"><a href="#cb58-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Testing accuracy for support vector machine using features selected with ridge regression: </span><span class="sc">{</span>SVC_portugal_selected<span class="sc">.</span>score(X_test_portugal[selected_features_portugal], y_test_transformed)<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Testing accuracy for logistic regression using features selected with ridge regression: 0.47115384615384615
+
+
+Testing accuracy for support vector machine using features selected with ridge regression: 0.47115384615384615
+</code></pre>
+</div>
+</div>
+<p>####Let’s test this model on a subset of our testing data to see how accurately it performs</p>
+<p>First we can pick a subset of our testing data, then use the built in predict method to see what values our model would anticipate.</p>
+<div class="cell" data-outputid="3ab863ba-892e-487a-d38b-1698042ccc2f">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>vizualization_subsetX <span class="op">=</span> X_test_portugal[selected_features_portugal][<span class="dv">0</span>:<span class="dv">20</span>]</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>actualVals <span class="op">=</span> y_test_transformed[<span class="dv">0</span>:<span class="dv">20</span>]</span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>predictedVals <span class="op">=</span> LogR_portugal_selected.predict(vizualization_subsetX)</span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a>plt.scatter(x <span class="op">=</span> np.arange(actualVals.size),y <span class="op">=</span> predictedVals, c <span class="op">=</span> <span class="st">"red"</span>, label <span class="op">=</span> <span class="st">"Predicted Values"</span>)</span>
+<span id="cb60-7"><a href="#cb60-7" aria-hidden="true" tabindex="-1"></a>plt.scatter(x <span class="op">=</span> np.arange(actualVals.size), y <span class="op">=</span> actualVals, c <span class="op">=</span> <span class="st">"green"</span>, label <span class="op">=</span> <span class="st">"Actual Values"</span>)</span>
+<span id="cb60-8"><a href="#cb60-8" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"fire area (hectares)"</span>)</span>
+<span id="cb60-9"><a href="#cb60-9" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"observation"</span>)</span>
+<span id="cb60-10"><a href="#cb60-10" aria-hidden="true" tabindex="-1"></a>plt.xticks(np.arange(<span class="dv">0</span>, <span class="dv">21</span>, <span class="fl">2.0</span>))</span>
+<span id="cb60-11"><a href="#cb60-11" aria-hidden="true" tabindex="-1"></a>plt.legend(loc<span class="op">=</span><span class="st">"upper left"</span>)</span>
+<span id="cb60-12"><a href="#cb60-12" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="ss">f"</span><span class="sc">{</span>LogR_portugal_selected<span class="sc">.</span>score(vizualization_subsetX,actualVals) <span class="op">*</span> <span class="dv">100</span> <span class="sc">}</span><span class="ss">% accurately predicted with Logistic Regression"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="33">
+<pre><code>Text(0.5, 1.0, '35.0% accurately predicted with Logistic Regression')</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="main_code_files/figure-html/cell-34-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<p>Let’s repeat the same process but using our next best-performing model, the SVC trained on features selected with ridge regression.</p>
+<div class="cell" data-outputid="f2761e5a-858f-4aa2-f621-d7a26950d372">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>svc_predictedVals <span class="op">=</span> SVC_portugal_selected.predict(vizualization_subsetX)</span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>plt.scatter(x <span class="op">=</span> np.arange(actualVals.size),y <span class="op">=</span> svc_predictedVals, c <span class="op">=</span> <span class="st">"red"</span>,label <span class="op">=</span> <span class="st">"Predicted Values"</span>)</span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>plt.scatter(x <span class="op">=</span> np.arange(actualVals.size), y <span class="op">=</span> actualVals, c <span class="op">=</span> <span class="st">"green"</span>,label <span class="op">=</span> <span class="st">"Actual Values"</span>)</span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"fire area (hectares)"</span>)</span>
+<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"observation"</span>)</span>
+<span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a>plt.legend(loc<span class="op">=</span><span class="st">"upper left"</span>)</span>
+<span id="cb62-8"><a href="#cb62-8" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="ss">f"</span><span class="sc">{</span>SVC_portugal_selected<span class="sc">.</span>score(vizualization_subsetX,actualVals) <span class="op">*</span> <span class="dv">100</span><span class="sc">}</span><span class="ss">% accurately predicted with SVC"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="34">
+<pre><code>Text(0.5, 1.0, '35.0% accurately predicted with SVC')</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="main_code_files/figure-html/cell-35-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
