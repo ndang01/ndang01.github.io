@@ -3,15 +3,15 @@ project:
   output-dir: docs
 
 website:
-  title: "My Awesome CSCI 0451 Blog"
+  title: "Machine Learning Blog"
   navbar:
     background: "#112a39"
     right:
       - about.qmd
       - icon: github
-        href: https://github.com/
-      - icon: twitter
-        href: https://twitter.com
+        href: https://github.com/ndang01
+      - icon: linkedin
+        href: www.linkedin.com/in/nhi-dang-6950251b6
 
 format:
   html:

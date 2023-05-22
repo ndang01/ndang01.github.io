@@ -8,9 +8,9 @@
 
 <meta name="author" content="Nhi Dang">
 <meta name="dcterms.date" content="2023-05-03">
-<meta name="description" content="In this blog post, we will implement and experiment with two machine learning techniques for image compression and image segmentation.">
+<meta name="description" content="In this blog post, I will implement and experiment with two machine learning techniques for image compression and image segmentation.">
 
-<title>My Awesome CSCI 0451 Blog - Unsupervised Learning with Linear Algebra</title>
+<title>Machine Learning Blog - Unsupervised Learning with Linear Algebra</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -145,7 +145,7 @@ background-size: cover;
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
     <a class="navbar-brand" href="../../index.html">
-    <span class="navbar-title">My Awesome CSCI 0451 Blog</span>
+    <span class="navbar-title">Machine Learning Blog</span>
     </a>
   </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
@@ -154,15 +154,15 @@ background-size: cover;
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html">About CS 451</a>
+    <a class="nav-link" href="../../about.html">About</a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/"><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/ndang01"><i class="bi bi-github" role="img">
 </i> 
  </a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com"><i class="bi bi-twitter" role="img">
+    <a class="nav-link" href="../../www.linkedin.com/in/nhi-dang-6950251b6"><i class="bi bi-linkedin" role="img">
 </i> 
  </a>
   </li>  
@@ -179,7 +179,7 @@ background-size: cover;
       <h1 class="title">Unsupervised Learning with Linear Algebra</h1>
                   <div>
         <div class="description">
-          In this blog post, we will implement and experiment with two machine learning techniques for image compression and image segmentation.
+          In this blog post, I will implement and experiment with two machine learning techniques for image compression and image segmentation.
         </div>
       </div>
                 </div>
@@ -219,7 +219,7 @@ background-size: cover;
 <h1>Image Compression with Singular Value Decomposition</h1>
 <p>A single value decomposition of a real matrix <span class="math inline">\(\mathbf{A} \in \mathbb{R}^{m \times n}\)</span> is: <span class="math inline">\(\mathbf{A} = \mathbf{U}\mathbf{D}\mathbf{V}^T\;,\)</span></p>
 <p>where <span class="math inline">\(\mathbf{D} \in \mathbb{R}^{m \times n}\)</span> has nonzero entries along its diagonal and where <span class="math inline">\(\mathbf{U} \in \mathbb{R}^{m \times m}\)</span> and <span class="math inline">\(\mathbf{V} \in \mathbb{R}^{n \times n}\)</span> are orthogonal matrices. The singular value <span class="math inline">\(\sigma_i\)</span> collectively give some measure of how large the matrix A is.</p>
-<div class="cell" data-execution_count="66">
+<div class="cell" data-execution_count="1">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
@@ -239,7 +239,7 @@ background-size: cover;
 </details>
 </div>
 <p>This compare_images function will help display the original image and the converted image.</p>
-<div class="cell" data-execution_count="67">
+<div class="cell" data-execution_count="2">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> PIL</span>
@@ -254,7 +254,7 @@ background-size: cover;
 </details>
 </div>
 <p>Here, we will access an RGB image of “Girl with a Pearl Earring” by Vermeer from the internet by its URL. Then, we will download it, and convert it to greyscale.</p>
-<div class="cell" data-execution_count="68">
+<div class="cell" data-execution_count="3">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>fig, axarr <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize <span class="op">=</span> (<span class="dv">7</span>, <span class="dv">3</span>))</span>
@@ -272,7 +272,7 @@ background-size: cover;
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>axarr[<span class="dv">1</span>].axis(<span class="st">"off"</span>)</span>
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>axarr[<span class="dv">1</span>].<span class="bu">set</span>(title <span class="op">=</span> <span class="st">"greyscale"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="68">
+<div class="cell-output cell-output-display" data-execution_count="3">
 <pre><code>[Text(0.5, 1.0, 'greyscale')]</code></pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -281,7 +281,7 @@ background-size: cover;
 </div>
 <p>Via the process above, we have the original image taken from the internet and a greyscale replica of it. We can use the SVD pipeline to construct approximations of this image. This task is called image compression and it is an important problem for storing large quantities of images on computers that may have small amounts of storage.</p>
 <p>We will now go ahead and reconstruct an image from its singular value decomposition:</p>
-<div class="cell" data-execution_count="69">
+<div class="cell" data-execution_count="4">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> svd_reconstruct(img, k):</span>
@@ -303,7 +303,7 @@ background-size: cover;
 <p>The svd_reconstruct function takes 2 arguments: the image to reconstruct, and the number k of singular values to use.</p>
 <p>The compression factor, the number of bits required to store the compressed image, divided by the number of bits required to store the original image, is log2K / 24.</p>
 <p>We will go ahead and experiment with different K values.</p>
-<div class="cell" data-execution_count="70">
+<div class="cell" data-execution_count="5">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>reconstructed_img <span class="op">=</span> svd_reconstruct(grey_img, <span class="dv">10</span>)</span>
@@ -313,7 +313,7 @@ background-size: cover;
 <p><img src="index_files/figure-html/cell-6-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="71">
+<div class="cell" data-execution_count="6">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>reconstructed_img <span class="op">=</span> svd_reconstruct(grey_img, <span class="dv">20</span>)</span>
@@ -323,7 +323,7 @@ background-size: cover;
 <p><img src="index_files/figure-html/cell-7-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="75">
+<div class="cell" data-execution_count="7">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>reconstructed_img <span class="op">=</span> svd_reconstruct(grey_img, <span class="dv">50</span>)</span>
@@ -338,7 +338,7 @@ background-size: cover;
 <section id="extra-parameters-added-to-svd_reconstruct" class="level1">
 <h1>Extra parameters added to svd_reconstruct</h1>
 <p>We will change a few things to our function to allow user to be able to specific the compression ratio and the epsilon threshold.</p>
-<div class="cell" data-execution_count="73">
+<div class="cell" data-execution_count="8">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> user_svd_reconstruct(img, comp_factor, threshold):</span>
@@ -366,11 +366,12 @@ background-size: cover;
 </details>
 </div>
 <p>The user_svd_reconstruct function have three arguments: the image to reconstruct, and the compression factor, and a desired threshold epsilon. The user can enter the desired compression factor and threshold epsilon. We will go ahead and experiment on different compression ratios and thresholds.</p>
-<div class="cell" data-execution_count="74">
+<div class="cell" data-execution_count="9">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>reconstructed_img <span class="op">=</span> user_svd_reconstruct(grey_img, <span class="fl">0.2</span>, <span class="fl">1.5</span>)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>compare_images(grey_img, reconstructed_img)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>compare_images(grey_img, reconstructed_img)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">"image.jpg"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <p><img src="index_files/figure-html/cell-10-output-1.png" class="img-fluid"></p>
