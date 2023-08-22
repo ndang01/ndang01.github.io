@@ -18,8 +18,8 @@ website:
 
 format:
   html:
-    title-block-banner: img/landscape.png
-    title-block-banner-color: white
+    title-block-banner: antiquewhite
+    title-block-banner-color: sienna
     theme: lux
     css: styles.css
 

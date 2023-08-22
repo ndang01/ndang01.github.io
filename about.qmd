@@ -1,5 +1,5 @@
 ---
-title: "Nhi Dang"
+title: "About"
 about:
   template: jolla
   image: headshot.jpg
@@ -11,5 +11,5 @@ about:
       text: Github
       href: https://github.com/ndang01
 ---
-
-Hello, I recently graduated from Middlebury College with a BA in Computer Science. This blog contains different implementations of various machine learning models that I've done throughout my time at the college. 
+# Nhi Dang
+Hello, I recently graduated from Middlebury College with a BA in Computer Science. This blog contains different implementations of machine learning models that I've done throughout my time at the college. 

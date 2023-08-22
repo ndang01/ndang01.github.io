@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2023-05-18">
+<meta name="description" content="Using different machine learning models to better understand forest fires in two different areas: Algeria and Portugal.">
 
-<title>Nhi Dang – wildfire_risk_main_code</title>
+<title>Nhi Dang - How macine learning can help with wildfire prediction</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -86,22 +88,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -123,9 +125,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 }</script>
 <style>
     .quarto-title-block .quarto-title-banner {
-      color: white;
-background-image: url(img/landscape.png);
-background-size: cover;
+      color: sienna;
+background: antiquewhite;
     }
     </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
@@ -133,7 +134,7 @@ background-size: cover;
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
 <body class="nav-fixed fullcontent">
@@ -143,7 +144,7 @@ background-size: cover;
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Nhi Dang</span>
     </a>
   </div>
@@ -153,10 +154,10 @@ background-size: cover;
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html">Home</a>
+    <a class="nav-link" href="../../index.html">Home</a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html">About</a>
+    <a class="nav-link" href="../../about.html">About</a>
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/ndang01"><i class="bi bi-github" role="img">
@@ -164,7 +165,7 @@ background-size: cover;
  </a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="./www.linkedin.com/in/nhi-dang-6950251b6"><i class="bi bi-linkedin" role="img">
+    <a class="nav-link" href="../../www.linkedin.com/in/nhi-dang-6950251b6"><i class="bi bi-linkedin" role="img">
 </i> 
  </a>
   </li>  
@@ -175,7 +176,39 @@ background-size: cover;
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">How macine learning can help with wildfire prediction</h1>
+                  <div>
+        <div class="description">
+          Using different machine learning models to better understand forest fires in two different areas: Algeria and Portugal.
+        </div>
+      </div>
+                </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Nhi Dang (in collaboration with Wright Frost, Madeleine Gallop, and Eliza Wieman) </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">May 18, 2023</p>
+      </div>
+    </div>
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     
@@ -184,7 +217,7 @@ background-size: cover;
 
 
 
-<p><a href="https://colab.research.google.com/github/ndang01/ndang01.github.io/blob/main/wildfire_risk_tool.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"></a></p>
+
 <section id="overview" class="level1">
 <h1>Overview</h1>
 <p>Climate change has increased the likelihood of a variety of extreme weather events, including wildfires. These wildfires pose risks to both human and ecological communities. Thus, our project will ultilize different machine learning models to better understand forest fires in two different areas: Algeria and Portugal.</p>
@@ -194,19 +227,25 @@ background-size: cover;
 <h1>The Datasets</h1>
 <p>Below are the datasets that will be used in this project. These were taken from the Univeristy of California Irvine Machine Learning Repository. Our first dataset, the Algerian Forest Fires Dataset, contains fire and non-fire events with 11 attributes that describe weather characteristics at the time of that event. Our second dataset, the Forest Fires Dataset, contains data from Montesinho National Park, Portugal. This dataset contains many of the same weather characteristics as the Algerian dataset, but has only fire events. Rather than using this dataset to predict whether a fire occurred in a given area, it can be used to predict the size of a fire.</p>
 <div class="cell">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> RidgeCV</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.feature_selection <span class="im">import</span> SelectFromModel</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div class="cell">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>algeria_url <span class="op">=</span> <span class="st">'https://raw.githubusercontent.com/ebwieman/wildfire-risk-tool/main/Algerian_forest_fires_dataset.csv'</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>portugal_url <span class="op">=</span> <span class="st">'https://raw.githubusercontent.com/ebwieman/wildfire-risk-tool/main/forestfires.csv'</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>algeria_df <span class="op">=</span> pd.read_csv(algeria_url)</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>portugal_df <span class="op">=</span> pd.read_csv(portugal_url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 <section id="data-preparation" class="level1">
@@ -216,6 +255,8 @@ background-size: cover;
 <p>This dataset includes 244 instances that regrouped data from two regions of Algeria, namely the Bejaia region located in the northeast of Algeria and the Sidi Bel-abbes region located in the northwest of Algeria. There are 122 instances for each region. This data was collected from June 2012 to September 2012. The dataset contains fire and non-fire events with 13 attributes that describe weather characteristics at the time of that event.</p>
 <p>Before training the dataset on our machine learning models, we will clean up some of the data. To do this, we’ll convert the target label “Fire” into binary numbers. We use “one-hot encoding” to achieve this, in which each category is represented by a binary column, with a 1 indicating that the a forest fire occured given the conditions. In addition, we will remove any rows with missing data.</p>
 <div class="cell" data-outputid="9dcda704-a4b3-4174-f22e-3b416965a971">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>algeria_df[<span class="st">'Classes'</span>] <span class="op">=</span> algeria_df[<span class="st">'Classes'</span>].<span class="bu">str</span>.strip()</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>algeria_df.drop(algeria_df[(algeria_df[<span class="st">'Classes'</span>] <span class="op">!=</span> <span class="st">'fire'</span>) <span class="op">&amp;</span> (algeria_df[<span class="st">'Classes'</span>] <span class="op">!=</span> <span class="st">'not fire'</span>)].index, inplace<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>algeria_df[<span class="st">'Classes'</span>].unique()</span>
@@ -229,6 +270,7 @@ background-size: cover;
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>algeria_df.dropna(axis <span class="op">=</span> <span class="dv">0</span>)</span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>algeria_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="3">
 
 
@@ -529,9 +571,12 @@ background-size: cover;
 <h2 class="anchored" data-anchor-id="the-portugal-dataset">The Portugal Dataset:</h2>
 <p>The data collected in this dataset was taken from Montesino park in the northeast region of Portugal. This dataset contains many of the same weather characteristics as the Algerian dataset, but contains only fire events. Rather than using this dataset to predict whether a fire occurred in a given area, it can be used to predict the size of a fire. We will perform the same cleanup for the Portugal dataset using the Pandas function get_dummies().</p>
 <div class="cell" data-outputid="5df841a0-a5f2-4e1d-d400-2ffa1d01d1b8">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>portugal_df <span class="op">=</span> pd.get_dummies(portugal_df)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>portugal_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="4">
 
 
@@ -919,9 +964,12 @@ background-size: cover;
 <section id="training-data-for-algeria" class="level2">
 <h2 class="anchored" data-anchor-id="training-data-for-algeria">Training data for Algeria:</h2>
 <div class="cell" data-outputid="7487dca2-803e-4128-ea42-3551bf940e8e">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>alg_train, alg_test <span class="op">=</span> train_test_split(algeria_df, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">25</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>alg_train</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="5">
 
 
@@ -1217,20 +1265,26 @@ background-size: cover;
 </div>
 </div>
 <div class="cell">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>y_train_algeria <span class="op">=</span> alg_train[<span class="st">"Fire"</span>]</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>y_test_algeria <span class="op">=</span> alg_test[<span class="st">"Fire"</span>]</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>X_train_algeria <span class="op">=</span> alg_train.drop([<span class="st">"Fire"</span>], axis<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>X_test_algeria <span class="op">=</span> alg_test.drop([<span class="st">"Fire"</span>], axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 <section id="training-data-for-portugal" class="level2">
 <h2 class="anchored" data-anchor-id="training-data-for-portugal">Training data for Portugal:</h2>
 <div class="cell" data-outputid="5b096175-1df9-4a82-b084-092844ab8423">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>portugal_train, portugal_test <span class="op">=</span> train_test_split(portugal_df, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">25</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>portugal_df[portugal_df[<span class="st">"area"</span>]<span class="op">==</span><span class="fl">0.00</span>]</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>portugal_train</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="7">
 
 
@@ -1610,11 +1664,14 @@ background-size: cover;
 </div>
 </div>
 <div class="cell">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>y_train_portugal <span class="op">=</span> portugal_train[<span class="st">"area"</span>]</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>y_test_portugal <span class="op">=</span> portugal_test[<span class="st">"area"</span>]</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>X_train_portugal <span class="op">=</span> portugal_train.drop([<span class="st">"area"</span>], axis<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>X_test_portugal <span class="op">=</span> portugal_test.drop([<span class="st">"area"</span>], axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 </section>
@@ -1625,6 +1682,8 @@ background-size: cover;
 <h2 class="anchored" data-anchor-id="portugals-important-features">Portugal’s important features:</h2>
 <p>After applying RidgeCV to the Portugal dataset, we yield the 5 most important features: X, Y, ISI, temp, and wind. We will then plot these features against the target label, “Fire Area”, to see their relationship to one another. In each scatterplot, the x-axis represents the important feature and the y-axis shows the amount of burned area given that feature.</p>
 <div class="cell" data-outputid="5f907afd-0cef-433f-f748-441afa68f8da">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ridge <span class="op">=</span> RidgeCV(alphas<span class="op">=</span>np.logspace(<span class="op">-</span><span class="dv">6</span>, <span class="dv">6</span>, num<span class="op">=</span><span class="dv">5</span>)).fit(X_train_portugal, y_train_portugal) </span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#assign importance to each feature through a specific attribute</span></span>
@@ -1644,6 +1703,7 @@ background-size: cover;
 <span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>selected_features_portugal <span class="op">=</span> feature_names[sfm.get_support()][<span class="dv">0</span>:<span class="dv">5</span>]</span>
 <span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Features selected: </span><span class="sc">{</span>selected_features_portugal<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <p><img src="wildfire_risk_main_code_files/figure-html/cell-10-output-1.png" class="img-fluid"></p>
 </div>
@@ -1652,6 +1712,8 @@ background-size: cover;
 </div>
 </div>
 <div class="cell" data-outputid="53cdd3f9-e3dd-474d-bc7e-8cc6fba4ddcb">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>fig, axarr <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">3</span>, figsize <span class="op">=</span> (<span class="dv">10</span>, <span class="dv">5</span>))</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>fig.subplots_adjust(wspace <span class="op">=</span> <span class="fl">0.5</span>, hspace <span class="op">=</span> <span class="fl">0.4</span>)</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>fig.delaxes(ax <span class="op">=</span> axarr[<span class="dv">1</span>,<span class="dv">2</span>])</span>
@@ -1660,6 +1722,7 @@ background-size: cover;
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  ax <span class="op">=</span> axarr.flatten()</span>
 <span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  ax[i].scatter(X_train_portugal[selected_features_portugal[i]], y_train_portugal)</span>
 <span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  ax[i].<span class="bu">set</span>(ylabel <span class="op">=</span> <span class="st">"Fire Area"</span>, xlabel <span class="op">=</span> selected_features_portugal[i], title <span class="op">=</span> (<span class="ss">f"Fire area in Portugal in relation to </span><span class="sc">{</span>selected_features_portugal[i]<span class="sc">}</span><span class="ss">"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <p><img src="wildfire_risk_main_code_files/figure-html/cell-11-output-1.png" class="img-fluid"></p>
 </div>
@@ -1669,6 +1732,8 @@ background-size: cover;
 <h2 class="anchored" data-anchor-id="algerias-important-features">Algeria’s important features:</h2>
 <p>We apply the same technique to the Algeria dataset, and the 5 most important features are: RH, Rain, FFMC, ISI, and FWI. We will also plot these features against the target label, “Fire”, to see their relationship to one another. Since this target label is binary, “no fire” or “fire, we opted for box plots to have better visualization.</p>
 <div class="cell" data-outputid="ae7ab9fa-2dea-468e-c418-9b84d1bd597c">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>ridge <span class="op">=</span> RidgeCV(alphas<span class="op">=</span>np.logspace(<span class="op">-</span><span class="dv">6</span>, <span class="dv">6</span>, num<span class="op">=</span><span class="dv">5</span>)).fit(X_train_algeria, y_train_algeria) </span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co">#assign importance to each feature through a specific attribute</span></span>
@@ -1688,6 +1753,7 @@ background-size: cover;
 <span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>selected_features_algeria <span class="op">=</span> feature_names[sfm.get_support()][<span class="dv">0</span>:<span class="dv">5</span>]</span>
 <span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Features selected by SelectFromModel: </span><span class="sc">{</span>selected_features_algeria<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <p><img src="wildfire_risk_main_code_files/figure-html/cell-12-output-1.png" class="img-fluid"></p>
 </div>
@@ -1696,6 +1762,8 @@ background-size: cover;
 </div>
 </div>
 <div class="cell" data-outputid="ffb6bef6-98c0-4d66-f487-c8861206ff6c">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>,<span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">18</span>, <span class="dv">10</span>))</span>
@@ -1714,6 +1782,7 @@ background-size: cover;
 <span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>,<span class="dv">0</span>].<span class="bu">set</span>(title <span class="op">=</span> selected_features_algeria[<span class="dv">2</span>])</span>
 <span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>,<span class="dv">1</span>].<span class="bu">set</span>(title <span class="op">=</span> selected_features_algeria[<span class="dv">3</span>])</span>
 <span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>,<span class="dv">2</span>].<span class="bu">set</span>(title <span class="op">=</span> selected_features_algeria[<span class="dv">4</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="12">
 <pre><code>[Text(0.5, 1.0, 'FWI')]</code></pre>
 </div>
@@ -1733,6 +1802,8 @@ background-size: cover;
 <section id="decision-tree-classifier-on-algeria-data" class="level3">
 <h3 class="anchored" data-anchor-id="decision-tree-classifier-on-algeria-data">Decision tree classifier on Algeria data</h3>
 <div class="cell" data-outputid="c7d797c8-bc83-4bd8-f42e-2b210e4c43f3">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.tree <span class="im">import</span> DecisionTreeClassifier</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.pipeline <span class="im">import</span> make_pipeline</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
@@ -1783,6 +1854,7 @@ background-size: cover;
 <span id="cb16-48"><a href="#cb16-48" aria-hidden="true" tabindex="-1"></a>        best_max_depth <span class="op">=</span> max_depthC</span>
 <span id="cb16-49"><a href="#cb16-49" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb16-50"><a href="#cb16-50" aria-hidden="true" tabindex="-1"></a>    max_depthC <span class="op">+=</span> <span class="op">-</span><span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Training on selected features.
 Max depth = 5, score = 0.974
@@ -1805,6 +1877,8 @@ Max depth = 1, score = 0.969</code></pre>
 <section id="logistic-regression-classifier-on-algeria" class="level3">
 <h3 class="anchored" data-anchor-id="logistic-regression-classifier-on-algeria">Logistic regression classifier on Algeria</h3>
 <div class="cell" data-outputid="b7050f16-a004-410c-bef8-888b3313d9e6">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co">#train on selected features via logistic regression</span></span>
@@ -1818,6 +1892,7 @@ Max depth = 1, score = 0.969</code></pre>
 <span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>LR_algeria_complete.fit(X_train_algeria, y_train_algeria)</span>
 <span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Training Accuracy for LR using all features: </span><span class="sc">{</span>LR_algeria_complete<span class="sc">.</span>score(X_train_algeria, y_train_algeria)<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Training Accuracy for LR using selected features: 0.9742268041237113
 
@@ -1839,6 +1914,8 @@ Please also refer to the documentation for alternative solver options:
 <section id="random-forest-classifier-on-algeria" class="level3">
 <h3 class="anchored" data-anchor-id="random-forest-classifier-on-algeria">Random forest classifier on Algeria</h3>
 <div class="cell" data-outputid="15136e8d-ae07-4d2c-89d3-caf326a465a1">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> RandomForestClassifier</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>max_depth <span class="op">=</span> <span class="dv">5</span>           <span class="co">#iterator for selected features</span></span>
@@ -1885,6 +1962,7 @@ Please also refer to the documentation for alternative solver options:
 <span id="cb21-44"><a href="#cb21-44" aria-hidden="true" tabindex="-1"></a>        best_max_depth <span class="op">=</span> max_depthC</span>
 <span id="cb21-45"><a href="#cb21-45" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb21-46"><a href="#cb21-46" aria-hidden="true" tabindex="-1"></a>    max_depthC <span class="op">+=</span> <span class="op">-</span><span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Training on selected features.
 Max depth = 5, score = 0.974
@@ -1907,6 +1985,8 @@ Max depth = 1, score = 0.943</code></pre>
 <section id="stochastic-gradient-descent-on-algeria" class="level3">
 <h3 class="anchored" data-anchor-id="stochastic-gradient-descent-on-algeria">Stochastic gradient descent on Algeria</h3>
 <div class="cell" data-outputid="ec69ff26-ce1b-4fde-d5eb-e16368def62f">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> SGDClassifier</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>SGD_algeria <span class="op">=</span> SGDClassifier(loss<span class="op">=</span><span class="st">"hinge"</span>, penalty<span class="op">=</span><span class="st">"l2"</span>, max_iter<span class="op">=</span><span class="dv">10</span>)</span>
@@ -1919,6 +1999,7 @@ Max depth = 1, score = 0.943</code></pre>
 <span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Training Accuracy for SGD using all features: </span><span class="sc">{</span>SGD_algeria_complete<span class="sc">.</span>score(X_train_algeria, y_train_algeria)<span class="sc">}</span><span class="ss"> </span><span class="ch">\n</span><span class="ss">"</span>)</span>
 <span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Training Accuracy for SGD using selected features: 0.8556701030927835
 
@@ -1941,6 +2022,8 @@ Training Accuracy for SGD using all features: 0.5567010309278351
 <p>We will also perform transformations on our target label to improve the models’ accuracy. We transformed our target labels to log, binary, range, and categorical values.</p>
 <p>In addition, we will use cross validation to evaluate each model’s performance at different settings and avoid overfitting.</p>
 <div class="cell">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn <span class="im">import</span> preprocessing</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn <span class="im">import</span> utils</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1951,8 +2034,11 @@ Training Accuracy for SGD using all features: 0.5567010309278351
 <span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="co">#convert labels to categorical values</span></span>
 <span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>lab <span class="op">=</span> preprocessing.LabelEncoder()</span>
 <span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>y_train_transformed <span class="op">=</span> lab.fit_transform(y_train_portugal)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div class="cell">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># make a copy of df and change labels to 0 and non 0s (binary)</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>portugal_df_copy <span class="op">=</span> portugal_df.copy()</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>portugal_df_copy.loc[portugal_df_copy[<span class="st">"area"</span>] <span class="op">&gt;</span> <span class="fl">0.0</span>] <span class="op">=</span> <span class="dv">1</span></span>
@@ -1966,8 +2052,11 @@ Training Accuracy for SGD using all features: 0.5567010309278351
 <span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>X_train_portugal_binary <span class="op">=</span> portugal_train_binary.drop([<span class="st">"area"</span>], axis<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>X_test_portugal_binary <span class="op">=</span> portugal_test_binary.drop([<span class="st">"area"</span>], axis<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div class="cell" data-outputid="0d3c5135-1541-4362-b8c9-45fdf2183e88">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># make a copy of df and change labels to a range</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>portugal_df_copy2 <span class="op">=</span> portugal_df.copy()</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1986,6 +2075,7 @@ Training Accuracy for SGD using all features: 0.5567010309278351
 <span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a>X_train_portugal_range <span class="op">=</span> portugal_train_range.drop([<span class="st">"area"</span>], axis<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a>X_test_portugal_range <span class="op">=</span> portugal_test_range.drop([<span class="st">"area"</span>], axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>1090.84</code></pre>
 </div>
@@ -1993,6 +2083,8 @@ Training Accuracy for SGD using all features: 0.5567010309278351
 <section id="linear-regression-classifier-on-portugal" class="level3">
 <h3 class="anchored" data-anchor-id="linear-regression-classifier-on-portugal">Linear regression classifier on Portugal</h3>
 <div class="cell" data-outputid="70ec6658-0bd5-4b70-8aca-db682112e6f7">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="co">#train on non-transformed y</span></span>
@@ -2000,31 +2092,40 @@ Training Accuracy for SGD using all features: 0.5567010309278351
 <span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>LinR_portugal.fit(X_train_portugal, y_train_portugal)</span>
 <span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Training Accuracy for linear regression: "</span> <span class="op">+</span> <span class="bu">str</span>(LinR_portugal.score(X_train_portugal, y_train_portugal)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Training Accuracy for linear regression: 0.04793115962477279</code></pre>
 </div>
 </div>
 <div class="cell" data-outputid="c7b31d1a-53f7-403b-c5a7-cd94b8ac5dde">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co">#train on y-train that was split into 50 ranges</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>LinR_portugal <span class="op">=</span> LinearRegression()</span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>LinR_portugal.fit(X_train_portugal_range, y_train_portugal_range)</span>
 <span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Training Accuracy for linear regression: "</span> <span class="op">+</span> <span class="bu">str</span>(LinR_portugal.score(X_train_portugal_range, y_train_portugal_range)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Training Accuracy for linear regression: 1.0</code></pre>
 </div>
 </div>
 <div class="cell" data-outputid="0495799e-b869-4a0d-8a92-9978937f7fc8">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co">#train on y transformed into binary labels</span></span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>LinR_portugal_complete_binary <span class="op">=</span> LinearRegression()</span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>LinR_portugal_complete_binary.fit(X_train_portugal_binary, y_train_portugal_binary)</span>
 <span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Training Accuracy for linear regression: "</span> <span class="op">+</span> <span class="bu">str</span>(LinR_portugal_complete_binary.score(X_train_portugal_binary, y_train_portugal_binary)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Training Accuracy for linear regression: 1.0</code></pre>
 </div>
 </div>
 <div class="cell" data-outputid="a3090b2e-0c61-4d37-c2dc-b6b4aee325dc">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co">#train on y transformed into categorical values</span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="co">#train on paper's features</span></span>
@@ -2055,6 +2156,7 @@ Training Accuracy for SGD using all features: 0.5567010309278351
 <span id="cb36-28"><a href="#cb36-28" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb36-29"><a href="#cb36-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Cross val scores for features selected by RidgeCV: </span><span class="sc">{</span>cv_scores_portugal<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb36-30"><a href="#cb36-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Training Accuracy for linear regression: "</span> <span class="op">+</span> <span class="bu">str</span>(LinR_portugal_selected.score(X_train_portugal[selected_features_portugal], y_train_transformed)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Cross val scores for features highlited by paper: [ 0.01875518 -0.03799198 -0.01599223 -0.97997841 -0.01931605]
 Training Accuracy for linear regression: 0.014415847547068927
@@ -2071,17 +2173,22 @@ Training Accuracy for linear regression: 0.021379727090125145</code></pre>
 <section id="logistic-regression-on-portugal" class="level2">
 <h2 class="anchored" data-anchor-id="logistic-regression-on-portugal">Logistic Regression on Portugal</h2>
 <div class="cell" data-outputid="cedff556-bfb5-4c94-c8c6-88b2eb0f2e2d">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co">#train on paper's features and using binary labels </span></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>LogR_portugal_binary <span class="op">=</span> LogisticRegression()</span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>LogR_portugal_binary.fit(X_train_portugal_binary, y_train_portugal_binary)</span>
 <span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Training Accuracy for logistic regression: </span><span class="sc">{</span>LogR_portugal_binary<span class="sc">.</span>score(X_train_portugal_binary, y_train_portugal_binary)<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Training Accuracy for logistic regression: 1.0</code></pre>
 </div>
 </div>
 <div class="cell" data-outputid="9d493843-bdc9-4a35-ce63-eb410b4d763f">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="co">#train on y transformed into categorical values</span></span>
 <span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2102,6 +2209,7 @@ Training Accuracy for logistic regression: 1.0</code></pre>
 <span id="cb40-18"><a href="#cb40-18" aria-hidden="true" tabindex="-1"></a>LogR_portugal_selected.fit(X_train_portugal[selected_features_portugal], y_train_transformed)</span>
 <span id="cb40-19"><a href="#cb40-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb40-20"><a href="#cb40-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Training Accuracy for logistic regression using features selected by RidgeCV: </span><span class="sc">{</span>LogR_portugal_selected<span class="sc">.</span>score(X_train_portugal[selected_features_portugal], y_train_transformed)<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stderr">
 <pre><code>/usr/local/lib/python3.10/dist-packages/sklearn/linear_model/_logistic.py:458: ConvergenceWarning: lbfgs failed to converge (status=1):
 STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
@@ -2150,6 +2258,8 @@ Please also refer to the documentation for alternative solver options:
 <section id="support-vector-classifcation-on-portugal" class="level2">
 <h2 class="anchored" data-anchor-id="support-vector-classifcation-on-portugal">Support Vector Classifcation on Portugal</h2>
 <div class="cell" data-outputid="5effc21e-ca4b-48aa-f2dd-355ae65ce69a">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn <span class="im">import</span> svm</span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="co">#train on y transformed into categorical values</span></span>
 <span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2167,6 +2277,7 @@ Please also refer to the documentation for alternative solver options:
 <span id="cb46-15"><a href="#cb46-15" aria-hidden="true" tabindex="-1"></a>SVC_portugal_selected <span class="op">=</span> svm.SVC(kernel<span class="op">=</span><span class="st">'poly'</span>, degree<span class="op">=</span><span class="dv">3</span>)</span>
 <span id="cb46-16"><a href="#cb46-16" aria-hidden="true" tabindex="-1"></a>SVC_portugal_selected.fit(X_train_portugal[selected_features_portugal], y_train_transformed)</span>
 <span id="cb46-17"><a href="#cb46-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Training Accuracy for SVC using features selected by RidgeCV: </span><span class="sc">{</span>SVC_portugal_selected<span class="sc">.</span>score(X_train_portugal[selected_features_portugal], y_train_transformed)<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Training Accuracy for SVC using features highlighted from the paper: 0.48184019370460046
@@ -2179,6 +2290,8 @@ Training Accuracy for SVC using features selected by RidgeCV: 0.4987893462469733
 <section id="svr-on-portugal" class="level3">
 <h3 class="anchored" data-anchor-id="svr-on-portugal">SVR on Portugal</h3>
 <div class="cell" data-outputid="c07d6d6c-cb18-42f6-d692-0fd87eb6e5a6">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.pipeline <span class="im">import</span> make_pipeline</span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
 <span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.svm <span class="im">import</span> SVR</span>
@@ -2211,6 +2324,7 @@ Training Accuracy for SVC using features selected by RidgeCV: 0.4987893462469733
 <span id="cb48-30"><a href="#cb48-30" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb48-31"><a href="#cb48-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Cross val scores for features selected by RidgeCV: </span><span class="sc">{</span>cv_scores_SVR<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb48-32"><a href="#cb48-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Training Accuracy for SVC: "</span> <span class="op">+</span> <span class="bu">str</span>(SVR_portugal_selected.score(X_train_portugal[selected_features_portugal], y_train_portugal)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Cross val scores for selected features: [-0.02603315 -0.16955323 -0.20086096 -0.17891782 -0.03004511]
 Training Accuracy for SVC: -0.026964073944544698
@@ -2227,6 +2341,8 @@ Training Accuracy for SVC: -0.02569288926430735</code></pre>
 <h3 class="anchored" data-anchor-id="log-transform-then-fit-again">Log-transform then fit again</h3>
 <p>We’ll log-transform the values and then train the models on them again to see if this yields better accuracy.</p>
 <div class="cell" data-outputid="b9e15190-789a-4a25-8d75-b50a618589d1">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co">#log-transform target labels</span></span>
 <span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>y_train_log_transformed <span class="op">=</span> np.log(y_train_portugal<span class="op">+</span><span class="dv">1</span>)</span>
 <span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2267,6 +2383,7 @@ Training Accuracy for SVC: -0.02569288926430735</code></pre>
 <span id="cb50-38"><a href="#cb50-38" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> ((y_train_portugal <span class="op">-</span> y_train_portugal.mean()) <span class="op">**</span> <span class="dv">2</span>).<span class="bu">sum</span>()</span>
 <span id="cb50-39"><a href="#cb50-39" aria-hidden="true" tabindex="-1"></a>score <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> u<span class="op">/</span>v</span>
 <span id="cb50-40"><a href="#cb50-40" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Training Accuracy for linear regression after log-transform with ridgeCV features: </span><span class="sc">{</span>score<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Training Accuracy for linear regression after log-transform with paper's features: -0.02135912961710429
 
@@ -2276,6 +2393,8 @@ Training Accuracy for linear regression after log-transform with ridgeCV feature
 </div>
 </div>
 <div class="cell" data-outputid="aa513cc7-752e-481b-a93a-16b0301f5b71">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co">#using SVR to train on log-transformed y</span></span>
 <span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="co">#paper's features</span></span>
@@ -2313,6 +2432,7 @@ Training Accuracy for linear regression after log-transform with ridgeCV feature
 <span id="cb52-35"><a href="#cb52-35" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> ((y_train_portugal <span class="op">-</span> y_train_portugal.mean()) <span class="op">**</span> <span class="dv">2</span>).<span class="bu">sum</span>()</span>
 <span id="cb52-36"><a href="#cb52-36" aria-hidden="true" tabindex="-1"></a>score <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> u<span class="op">/</span>v</span>
 <span id="cb52-37"><a href="#cb52-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Training Accuracy for SVR after log-transform: </span><span class="sc">{</span>score<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Training Accuracy for SVR after log-transform: -0.025953112452074434
 
@@ -2329,7 +2449,10 @@ Training Accuracy for SVR after log-transform: -0.0248659859046918</code></pre>
 <p>It looks like our logistic regression model performed the best on the Algeria training data given a full set of features. The model achieves about 98.97% accuracy on the training data, which is much better than the 50% we could have achieved by random guessing.</p>
 <p>Applying this machine learning model on our testing data, we achieve 100% accuracy rate.</p>
 <div class="cell" data-outputid="e999f2bf-92f0-4b62-c3b6-3ef895d7b45c">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Testing Accuracy for LR using all features: </span><span class="sc">{</span>LR_algeria_complete<span class="sc">.</span>score(X_test_algeria, y_test_algeria)<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Testing Accuracy for LR using all features: 1.0
@@ -2338,12 +2461,15 @@ Testing Accuracy for LR using all features: 1.0
 </div>
 <p>Since our model achieved 100% accuracy on the Algeria testing data, we wanted to see where the model had made errors in the training data. Thus, we applied a confusion matrix to our logistic regression model on the training data to analyze where the model made errors, and the kind of errors it was making. Our model performed a bit better at predicting true positive for forest fire given the features. However, it also made more false positive errors, meaning it predicted that a fire occurred when there was no fire. Still, the model performed fairly well on both predictions.</p>
 <div class="cell" data-outputid="245af4b1-a69f-4c73-ca5f-c780ba428a19">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix</span>
 <span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>y_pred_algeria <span class="op">=</span> LR_algeria_complete.predict(X_train_algeria)</span>
 <span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>confusion_matrix(y_train_algeria, y_pred_algeria)</span>
 <span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>confusion_matrix(y_train_algeria, y_pred_algeria, normalize <span class="op">=</span> <span class="st">"true"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="31">
 <pre><code>array([[0.98863636, 0.01136364],
        [0.00943396, 0.99056604]])</code></pre>
@@ -2354,6 +2480,8 @@ Testing Accuracy for LR using all features: 1.0
 <h1>Testing our model for portugal dataset</h1>
 <p>We will go ahead and test on our logistic regression and selected ridgeCV features model since it gave the highest training accuracy.</p>
 <div class="cell" data-outputid="7a513ad0-aa95-40f5-b1f8-e3d3cfb14a21">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
 <span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a><span class="co">#convert y values to categorical values</span></span>
@@ -2363,6 +2491,7 @@ Testing Accuracy for LR using all features: 1.0
 <span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a><span class="co">#test on selected features via logistic regression</span></span>
 <span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Testing accuracy for logistic regression using features selected with ridge regression: </span><span class="sc">{</span>LogR_portugal_selected<span class="sc">.</span>score(X_test_portugal[selected_features_portugal], y_test_transformed)<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span>)</span>
 <span id="cb58-9"><a href="#cb58-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Testing accuracy for support vector machine using features selected with ridge regression: </span><span class="sc">{</span>SVC_portugal_selected<span class="sc">.</span>score(X_test_portugal[selected_features_portugal], y_test_transformed)<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Testing accuracy for logistic regression using features selected with ridge regression: 0.47115384615384615
@@ -2372,9 +2501,12 @@ Testing accuracy for support vector machine using features selected with ridge r
 </code></pre>
 </div>
 </div>
-<p>####Let’s test this model on a subset of our testing data to see how accurately it performs</p>
+<section id="lets-test-this-model-on-a-subset-of-our-testing-data-to-see-how-accurately-it-performs" class="level4">
+<h4 class="anchored" data-anchor-id="lets-test-this-model-on-a-subset-of-our-testing-data-to-see-how-accurately-it-performs">Let’s test this model on a subset of our testing data to see how accurately it performs</h4>
 <p>First we can pick a subset of our testing data, then use the built in predict method to see what values our model would anticipate.</p>
 <div class="cell" data-outputid="3ab863ba-892e-487a-d38b-1698042ccc2f">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>vizualization_subsetX <span class="op">=</span> X_test_portugal[selected_features_portugal][<span class="dv">0</span>:<span class="dv">20</span>]</span>
 <span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>actualVals <span class="op">=</span> y_test_transformed[<span class="dv">0</span>:<span class="dv">20</span>]</span>
 <span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2387,6 +2519,7 @@ Testing accuracy for support vector machine using features selected with ridge r
 <span id="cb60-10"><a href="#cb60-10" aria-hidden="true" tabindex="-1"></a>plt.xticks(np.arange(<span class="dv">0</span>, <span class="dv">21</span>, <span class="fl">2.0</span>))</span>
 <span id="cb60-11"><a href="#cb60-11" aria-hidden="true" tabindex="-1"></a>plt.legend(loc<span class="op">=</span><span class="st">"upper left"</span>)</span>
 <span id="cb60-12"><a href="#cb60-12" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="ss">f"</span><span class="sc">{</span>LogR_portugal_selected<span class="sc">.</span>score(vizualization_subsetX,actualVals) <span class="op">*</span> <span class="dv">100</span> <span class="sc">}</span><span class="ss">% accurately predicted with Logistic Regression"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="33">
 <pre><code>Text(0.5, 1.0, '35.0% accurately predicted with Logistic Regression')</code></pre>
 </div>
@@ -2396,6 +2529,8 @@ Testing accuracy for support vector machine using features selected with ridge r
 </div>
 <p>Let’s repeat the same process but using our next best-performing model, the SVC trained on features selected with ridge regression.</p>
 <div class="cell" data-outputid="f2761e5a-858f-4aa2-f621-d7a26950d372">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>svc_predictedVals <span class="op">=</span> SVC_portugal_selected.predict(vizualization_subsetX)</span>
 <span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>plt.scatter(x <span class="op">=</span> np.arange(actualVals.size),y <span class="op">=</span> svc_predictedVals, c <span class="op">=</span> <span class="st">"red"</span>,label <span class="op">=</span> <span class="st">"Predicted Values"</span>)</span>
@@ -2404,6 +2539,7 @@ Testing accuracy for support vector machine using features selected with ridge r
 <span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"observation"</span>)</span>
 <span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a>plt.legend(loc<span class="op">=</span><span class="st">"upper left"</span>)</span>
 <span id="cb62-8"><a href="#cb62-8" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="ss">f"</span><span class="sc">{</span>SVC_portugal_selected<span class="sc">.</span>score(vizualization_subsetX,actualVals) <span class="op">*</span> <span class="dv">100</span><span class="sc">}</span><span class="ss">% accurately predicted with SVC"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="34">
 <pre><code>Text(0.5, 1.0, '35.0% accurately predicted with SVC')</code></pre>
 </div>
@@ -2413,6 +2549,7 @@ Testing accuracy for support vector machine using features selected with ridge r
 </div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
