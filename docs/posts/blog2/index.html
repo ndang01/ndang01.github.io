@@ -6,11 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Nhi Dang">
 <meta name="dcterms.date" content="2023-03-02">
 <meta name="description" content="Implementation of algorithms based on the gradients of functions.">
 
-<title>Machine Learning Blog - Logistic Regression</title>
+<title>Nhi Dang - Logistic Regression</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -145,7 +144,7 @@ background-size: cover;
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
     <a class="navbar-brand" href="../../index.html">
-    <span class="navbar-title">Machine Learning Blog</span>
+    <span class="navbar-title">Nhi Dang</span>
     </a>
   </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
@@ -153,6 +152,9 @@ background-size: cover;
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html">Home</a>
+  </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../about.html">About</a>
   </li>  
@@ -188,12 +190,6 @@ background-size: cover;
   
   <div class="quarto-title-meta">
 
-      <div>
-      <div class="quarto-title-meta-heading">Author</div>
-      <div class="quarto-title-meta-contents">
-               <p>Nhi Dang </p>
-            </div>
-    </div>
       
       <div>
       <div class="quarto-title-meta-heading">Published</div>
@@ -215,12 +211,12 @@ background-size: cover;
 
 
 
-<p>Source code: https://github.com/ndang01/ndang01.github.io/blob/main/posts/blog2/LogisticRegression.py</p>
+<p><a href="https://github.com/ndang01/ndang01.github.io/blob/main/posts/blog2/LogisticRegression.py">source code</a></p>
 <section id="the-data" class="level1">
 <h1>The Data</h1>
 <p>Below is a nonseparable data in which we will apply the gradient descent and stochastic gradient descent methods on.</p>
 <div class="cell" data-execution_count="1">
-<details open="">
+<details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> make_blobs</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
@@ -246,7 +242,7 @@ background-size: cover;
 <p><span class="math display">\[\nabla L(w) = \frac{1}{n}\sum_{i = 1}^n \nabla \ell(f_{w}(x_i), y_i)\;\]</span></p>
 <p>Then, we can do logistic regression by choosing a learning rate and iterating the update <span class="math inline">\(\mathbf{w}^{(t+1)} \gets \mathbf{w}^{(t)} - \alpha \nabla L(\mathbf{w}^{(t)})\)</span> until convergence.</p>
 <div class="cell" data-execution_count="2">
-<details open="">
+<details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> LogisticRegression <span class="im">import</span> LogisticRegression</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -275,7 +271,7 @@ background-size: cover;
 <section id="accuracy-of-regular-gradient-descent" class="level2">
 <h2 class="anchored" data-anchor-id="accuracy-of-regular-gradient-descent">Accuracy of Regular Gradient Descent</h2>
 <div class="cell" data-execution_count="3">
-<details open="">
+<details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Evolution of the score over the training period (last few scores):"</span>) </span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(LR.score_history[<span class="op">-</span><span class="dv">10</span>:]) <span class="co">#just the last few scores</span></span>
@@ -297,7 +293,7 @@ background-size: cover;
 <section id="empirical-risk-of-regular-gradient-descent" class="level2">
 <h2 class="anchored" data-anchor-id="empirical-risk-of-regular-gradient-descent">Empirical Risk of Regular Gradient Descent</h2>
 <div class="cell" data-execution_count="4">
-<details open="">
+<details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Evolution of the loss over the training period (last few losses):"</span>) </span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(LR.loss_history[<span class="op">-</span><span class="dv">10</span>:]) <span class="co">#just the last few losses</span></span>
@@ -323,7 +319,7 @@ background-size: cover;
 <p><span class="math display">\[\nabla_S L(w) = \frac{1}{{|S|}}\sum_{i \in S} \nabla \ell(f_{w}(x_i), y_i)\;\]</span></p>
 <p>Again, convergence is declared when the improvement in the function is small enough in magnitude.</p>
 <div class="cell" data-execution_count="5">
-<details open="">
+<details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>LR <span class="op">=</span> LogisticRegression()</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>LR.fit_stochastic(X, y, <span class="fl">0.1</span>, <span class="dv">100</span>, <span class="dv">10</span>)</span>
@@ -345,7 +341,7 @@ background-size: cover;
 <section id="accuracy-of-stochastic-gradient-descent" class="level2">
 <h2 class="anchored" data-anchor-id="accuracy-of-stochastic-gradient-descent">Accuracy of Stochastic Gradient Descent</h2>
 <div class="cell" data-execution_count="6">
-<details open="">
+<details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Evolution of the score over the training period:"</span>) </span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(LR.score_history[<span class="op">-</span><span class="dv">10</span>:]) <span class="co">#just the last few scores</span></span>
@@ -367,7 +363,7 @@ background-size: cover;
 <section id="empirical-risk-of-stochastic-gradient-descent" class="level2">
 <h2 class="anchored" data-anchor-id="empirical-risk-of-stochastic-gradient-descent">Empirical Risk of Stochastic Gradient Descent</h2>
 <div class="cell" data-execution_count="7">
-<details open="">
+<details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Evolution of the loss over the training period:"</span>) </span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(LR.loss_history[<span class="op">-</span><span class="dv">10</span>:]) <span class="co">#just the last few scores</span></span>
@@ -391,7 +387,7 @@ background-size: cover;
 <h1>Nonconvergence in Gradient Descent</h1>
 <p>Below is an illustration in which gradient descent does not converge to a minimizer because the learning rate <span class="math inline">\(\alpha\)</span> is too large.</p>
 <div class="cell" data-execution_count="8">
-<details open="">
+<details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>LR <span class="op">=</span> LogisticRegression()</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>LR.fit(X, y, <span class="dv">500</span>, <span class="dv">1000</span>)</span>
@@ -416,7 +412,7 @@ background-size: cover;
 <h2 class="anchored" data-anchor-id="choice-of-batch-size-in-stochastic-gradient-descent">Choice of Batch Size in Stochastic Gradient Descent</h2>
 <p>Below is an illustration in which the choice of batch size influences how quickly the algorithm converges.</p>
 <div class="cell" data-execution_count="9">
-<details open="">
+<details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>p_features <span class="op">=</span> <span class="dv">11</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>X, y <span class="op">=</span> make_blobs(n_samples <span class="op">=</span> <span class="dv">500</span>, n_features <span class="op">=</span> p_features <span class="op">-</span> <span class="dv">1</span>, centers <span class="op">=</span> [(<span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>), (<span class="dv">1</span>, <span class="dv">1</span>)])</span>

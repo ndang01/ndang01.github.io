@@ -6,11 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Nhi Dang">
 <meta name="dcterms.date" content="2023-03-31">
 <meta name="description" content="This blog post fits a classifier using data from folktables and performs a bias audit for the algorithm.">
 
-<title>Machine Learning Blog - Auditing Allocative Bias</title>
+<title>Nhi Dang - Auditing Allocative Bias</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -147,7 +146,7 @@ background-size: cover;
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
     <a class="navbar-brand" href="../../index.html">
-    <span class="navbar-title">Machine Learning Blog</span>
+    <span class="navbar-title">Nhi Dang</span>
     </a>
   </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
@@ -155,6 +154,9 @@ background-size: cover;
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html">Home</a>
+  </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../about.html">About</a>
   </li>  
@@ -190,12 +192,6 @@ background-size: cover;
   
   <div class="quarto-title-meta">
 
-      <div>
-      <div class="quarto-title-meta-heading">Author</div>
-      <div class="quarto-title-meta-contents">
-               <p>Nhi Dang </p>
-            </div>
-    </div>
       
       <div>
       <div class="quarto-title-meta-heading">Published</div>
@@ -222,7 +218,7 @@ background-size: cover;
 <p>Our goals for this blog post is to: 1. Train a machine learning algorithm to predict whether someone is currently employed, based on their other attributes not including race. 2. Perform a bias audit of our algorithm to determine whether it displays racial bias.</p>
 <p>There are approximately 48,000 rows of PUMS data in this data frame. Each one corresponds to an individual citizen of the state of Alabama who filled out the 2018 edition of the PUMS survey. We will filter through this dataset to predict employment status on the basis of demographics excluding race, and audit for racial bias. We will fit the training data on the Decision Tree Classifier model from scikit-learn and perform cross-validation to select the best max depth to achieve the highest accuracy.</p>
 <div class="cell" data-execution_count="1">
-<details open="">
+<details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> folktables <span class="im">import</span> ACSDataSource, ACSEmployment, BasicProblem, adult_filter</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -399,7 +395,7 @@ background-size: cover;
 <h2 class="anchored" data-anchor-id="narrowing-the-features">Narrowing the features</h2>
 <p>We’ll focus on a relatively small number of features in the modeling tasks of this blog post. Here are all the possible features we will use:</p>
 <div class="cell" data-execution_count="2">
-<details open="">
+<details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>possible_features<span class="op">=</span>[<span class="st">'AGEP'</span>, <span class="st">'SCHL'</span>, <span class="st">'MAR'</span>, <span class="st">'RELP'</span>, <span class="st">'DIS'</span>, <span class="st">'ESP'</span>, <span class="st">'CIT'</span>, <span class="st">'MIG'</span>, <span class="st">'MIL'</span>, <span class="st">'ANC'</span>, <span class="st">'NATIVITY'</span>, <span class="st">'DEAR'</span>, <span class="st">'DEYE'</span>, <span class="st">'DREM'</span>, <span class="st">'SEX'</span>, <span class="st">'RAC1P'</span>, <span class="st">'ESR'</span>]</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>acs_data[possible_features].head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -538,7 +534,7 @@ background-size: cover;
 </div>
 </div>
 <div class="cell" data-execution_count="27">
-<details open="">
+<details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>features_to_use <span class="op">=</span> [f <span class="cf">for</span> f <span class="kw">in</span> possible_features <span class="cf">if</span> f <span class="kw">not</span> <span class="kw">in</span> [<span class="st">"ESR"</span>, <span class="st">"RAC1P"</span>]]</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -556,7 +552,7 @@ background-size: cover;
 </div>
 <p>We will go ahead and split our testing and training data.</p>
 <div class="cell" data-execution_count="5">
-<details open="">
+<details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test, group_train, group_test <span class="op">=</span> train_test_split(</span>
@@ -569,7 +565,7 @@ background-size: cover;
 <h1>Data Inspection</h1>
 <p>Before we get into modeling, we will do some simple descriptive analysis and dissect our data for intersectional trends.</p>
 <div class="cell" data-execution_count="34">
-<details open="">
+<details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -663,7 +659,7 @@ Percent of employed individuals: 0.4091468041129222</code></pre>
 <section id="intersectional-trends" class="level2">
 <h2 class="anchored" data-anchor-id="intersectional-trends">Intersectional trends</h2>
 <div class="cell" data-execution_count="47">
-<details open="">
+<details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -684,7 +680,7 @@ Percent of employed individuals: 0.4091468041129222</code></pre>
 </div>
 <p>The chart above displays the intersectional trend between race and sex when checking for those who are employed.Men are displayed using the blue bars, and women are shown with the red bars. Overall, men have a higher employment rate across different races. But we will check to see how many women and men were accounted for in this dataset.</p>
 <div class="cell" data-execution_count="43">
-<details open="">
+<details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df.groupby(<span class="st">'SEX'</span>)[[<span class="st">'label'</span>]].aggregate([np.mean, <span class="bu">len</span>]).<span class="bu">round</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
@@ -732,7 +728,7 @@ Percent of employed individuals: 0.4091468041129222</code></pre>
 <h1>Training our data on Decision Tree Classifier</h1>
 <p>We will train our model on the training data with the Decision Tree Classifier from scikit-learn. Additionally, we will perform cross validation to tune the max depth of the algorithm.</p>
 <div class="cell" data-execution_count="9">
-<details open="">
+<details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.tree <span class="im">import</span> DecisionTreeClassifier</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.pipeline <span class="im">import</span> make_pipeline</span>
@@ -768,7 +764,7 @@ Max depth = 1, score = 0.636</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="10">
-<details open="">
+<details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Best max depth: </span><span class="sc">{</span>best_max_depth<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Best score: </span><span class="sc">{</span>best_score_DT<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -785,7 +781,7 @@ Best score: 0.8143429004997252</code></pre>
 <section id="overall-measures" class="level2">
 <h2 class="anchored" data-anchor-id="overall-measures">Overall Measures</h2>
 <div class="cell" data-execution_count="11">
-<details open="">
+<details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>y_hat <span class="op">=</span> best_DT.predict(X_test)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -798,7 +794,7 @@ Best score: 0.8143429004997252</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="12">
-<details open="">
+<details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>matrix <span class="op">=</span> confusion_matrix(y_test, y_hat)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -828,7 +824,7 @@ False positive rate: 0.16817939135077417</code></pre>
 <h2 class="anchored" data-anchor-id="by-group-measures">By-Group Measures</h2>
 <p>We’re going to compare the model’s confusion matrices on the test data for white and black individuals to see if there exists bias in the model’s performance.</p>
 <div class="cell" data-execution_count="13">
-<details open="">
+<details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The accuracy for white individuals is: "</span>)</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>((y_hat <span class="op">==</span> y_test)[group_test <span class="op">==</span> <span class="dv">1</span>].mean())</span>
@@ -846,7 +842,7 @@ The accuracy for black individuals is:
 </div>
 <p>It seems like the model attains similar accuracy score when predicting white and black individuals. It achieves 81.0% accuracy when predicting employment for white individuals and 81.5% for black individuals.</p>
 <div class="cell" data-execution_count="14">
-<details open="">
+<details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># white sub group</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>matrix_white <span class="op">=</span> confusion_matrix(y_test[group_test <span class="op">==</span> <span class="dv">1</span>], y_hat[group_test <span class="op">==</span> <span class="dv">1</span>])</span>
@@ -872,7 +868,7 @@ False positive for white individuals: 0.1670362158167036</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="15">
-<details open="">
+<details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># black sub group</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>matrix_black <span class="op">=</span> confusion_matrix(y_test[group_test <span class="op">==</span> <span class="dv">2</span>], y_hat[group_test <span class="op">==</span> <span class="dv">2</span>])</span>

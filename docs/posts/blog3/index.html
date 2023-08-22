@@ -6,11 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Nhi Dang">
 <meta name="dcterms.date" content="2023-03-10">
 <meta name="description" content="Implementation of different machine learning models to determine the smallest number of measurements necessary to determine the species of a penguin.">
 
-<title>Machine Learning Blog - Classifying Palmer Penguins</title>
+<title>Nhi Dang - Classifying Palmer Penguins</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -147,7 +146,7 @@ background-size: cover;
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
     <a class="navbar-brand" href="../../index.html">
-    <span class="navbar-title">Machine Learning Blog</span>
+    <span class="navbar-title">Nhi Dang</span>
     </a>
   </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
@@ -155,6 +154,9 @@ background-size: cover;
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html">Home</a>
+  </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../about.html">About</a>
   </li>  
@@ -190,12 +192,6 @@ background-size: cover;
   
   <div class="quarto-title-meta">
 
-      <div>
-      <div class="quarto-title-meta-heading">Author</div>
-      <div class="quarto-title-meta-contents">
-               <p>Nhi Dang </p>
-            </div>
-    </div>
       
       <div>
       <div class="quarto-title-meta-heading">Published</div>
@@ -221,7 +217,7 @@ background-size: cover;
 <h1>The Penguin Dataset</h1>
 <p>Below is the Palmer Penguins data set collected by Dr.&nbsp;Kristen Gorman and the Palmer Station, Antarctica LTER. The data contains physiological measurements for a number of penguins from each of three species of penguin: chinstrap, gentoo, and adelie.</p>
 <div class="cell" data-execution_count="1">
-<details open="">
+<details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -368,7 +364,7 @@ background-size: cover;
 <h2 class="anchored" data-anchor-id="preparing-our-dataset">Preparing our dataset</h2>
 <p>Our data frame has some columns we can’t use directly. Thus, we used the “one-hot encoding” to represent these features as binary columns.</p>
 <div class="cell" data-execution_count="2">
-<details open="">
+<details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> LabelEncoder</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>le <span class="op">=</span> LabelEncoder()</span>
@@ -387,7 +383,7 @@ background-size: cover;
 </details>
 </div>
 <div class="cell" data-execution_count="3">
-<details open="">
+<details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>X_train.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
@@ -511,7 +507,7 @@ background-size: cover;
 <h2 class="anchored" data-anchor-id="looking-at-body-mass-and-sex-in-the-3-species">Looking at body mass and sex in the 3 species</h2>
 <p>The displayed figure below shows the general relationship between sex and body mass (g) in each of the 3 penguin species. By looking at the figure, it’s clear that female penguins tend to have a lower body mass than the male penguins. In addition, the Gentoo penguins have a larger overall body mass than the other 2 species, weighing between 4000 to 6000 grams. Both the Adelie and Chinstap species weigh between 3000 to 4500 grams.</p>
 <div class="cell" data-execution_count="4">
-<details open="">
+<details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>sns.set_theme(style<span class="op">=</span><span class="st">"whitegrid"</span>, palette<span class="op">=</span><span class="st">"muted"</span>)</span>
@@ -529,7 +525,7 @@ background-size: cover;
 <h2 class="anchored" data-anchor-id="comparing-flipper-lengths-of-the-3-species">Comparing flipper lengths of the 3 species</h2>
 <p>The table below shows clear differences in flipper lengths between the 3 species. Gentoo penguins have the largest overall flipper length at 217.65mm. The Chinstrap penguins’ overall flipper length comes in at 195.46mm. Adelie penguins have the smallest overall flipper length of the 3 species, at 189.97mm. However, it’s important to note that there was much less data recorded for the Chinstrap species as compared to the other 2 species.</p>
 <div class="cell" data-execution_count="5">
-<details open="">
+<details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>train.groupby([<span class="st">'Species'</span>])[[<span class="st">'Flipper Length (mm)'</span>]].aggregate([np.mean,<span class="bu">len</span> ]).<span class="bu">round</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
@@ -581,7 +577,7 @@ background-size: cover;
 <h1>Modeling</h1>
 <p>Below, we perform an exhaustive search of all the features contained in the dataset to find the 3 best features that will achieve 100% accuracy. The models that we will implement are Logistic Regression, Random Forest Classifier and Decision Tree Classifier, all of which are taken from sklearn.</p>
 <div class="cell" data-execution_count="6">
-<details open="">
+<details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#some parts of the code was provided by Professor Phil</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -660,7 +656,7 @@ Training Accuracy for DT: 0.9921875</code></pre>
 <h2 class="anchored" data-anchor-id="cross-validation">Cross-Validation</h2>
 <p>We will use cross-validation to get a sense for what max depth we should set for the Decision Tree Classifier.</p>
 <div class="cell" data-execution_count="7">
-<details open="">
+<details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> cross_val_score</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -672,7 +668,7 @@ Training Accuracy for DT: 0.9921875</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="8">
-<details open="">
+<details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#code provided by Professor Phil; taken from class lecture</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>max_depth <span class="op">=</span> <span class="dv">5</span></span>
@@ -696,7 +692,7 @@ Max depth = 1, score = 0.731</code></pre>
 <section id="plotting-decision-regions" class="level2">
 <h2 class="anchored" data-anchor-id="plotting-decision-regions">Plotting Decision Regions</h2>
 <div class="cell" data-execution_count="9">
-<details open="">
+<details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Code provided by Professor Phil; taken from lecture notes.</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.patches <span class="im">import</span> Patch</span>
@@ -756,7 +752,7 @@ Max depth = 1, score = 0.731</code></pre>
 </div>
 <p>Plotting decision regions for the Logistic Regression model on its 3 best chosen features: culmen length, culmen depth, and island.</p>
 <div class="cell" data-execution_count="10">
-<details open="">
+<details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>plot_regions(best_LR, X_train[best_cols_LR], y_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
@@ -766,7 +762,7 @@ Max depth = 1, score = 0.731</code></pre>
 </div>
 <p>Plotting decision regions for the Random Forest classifier on its 3 best chosen features: culmen length, flipper length, and island.</p>
 <div class="cell" data-execution_count="11">
-<details open="">
+<details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>plot_regions(best_RF, X_train[best_cols_RF], y_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
@@ -776,7 +772,7 @@ Max depth = 1, score = 0.731</code></pre>
 </div>
 <p>Plotting decision regions for the Decision Tree classifier on its 3 best chosen features: culmen length, flipper length, and island.</p>
 <div class="cell" data-execution_count="12">
-<details open="">
+<details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>plot_regions(best_DT, X_train[best_cols_DT], y_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
@@ -790,7 +786,7 @@ Max depth = 1, score = 0.731</code></pre>
 <h1>Testing</h1>
 <p>Since the Logistic Regression model yields the highest accuracy, we will use that on our test data.</p>
 <div class="cell" data-execution_count="13">
-<details open="">
+<details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>test_url <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/middlebury-csci-0451/CSCI-0451/main/data/palmer-penguins/test.csv"</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>test <span class="op">=</span> pd.read_csv(test_url)</span>
@@ -804,7 +800,7 @@ Max depth = 1, score = 0.731</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="14">
-<details open="">
+<details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>plot_regions(best_LR, X_test[best_cols_LR], y_test)</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">"image.jpg"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>

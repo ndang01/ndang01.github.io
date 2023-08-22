@@ -3,11 +3,14 @@ project:
   output-dir: docs
 
 website:
-  title: "Machine Learning Blog"
+  title: "Nhi Dang"
   navbar:
-    background: "#112a39"
+    #background: "#112a39"
     right:
-      - about.qmd
+      - href: index.qmd
+        text: Home
+      - href: about.qmd
+        text: About
       - icon: github
         href: https://github.com/ndang01
       - icon: linkedin
@@ -17,7 +20,7 @@ format:
   html:
     title-block-banner: img/landscape.png
     title-block-banner-color: white
-    theme: cosmo
+    theme: lux
     css: styles.css
 
 

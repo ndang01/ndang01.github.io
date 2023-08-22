@@ -6,11 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Nhi Dang">
 <meta name="dcterms.date" content="2023-03-15">
 <meta name="description" content="A blog post that uses different machine learning models to determine the smallest number of measurements necessary to determine the species of a penguin.">
 
-<title>Machine Learning Blog - Linear Regression</title>
+<title>Nhi Dang - Linear Regression</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -145,7 +144,7 @@ background-size: cover;
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
     <a class="navbar-brand" href="../../index.html">
-    <span class="navbar-title">Machine Learning Blog</span>
+    <span class="navbar-title">Nhi Dang</span>
     </a>
   </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
@@ -153,6 +152,9 @@ background-size: cover;
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html">Home</a>
+  </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../about.html">About</a>
   </li>  
@@ -188,12 +190,6 @@ background-size: cover;
   
   <div class="quarto-title-meta">
 
-      <div>
-      <div class="quarto-title-meta-heading">Author</div>
-      <div class="quarto-title-meta-contents">
-               <p>Nhi Dang </p>
-            </div>
-    </div>
       
       <div>
       <div class="quarto-title-meta-heading">Published</div>
@@ -215,11 +211,11 @@ background-size: cover;
 
 
 
-<p>Source code: https://github.com/ndang01/ndang01.github.io/blob/main/posts/blog4/LinearRegression.py</p>
+<p><a href="https://github.com/ndang01/ndang01.github.io/blob/main/posts/blog4/LinearRegression.py">source code</a></p>
 <section id="creating-the-testing-and-validation-data" class="level1">
 <h1>Creating the testing and validation data</h1>
 <div class="cell" data-execution_count="1">
-<details open="">
+<details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
@@ -241,7 +237,7 @@ background-size: cover;
 </details>
 </div>
 <div class="cell" data-execution_count="2">
-<details open="">
+<details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>n_train <span class="op">=</span> <span class="dv">100</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>n_val <span class="op">=</span> <span class="dv">100</span></span>
@@ -270,7 +266,7 @@ background-size: cover;
 <p>I utilized the following analytical formula for the optimal weight vector from the lecture notes to implement least-squares linear regression.</p>
 <p><span class="math display">\[\hat{\mathbf{w}} = (\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{y}\;\]</span></p>
 <div class="cell" data-execution_count="3">
-<details open="">
+<details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> LinearRegression <span class="im">import</span> LinearRegression</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -293,7 +289,7 @@ The estimated weight vector is [0.40551937 0.79095312]</code></pre>
 <p>The formula for the gradient is:</p>
 <p><span class="math display">\[ \nabla L(\mathbf{w}) = 2\mathbf{X}^T(\mathbf{X}\mathbf{w}- \mathbf{y})\;\]</span></p>
 <div class="cell" data-execution_count="4">
-<details open="">
+<details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>LR2 <span class="op">=</span> LinearRegression()</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -305,7 +301,7 @@ The estimated weight vector is [0.40551937 0.79095312]</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="5">
-<details open="">
+<details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>plt.plot(LR2.score_history)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> plt.gca().<span class="bu">set</span>(xlabel <span class="op">=</span> <span class="st">"Iteration"</span>, ylabel <span class="op">=</span> <span class="st">"Score"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -319,7 +315,7 @@ The estimated weight vector is [0.40551937 0.79095312]</code></pre>
 <h1>Increasing p_features</h1>
 <p>Below, we will perform an experiment in which p_features, the number of features used, will increase, while holding n_train, the number of training points, constant.</p>
 <div class="cell" data-execution_count="6">
-<details open="">
+<details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#increasing p_features </span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>p_features <span class="op">=</span> n_train <span class="op">-</span> <span class="dv">1</span></span>
@@ -358,7 +354,7 @@ The estimated weight vector is [0.40551937 0.79095312]</code></pre>
 <p>The LASSO algorithm uses a modified loss function with a regularization term:</p>
 <p><span class="math display">\[L(\mathbf{w}) = \lVert \mathbf{X}\mathbf{w}- \mathbf{y} \rVert_2^2 + \alpha \lVert \mathbf{w}' \rVert_1\;\]</span></p>
 <div class="cell" data-execution_count="11">
-<details open="">
+<details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> Lasso</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>

@@ -1,8 +1,8 @@
 ---
-title: "About"
-image: profile.jpg
+title: "Nhi Dang"
 about:
   template: jolla
+  image: headshot.jpg
   links:
     - icon: linkedin
       text: LinkedIn
@@ -10,7 +10,6 @@ about:
     - icon: github
       text: Github
       href: https://github.com/ndang01
-
 ---
 
-This blog contains different implementation and experimentaion with various machine learning models.
+Hello, I recently graduated from Middlebury College with a BA in Computer Science. This blog contains different implementations of various machine learning models that I've done throughout my time at the college. 

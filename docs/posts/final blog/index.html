@@ -6,11 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Nhi Dang (in collaboration with Wright Frost, Madeleine Gallop, and Eliza Wieman)">
 <meta name="dcterms.date" content="2023-05-18">
-<meta name="description" content="A write up of my final project, which uses machine learning models trained on meteorological data from Algeria and Portugal and applies them to assess wildfire risk in the US.">
+<meta name="description" content="A write up of detailing how machine learning models are trained on meteorological data from Algeria and Portugal, and then used to assess wildfire risk in the US.">
 
-<title>Machine Learning Blog - Wildfire Prediction Tool</title>
+<title>Nhi Dang - Wildfire Prediction Tool</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -100,7 +99,7 @@ background-size: cover;
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
     <a class="navbar-brand" href="../../index.html">
-    <span class="navbar-title">Machine Learning Blog</span>
+    <span class="navbar-title">Nhi Dang</span>
     </a>
   </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
@@ -108,6 +107,9 @@ background-size: cover;
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html">Home</a>
+  </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../about.html">About</a>
   </li>  
@@ -134,7 +136,7 @@ background-size: cover;
       <h1 class="title">Wildfire Prediction Tool</h1>
                   <div>
         <div class="description">
-          A write up of my final project, which uses machine learning models trained on meteorological data from Algeria and Portugal and applies them to assess wildfire risk in the US.
+          A write up of detailing how machine learning models are trained on meteorological data from Algeria and Portugal, and then used to assess wildfire risk in the US.
         </div>
       </div>
                 </div>
@@ -170,9 +172,9 @@ background-size: cover;
 
 
 
-<p>Git repository for project: https://github.com/ebwieman/wildfire-risk-tool/tree/main</p>
-<p>Source code: https://github.com/ndang01/ndang01.github.io/blob/main/wildfire_risk_main_code.ipynb</p>
-<p>Mapping tool: https://github.com/ebwieman/wildfire-risk-tool/blob/main/wildfire_risk_mapping_tool.ipynb</p>
+<p><a href="https://github.com/ebwieman/wildfire-risk-tool/tree/main">git repository</a></p>
+<p><a href="https://github.com/ndang01/ndang01.github.io/blob/main/wildfire_risk_main_code.ipynb">source code</a></p>
+<p><a href="https://github.com/ebwieman/wildfire-risk-tool/blob/main/wildfire_risk_mapping_tool.ipynb">mapping tool</a></p>
 <section id="abstract" class="level2">
 <h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
 <p>Wildfires have increased in recent years as a result of climate change, posing a threat to humans and the environment. Understanding the conditions that lead to wildfire and which areas are most at risk is important for developing mitigation strategies and allocating resources. In this project, we utilize machine learning algorithms to predict both wildfire occurrence and area of wildfires. To predict wildfire occurrence, we trained several machine learning models on a dataset containing meteorological information about potential wildfires in Algeria. An accuracy of 100% was achieved using a logistic regression model trained on all features. To predict wildfire area, models were trained on a dataset of wildfire events from Montesinho National Park, Portugal. The area prediction task was much more difficult than the classification task and required additional label transformation to achieve higher accuracies. The highest area prediction accuracy was achieved with a logistic regression model trained on all features and using labels transformed with the scikit-learn lab encoder. Lastly, a model trained on the Algerian dataset was used to predict and map wildfire risk in the United States. The trained model was more simplistic than other models due to the lack of US meteorological data available, but visual comparison to existing fire prediction tools such as the USGS Fire Danger Map Tool shows that the model was somewhat able to predict fire risk in the United States. One shortcoming of this work is that all datasets used to train our models were small and regionally specific, making it difficult to create generalizable tools for use on larger scales or different regions. Developing larger and more regionally dispersed wildfire datasets will aid in future creation of more robust fire prediction tools.</p>
@@ -261,13 +263,6 @@ background-size: cover;
 <p>Overall, our project was successful in a number of ways, and opens the door for future research and experimentation. Our analysis of wildfire risk provided us with an opportunity to practice data science. We successfully found regional data sets, cleaned them, and prepared them for machine learning analyses. Using a Ridge model, we successfully selected features to use for making predictions in each dataset, and through experimenting with a variety of different machine learning models, we selected two that reached reasonably high accuracy. Through examining United States county-level data, we were able to apply our models across scales. Finally, we visualized our results well, and effectively discussed their ethical implications.</p>
 <p>As a group, we met and even surpassed our original project goals. We have a code repository that details our data preparation and cleaning, model training and prediction, and evaluation, notebooks with in exploratory data analysis and testing of our models, a short essay about the implications of using machine learning and automated tools for ecological forecasting (both risks and benefits) and a map of wildfire risk in the United States constructed using our models and US meteorological data. We had wanted to use machine learning to help with natural hazard risk detection and prevention, and our final product provides detailed and thorough documentation of our attempt to do so.</p>
 <p>Because our project built on the work of scholars such as Cortez and Morias, we have the ability to compare our results to past work. While Cortez and Morias’ 2007 study that explored the Portugal data we used in our project identified SVM to be the best machine learning model for fire area prediction, we found SVC and Logistic Regression to be equally effective on the Portugal data set <span class="citation" data-cites="cortez2007data">(<a href="#ref-cortez2007data" role="doc-biblioref">Cortez and Morais 2007</a>)</span>. Our work weaves in well with prior studies, allowing us to make predictions about natural risk by choosing and applying machine learning models. Overall, through experimenting with different models, we ultimately were able to predict wildfires and wildfire area more accurately than our base rates, and experimented with applying these models across scales. With more time, data, or computational resources, we could improve our methods and findings. Spending more time finding and downloading more data for the United States (such as wind speed and humidity, prehaps) would likely improve our map and our model and allow us to better apply the model across space. While we trained our machine learning models on regionally-specific data, we applied thier predictions to new and differently-scaled geographies. When applying models across space, it is important to do so in collaboration those people who may be affected by the results of predictive machine learning tools <span class="citation" data-cites="wagenaar2020invited">(<a href="#ref-wagenaar2020invited" role="doc-biblioref">Wagenaar et al. 2020</a>)</span>. Overall, when we pay attention to bias and applicabiltiy, wildfire and natural disaster models have numerous applications, and even the potential to save lives. As the likelihood and intensity of extreme weather events continues increasing in the face of climate change, we should incorporate and continue building on the anaysis presented here to acheive even better methodologies to predict and prepare for these events.</p>
-</section>
-<section id="group-contributions-statement" class="level2">
-<h2 class="anchored" data-anchor-id="group-contributions-statement">Group Contributions Statement</h2>
-<p>Madeleine: Near the beginning of the project, Wright and I worked on preparing the data from the Algeria and Portugal data sets to eventually split into testing and training data. I then worked on selecting features important for fire/fire area prediction using RidgeCV. We then worked on visualizing the relationships between these selected features and fire likelihood/area. Later in the project, I worked with Eliza on our map. Specifically, I worked on rendering the map to show all the counties in the US, and and helped prepare to join the counties on the map to the county-level temperature and precipitation data. I also worked on the map’s design. Finally, I tried to find additional weather data for the US (such as wind speed), but was largely unsuccessful.</p>
-<p>Wright: I worked with Madeleine at the beginning of the project doing some data preparation. Specifically, I worked on formatting the Algeria data set so that it could be treated as binary fire/no fire data. I then worked on data vizualizations, making graphs of the relationships between different features and fire occurrence/scale. I wasn’t directly involved with the modeling, but after the models were trained I ran them on some test observations and vizualized their performance. Finally, I worked on a short research essay about the ethics of using Machine Learning for natural hazard prediction, prevention, and adaptation.</p>
-<p>Eliza: I helped with initial downloading and importing of the Portugal and Algeria datasets and splitting them into train and test sets. I initially worked on training models on the Portugal dataset (with little success) and did some research to figure out how the authors of the paper that the dataset originated from achieved higher accuracies. I did some of the initial experimentation with log-transforming our y values, but then I pivoted to working on the mapping tool and Nhi took this part of the project over. I definitely spent most of my time and effort working on the mapping tool for this project with Madeleine. I did extensive research on US county-level meteorological data and identified and downloaded the nClimGrid dataset that we ended up using for our US predictions. I did a lot of the data cleaning of these datasets prior to generating our maps, which Madeleine took the lead on, and I helped streamline the map-making process after creating our first map by converting a lot of our code into reusable functions. For the blog post, I took lead on the Materials and Methods section with Nhi, specifically focusing on the mapping tool methods, and the Abstract.</p>
-<p>Nhi: Towards the beginning of the project, I helped with cleaning up our datasets and making sure they are ready to be trained on. For the majority of the project, I did a lot of the training and testing for both of the Portuguese and Algerian datasets. The Algerian dataset was a lot easier to train on, and I was able to obtain a very good accuracy score early on. I trained the Algeria dataset on different models and with different combinations of features to see which would yield the highest accuracy. I did a lot of cross validation and fine tuning to make sure the models weren’t overfitting. Then I tested the highest scoring model on the Algerian testing dataset. Eliza started with training the Portuguese dataset, but did not get very far since this was a much harder dataset to train on. Thus, I took over the modeling for this as well. I started by training the dataset on other models since Eliza had only trained on two models to start. I wasn’t very successful with the other models either, so I explored different ways to transform the target labels since the majority of the labels were skewed towards 0’s. I did a lot of digging around on scikit-learn and while not ideal, I transformed the labels via lab encoder, into binary labels, and into different ranges of the target labels. I then trained different combinations of the features and transformed target labels on different models. I analyzed these models to see how they performed against the testing dataset. Overall, I dissected a lot of different variations of the features and target labels. Additionally, I also combed through our code and cleaned them up. I also added a lot of the descriptors before and after each code section to explain our processes. For the blog post, I wrote the Values Statement, the dataset and modeling in the Materials and Methods section, and added a bit to the Results.</p>
 </section>
 <section id="ethics-of-ml-as-a-tool-for-natural-hazard-prediction-prevention" class="level2">
 <h2 class="anchored" data-anchor-id="ethics-of-ml-as-a-tool-for-natural-hazard-prediction-prevention">Ethics of ML as a tool for Natural Hazard Prediction &amp; Prevention</h2>
