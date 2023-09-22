@@ -2,14 +2,14 @@
   {
     "listing": "/index.html",
     "items": [
-      "/posts/wildfire/wildfire_risk_main_code.html",
-      "/posts/final blog/index.html",
-      "/posts/blog7/index.html",
-      "/posts/blog5/index.html",
-      "/posts/blog4/index.html",
-      "/posts/blog3/index.html",
-      "/posts/blog2/index.html",
-      "/posts/blog1/index.html"
+      "/posts/wildfire-data-analysis/wildfire_risk_main_code.html",
+      "/posts/wildfire-prediction-analysis/index.html",
+      "/posts/unsupervised-earning/index.html",
+      "/posts/auditing-allocative-bias/index.html",
+      "/posts/linear-regression/index.html",
+      "/posts/classifying-palmer-penguins/index.html",
+      "/posts/logistic-regression/index.html",
+      "/posts/perceptron/index.html"
     ]
   }
 ]
